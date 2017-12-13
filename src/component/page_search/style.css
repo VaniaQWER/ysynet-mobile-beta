@@ -1,0 +1,33 @@
+.ysynet-search {
+  background-color: #fff;
+}
+.ysynet-search .ysynet-search-header{
+  display: flex;
+  padding: 2vw 3.333333vw;
+  color: #666;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+}
+
+.ysynet-search .ysynet-search-header img {
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+}
+
+.ysynet-search .ysynet-search-history {
+  padding: 2px 6px;
+  min-height: 8vh;
+}
+
+.ysynet-search .ysynet-search-tag {
+  display: inline-block;
+  padding: 2vw 2.666667vw;
+  border-radius: .666667vw;
+  font-size: 14px;
+  color: #666;
+  background-color: #f7f7f7;
+  margin: 2px 4px;
+}

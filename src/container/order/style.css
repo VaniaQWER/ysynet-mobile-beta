@@ -1,0 +1,96 @@
+.ysynet-detail .ysynet-detail-amount {
+  display: inline-block;
+  width: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+.ysynet-detail .ysynet-detail-price {
+  width: 100px;
+  display: inline-block;
+  font-size: 14px;
+  color: #333;
+  text-align: right;
+}
+
+.ysynet-detail .am-list-brief {
+  font-size: 12px;
+}
+
+.ysynet-detail .send {
+  display: inline-block;
+}
+.ysynet-detail .send span {
+  color: #3dbd7d;
+}
+
+.ysynet-detail .no_send {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.ysynet-detail .no_send span{
+  color: #f46e65;
+}
+
+.ysynet-order span {
+  display: inline-block;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.ysynet-order span a {
+  display: inline-block;
+  margin-left: 10px;
+  color: #888;
+}
+
+.ysynet-order .address {
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #6e6e6e;
+  list-style: none;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ysynet-order .address .am-list-content {
+  font-size: 14px;
+}
+
+.ysynet-package .package-item {
+  margin: 10px auto;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #3dbd7d;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.ysynet-package .summary {
+  color: '#888';
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.ysynet-package .summary span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  width: 50px;
+  vertical-align: top;
+}
+
+.ysynet-order-loading {
+  width: 100%;
+  height: 80vh;
+  background-image: url(../../assets/order-loading.svg)
+}

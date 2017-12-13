@@ -1,0 +1,118 @@
+.ysynet_listCard {
+  display: block;
+  background-color: #fff;
+  padding: 3.733333vw 0 0 4vw;
+  margin-top: 2.666667vw;
+}
+
+.ysynet_listCard .card-body {
+  display: flex;
+}
+
+.ysynet_listCard .card-body .card-avatar {
+  padding-right: 2.666667vw;
+  flex: none;
+  -webkit-box-flex: 0;
+}
+.ysynet_listCard .card-body .card-avatar img{
+  width: 8.533333vw;
+  height: 8.533333vw;
+  border: 1px solid #eee;
+  border-radius: .533333vw;
+}
+.ysynet_listCard .card-body .card-content {
+  flex: 1;
+  -webkit-box-flex: 1;
+}
+
+.ysynet_listCard .card-head {
+  border-bottom: 1px solid #eee;
+  padding-right: 3.466667vw;
+  padding-bottom: 2.666667vw;
+}
+
+.ysynet_listCard .card-head .name {
+  display: flex;
+  line-height: 1.5rem;
+  font-size: 16px;
+  color: #333;
+  align-items: center;
+  -webkit-box-align: center;
+}
+
+.ysynet_listCard .card-head .title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-box-pack: justify;
+}
+
+.ysynet_listCard .card-head .name .content {
+  display: inline-block;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ysynet_listCard .card-head .status {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  right: -15px;
+  top: -15px;
+  font-size: 12px;
+  text-align: right;
+  color: #333;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-size: 100% 100%;
+}
+.ysynet_listCard .card-head .datetime {
+  font-size: 10px;
+  color: #999;
+}
+.ysynet_listCard  p {
+  margin: 0;
+}
+
+.ysynet_listCard .card-detail {
+  display: flex;
+  padding: 4vw 3.466667vw 4vw 0;
+  justify-content: space-between;
+}
+
+.ysynet_listCard .card-detail .detail {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  -webkit-box-align: center;
+}
+.ysynet_listCard .card-detail .detail .productname {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ysynet_listCard .card-detail .detail .productname.ellipsis {
+  max-width: 42.666667vw;
+}
+.ysynet_listCard .card-detail .price {
+  flex-basis: 16.000000vw;
+  text-align: right;
+  font-size: 12px;
+  color: #333;
+  font-weight: 700;
+}
+
+.ysynet_listCard .card-bottom {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 2.666667vw 4.266667vw;
+  justify-content: flex-end;
+  -webkit-box-pack: end;
+}

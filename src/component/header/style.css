@@ -1,0 +1,20 @@
+.phxl_header {
+  background-color: #108ee9;
+  overflow: hidden;
+}
+
+.phxl_header .am-search {
+  background-color: #108ee9 !important;
+}
+
+.phxl_header .am-search-cancel {
+  color: #eee !important;
+}
+
+.phxl_header .am-grid .am-flexbox {
+  background: #108ee9 !important;
+}
+
+.phxl_header .am-grid-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+}

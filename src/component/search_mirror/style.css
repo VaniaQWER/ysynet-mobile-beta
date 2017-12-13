@@ -1,0 +1,29 @@
+.ysynet-search-mirror-container {
+  line-height: 28px;
+  padding: 5px 8px;
+  background-color: #efeff4;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ysynet-search-mirror-container  .ysynet-search-mirror-wrapper {
+  background-color: #fff;
+}
+
+.ysynet-search-mirror-icon {
+  display: inline-block;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  vertical-align: -2.5px;
+  background-repeat: no-repeat;
+  background-size: 18px auto;
+  background-image: url(../../assets/search.svg)
+}
+
+.ysynet-search-mirror-placeholder {
+  color: #bbb;
+  font-size: 15px;
+}

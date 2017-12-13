@@ -1,0 +1,54 @@
+.ysynet-profile {
+  display: flex;
+  background-image: linear-gradient(90deg,#108ee9,#108ee9);
+  padding: 6.666667vw 4vw;
+  color: #fff;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.ysynet-profile img {
+  border-radius: 50%;
+  width: 16vw;
+  height: 16vw;
+  max-width: 100%;
+}
+
+.ysynet-profile .ysynet-profile-detail {
+  margin-left: 4.8vw;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+.ysynet-profile .ysynet-profile-detail p {
+  margin: 0;
+  padding: 0;
+}
+
+.ysynet-profile .ysynet-profile-detail .name {
+  font-size: 20px;
+}
+
+.ysynet-profile .ysynet-profile-detail .phone {
+  margin-top: 6px;
+}
+
+.ysynet-profile .ysynet-profile-detail .phone span{
+  font-size: 12px;
+  font-weight: 300;
+}
+.ysynet-profile .ysynet-profile-detail .phone i {
+  display: inline-block;
+  vertical-align: top;
+  background-image: url(../../assets/phone.svg);
+  background-size: 100% 100%;
+  width: 16px;
+  height: 16px;
+}
+
+.ysynet-profile .next {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(../../assets/next.svg);
+  background-size: 100% 100%;
+}

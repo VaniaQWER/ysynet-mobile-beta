@@ -1,0 +1,14 @@
+.ysynet-userInfo .am-list-item .am-list-line .am-list-content {
+  font-size: 14px;
+}
+
+.ysynet-userInfo .avatar {
+  width: 13.333333vw;
+  height: 13.333333vw;
+  border-radius: 6vw;
+}
+
+.ysynet-userInfo.logout .am-list-content{
+  text-align: center;
+  color: #f04134;
+}
