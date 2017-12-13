@@ -10,6 +10,7 @@ export const HEADER_TOOLS = [
 export const MAIN_TOOLS = [
   { icon: require('../assets/invoice.svg'), text: '发票', link: '/invoice' },
   { icon: require('../assets/auditing.svg'), text: '订单审核' },
+  { icon: require('../assets/equipment.svg'), text: '设备', link: '/equipment' },
   { icon: require('../assets/balance.svg'), text: '余额' },
   { icon: require('../assets/more.svg'), text: '更多' }
 ]

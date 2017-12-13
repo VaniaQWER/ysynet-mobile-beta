@@ -38,6 +38,14 @@ export const routes =  {
       }
     },
     {
+      path: '/equipment',//产品
+      getComponent: (nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('../container/equipment').default)
+        }, 'equipment')
+      }
+    },
+    {
       path: '/profile',//用户
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
