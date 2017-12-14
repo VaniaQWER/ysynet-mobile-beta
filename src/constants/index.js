@@ -235,3 +235,49 @@ export const Supplier = {
   card3: '',
   card4: ''
 }
+
+//设备
+export const EquipmentData = {
+  archivesTotal: '13',
+  contractTotal: '2',
+  Repair: {
+    Status:[
+      {TF_CLO_CODE:"00",TF_CLO_NAME:"待接修",text:'83',icon: require('../assets/repair00.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"维修中",text:'1',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"02",TF_CLO_NAME:"待验收",text:'0',icon: require('../assets/repair02.svg') },
+      {TF_CLO_CODE:"03",TF_CLO_NAME:"已关闭",text:'2',icon: require('../assets/repair03.svg') },
+      {TF_CLO_CODE:"04",TF_CLO_NAME:"逾期",text:'44',icon: require('../assets/repair04.svg') },
+      {TF_CLO_CODE:"05",TF_CLO_NAME:"待开票",text:'22',icon: require('../assets/repair05.svg') },
+    ]
+  },
+  AccusationMgt: {
+    PM:[
+      {TF_CLO_CODE:"00",TF_CLO_NAME:"待完成",text:'1',icon: require('../assets/repair00.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"未通过",text:'1',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"02",TF_CLO_NAME:"逾期",text:'1',icon: require('../assets/repair02.svg') },
+    ],
+    PMYearTotal:'20',
+    PMMonthTotal:'5',
+    Inspection: [
+      {TF_CLO_CODE:"00",TF_CLO_NAME:"待完成",text:'2',icon: require('../assets/repair00.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"未通过",text:'2',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"02",TF_CLO_NAME:"逾期",text:'2',icon: require('../assets/repair02.svg') },
+    ],
+    InYearTotal:'18',
+    InMonthTotal:'3',
+    Metering: [
+      {TF_CLO_CODE:"00",TF_CLO_NAME:"待完成",text:'3',icon: require('../assets/repair00.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"未通过",text:'3',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"02",TF_CLO_NAME:"逾期",text:'3',icon: require('../assets/repair02.svg') },
+    ],
+    MeYearTotal:'32',
+    MeMonthTotal:'4',
+  },
+
+  ContractMgt: {
+    Status:[
+      {TF_CLO_CODE:"00",TF_CLO_NAME:"即将到期合同",text:'0',icon: require('../assets/repair04.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"逾期合同",text:'17',icon: require('../assets/repair05.svg') },
+    ]
+  }
+}
