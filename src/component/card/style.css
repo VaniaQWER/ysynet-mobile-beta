@@ -1,0 +1,62 @@
+.ysynet_card_item{
+    display: block;
+    margin-top: 5px;
+}
+.ysynet_card_header{
+    font-size: 14px;
+    padding: 5px 0;
+    /* border-bottom:solid 1px #ddd; */
+}
+.ysynet_card_header .header_con{
+    padding:8px 12px;
+    display: flex;
+    justify-content:space-between;
+}
+.ysynet_card_header .header_con .workNo{
+    color: #999999;
+}
+.ysynet_card_header .header_con .fixStatus{
+    display: inline-block;
+    margin: 0 0 0 1.2vw;
+    padding: 2px 4px;
+    border: solid 1px #999999;
+    border-radius: .233333vw;
+}
+
+.ysynet_card_content{
+    color: #333333;
+}
+.ysynet_card_content .title{
+    font-size: 15px;
+}
+.ysynet_card_content .tag{
+    font-size: 12px;
+    padding: 0 3px;
+    margin:0 0 0 5px;
+    border: solid 1px;
+}
+.ysynet_card_content .not_maintain{
+    color: #EC6F66;
+    background:#FFECF5;
+    border-color: #FFECF5;
+}
+.ysynet_card_content .maintain{
+    color:#28C7A0;
+    background:#E6F9F6;
+    border-color: #E6F9F6;
+}
+.ysynet_card_content .out_maintain{
+    color:#F0BE6F;
+    background:#FEFAF0;
+    border-color: #FEFAF0;
+}
+.ysynet_card_content .detail{
+    font-size: 12px;
+    color: #949494;
+}
+.ysynet_card_content .detail .brand .line{
+    margin: 0 3px;
+}
+.ysynet_card_content .detail .address .adrCenter{
+    margin: 0 10px;
+}

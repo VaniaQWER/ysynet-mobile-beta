@@ -43,7 +43,17 @@ export const routes =  {
         require.ensure([], (require) => {
           cb(null, require('../container/equipment').default)
         }, 'equipment')
-      }
+      },
+      childRoutes: [
+        {
+          path: '/equipment/repair',//维修工单
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair').default)
+            }, '/equipment/repair')
+          }
+        }
+      ]
     },
     {
       path: '/profile',//用户
