@@ -15,11 +15,15 @@ const CardBody = ({ item, onClick}) => (
                     <div className={'workNo'}>
                         <span>{item.WONo}</span>
                         {
+                            item.fixedType &&
+                            <span className={'fixStatus'}>{item.fixedType}</span>
                         }
                     </div>
                     <div className={'status'}>
                         {
+                            item.WOStatus.TF_CLO_CODE==='00'?<span style={{color:'#ffbf00'}}>{item.WOStatus.TF_CLO_NAME}</span>
                             :
+                            <span style={{color:'#3dbd7d'}}>{item.WOStatus.TF_CLO_NAME}</span>
                         }
                     </div>
                 </div>
@@ -27,7 +31,10 @@ const CardBody = ({ item, onClick}) => (
             <Card.Body>
                 <div className={'ysynet_card_content'}>
                         <div>
+                            <span className={'title'}>{item.equipmentName}</span>
+                            {
                                 item.useStatus?item.useStatus.map((item,index)=>
+                                 <span className={item.TF_CLO_CODE==='00'?'tag maintain':(item.TF_CLO_CODE==='01'?'tag out_maintain':'tag not_maintain')} key={index}>{item.TF_CLO_NAME}</span>
                                 )
                                 :
                                 null
