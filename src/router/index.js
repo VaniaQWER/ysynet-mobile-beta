@@ -38,7 +38,7 @@ export const routes =  {
       }
     },
     {
-      path: '/equipment',//产品
+      path: '/equipment',//设备
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
           cb(null, require('../container/equipment').default)
@@ -52,8 +52,17 @@ export const routes =  {
               cb(null, require('../container/equipment/repair').default)
             }, '/equipment/repair')
           }
+        },
+        { 
+          path: '/equipment/list',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/list').default)
+            }, 'equipment/list')
+          }
         }
       ]
+
     },
     {
       path: '/profile',//用户
