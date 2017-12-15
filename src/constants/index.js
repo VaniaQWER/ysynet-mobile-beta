@@ -235,7 +235,7 @@ export const Supplier = {
   card3: '',
   card4: ''
 }
-//设备
+//资产档案
 export const EquipmentData = {
   archivesTotal: '13',
   contractTotal: '2',
@@ -252,8 +252,30 @@ export const EquipmentData = {
       {TF_CLO_CODE:"00",TF_CLO_NAME:"待完成",text:'1',icon: require('../assets/repair00.svg') },
       {TF_CLO_CODE:"01",TF_CLO_NAME:"已完成",text:'1',icon: require('../assets/repair01.svg') },
     ]
-  }
+  },
+  //资产信息中的操作按钮
+  firstDetailsGrid:[
+      {title:"报修",text:'报修',icon: require('../assets/repair06.svg'),link:"/equipment/applyRepair" },
+      {title:"保养",text:'保养',icon: require('../assets/repair07.svg') ,link:"/equipment/applyMaintain"},
+      {title:"维修记录",text:'维修记录',icon: require('../assets/repair09.svg') ,link:"/equipment/repairRecord"},
+      {title:"保养记录",text:'保养记录',icon: require('../assets/repair08.svg') ,link:"/equipment/maintainRecord"}
+  ]
 }
+
+// 资产档案Mock数据
+export const EquipmentList = [
+  {id: 1, supplierId: 1, number: '20171214000001', productname: "病人监护仪", address: '外科楼四楼',model: '2mm*2mm*537mm/W', TF_CLO_NAME: '在用',TF_CLO_CODE:'00',tfBrandName: 'EPSON'},
+  {id: 2, supplierId: 2, number: '20171214000002', productname: "病人监护仪", address: '内科一号楼15楼',model: '2mm*2mm*534mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '赛诺秀'},
+  {id: 3, supplierId: 3, number: '20171214000003', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房',model: '2mm*2mm*513mm/W', TF_CLO_NAME: '报废', TF_CLO_CODE:'02',more: true, tfBrandName: '上海昕宁'},
+  {id: 4, supplierId: 4, number: '20171214000004', productname: "病人监护仪", address: '二级库房结算',model: '1mm*1mm*537mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '永信'},
+  {id: 5, supplierId: 5, number: '20171214000005', productname: "病人监护仪", address: '二级库房结算',model: '1mm*1mm*511mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '康乐保'},
+  {id: 6, supplierId: 6, number: '20171214000006', productname: "病人监护仪",address: '二级库房结算',model: '1mm*1mm*557mm/W', TF_CLO_NAME: '在用', TF_CLO_CODE:'00',more: true, tfBrandName: '江苏华夏'},
+  {id: 7, supplierId: 7, number: '20171214000007', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '	1mm*1mm*525mm/W', TF_CLO_NAME: '在用', TF_CLO_CODE:'00',more: true, tfBrandName: '上海昕宁'},
+  {id: 8, supplierId: 8, number: '20171214000008', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '2mm*2mm*542mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '德尔'},
+  {id: 9, supplierId: 9, number: '20171214000009', productname: "病人监护仪", address: '外科大楼3楼手术室', model: '2mm*2mm*506mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '好玛'},
+  {id: 10, supplierId: 10, number: '201712140000010', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '2mm*2mm*535mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '安吉恒泰'},
+  {id: 11, supplierId: 11, number: '201712140000011', productname: "病人监护仪", address: '外科楼17楼', model: '1mm*1mm*504mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '江苏鱼跃'},
+]
 // 工单列表信息
 export const WorkOrder = [
   {

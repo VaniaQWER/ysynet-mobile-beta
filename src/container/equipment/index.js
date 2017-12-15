@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace,Card,Switch,NoticeBar} from 'antd-mobile';
+import { NavBar, Icon, List, WhiteSpace,Card} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { EquipmentData } from '../../constants';
 import EquipmentGrid from '../../component/equipmentGrid';
 import './index.css';
-import UserInfo from '../../component/user_info';
+import '../../component/user_info/style.css';
 
 const Item = List.Item;
 /**

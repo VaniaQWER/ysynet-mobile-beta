@@ -60,6 +60,54 @@ export const routes =  {
               cb(null, require('../container/equipment/list').default)
             }, 'equipment/list')
           }
+        },
+        { 
+          path: '/equipment/firstDetails',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/firstDetails').default)
+            }, 'equipment/firstDetails')
+          }
+        },
+        { 
+          path: '/equipment/secondDetails',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/secondDetails').default)
+            }, 'equipment/secondDetails')
+          }
+        },
+        { 
+          path: '/equipment/applyRepair',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/applyRepair').default)
+            }, 'equipment/applyRepair')
+          }
+        },
+        { 
+          path: '/equipment/applyMaintain',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/applyMaintain').default)
+            }, 'equipment/applyMaintain')
+          }
+        },
+        { 
+          path: '/equipment/repairRecord',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repairRecord').default)
+            }, 'equipment/repairRecord')
+          }
+        },
+        { 
+          path: '/equipment/maintainRecord',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/maintainRecord').default)
+            }, 'equipment/maintainRecord')
+          }
         }
       ]
 
