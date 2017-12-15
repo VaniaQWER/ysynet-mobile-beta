@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
+import { NavBar, Icon, ListView, PullToRefresh,SearchBar,WhiteSpace } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import CardItem from '../../../component/card';
 import Slider from '../../common/slider';

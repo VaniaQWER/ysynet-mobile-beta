@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon,Card,List, Switch, Radio, Button,ImagePicker,TextareaItem} from 'antd-mobile';
+import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 
@@ -7,41 +7,38 @@ import { createForm } from 'rc-form';
  * @summary 资产档案列表 --详情1-报修申请
  */
 const Item = List.Item;
-const RadioItem = Radio.RadioItem;
+
 class ApplyRepair extends Component {
     state = {
-        files: [{
-            url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-            id: '2121',
-          }, {
-            url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-            id: '2122',
-          }],
+        files: [],
         multiple: false,
-        value: 0,
+     
     }
+    //提交数据
+    onSubmit = () => {
+        this.props.form.validateFields({ force: true }, (error) => {
+          if (!error) {
+            let values = this.props.form.getFieldsValue();
+            values.urgency = this.props.location.state.urgency;
+            values.failure = this.props.location.state.failure;
+            values.imageUrl = this.state.files[0].url;
+            console.log(values,"提交的数据");
+          } else {
+            alert('Validation failed');
+          }
+        });
+      }
 
     onChange = (files, type, index) => {
         console.log(files, type, index);
-        this.setState({
-          files,
-        });
+        this.setState({ files });
     }
-    radioOnChange =(value) =>{
-        console.log('checkbox');
-        this.setState({
-          value,
-        });
-    }
+
     render(){
         const rowData = this.props.location.state;
         const { getFieldProps, getFieldError } = this.props.form;
-        const data = [
-            { value: 0, label: '一般' },
-            { value: 1, label: '急' },
-            { value: 2, label: '紧急' },
-          ];
-        const { files ,value} = this.state;
+   
+        const { files } = this.state;
         return this.props.children ||
         (
             <div>
@@ -73,24 +70,24 @@ class ApplyRepair extends Component {
                             <Item
                             extra={<Switch color="#2395ff" {...getFieldProps('2', { initialValue: true, valuePropName: 'checked' })} />}
                             >是否有备用</Item>
-                            <Item extra= {data.map(i => (
-                                    <RadioItem  key={i.value} checked={value === i.value} onChange={() => this.radioOnChange(i.value)}>{i.label}</RadioItem>  
-                                    ))}>
-          
-                               紧急度    
-                     
+                            <Item arrow="horizontal" multipleLine 
+                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:this.props.location.state})}
+                            >
+                               紧急度 
                             </Item>
 
                           
-                            <Item
-                            extra={<Switch color="#2395ff" {...getFieldProps('3', { initialValue: true, valuePropName: 'checked' })} />}
-                            >故障现象</Item>
+                            <Item arrow="horizontal" multipleLine 
+                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:this.props.location.state})}
+                            >
+                               故障现象 
+                            </Item>
                             <Item>
                             <ImagePicker
                             files={files}
                             onChange={this.onChange}
                             onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={files.length < 5}
+                            selectable={files.length < 1}
                             multiple={this.state.multiple}
                             />
                             </Item>
@@ -99,7 +96,7 @@ class ApplyRepair extends Component {
                         </List>
                         <List renderHeader={() => '请填写备注'}>
                         <TextareaItem
-                            {...getFieldProps('count', {
+                            {...getFieldProps('tfmark', {
                             initialValue: '补充说明...',
                             })}
                             rows={5}

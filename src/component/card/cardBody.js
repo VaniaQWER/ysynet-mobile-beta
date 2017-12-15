@@ -10,13 +10,13 @@ const clickFunc = (item,onClick,e)=>{
 function showFixStatus(value){
     switch(value.TF_CLO_CODE){
         case '00':
-            return <span style={{color:'#ffbf00'}}>{value.TF_CLO_NAME}</span>
+            return <span style={{color:'#ffbf00'}}>{value.TF_CLO_NAME}</span>;
             break;
         case '01':
-            return <span style={{color:'#28C7A0'}}>{value.TF_CLO_NAME}</span>
+            return <span style={{color:'#28C7A0'}}>{value.TF_CLO_NAME}</span>;
             break;
         case '02':
-            return <span style={{color:'#000'}}>{value.TF_CLO_NAME}</span>
+            return <span style={{color:'#000'}}>{value.TF_CLO_NAME}</span>;
             break;
         case '03':
             return <span style={{color:'#f00'}}>{value.TF_CLO_NAME}</span>

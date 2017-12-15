@@ -11,7 +11,7 @@ class FirstDetails extends Component {
     render () {
         const rowData = this.props.location.state;
         const firstDetailsGridData = EquipmentData.firstDetailsGrid;
-        const { columnNum, onClick, hasLine } = this.props;
+        const { columnNum, hasLine } = this.props;
         return this.props.children ||
         (  
             <div>
