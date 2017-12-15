@@ -256,9 +256,9 @@ export const EquipmentData = {
   //资产信息中的操作按钮
   firstDetailsGrid:[
       {title:"报修",text:'报修',icon: require('../assets/repair06.svg'),link:"/equipment/applyRepair" },
-      {title:"保养",text:'保养',icon: require('../assets/repair07.svg') ,link:"/equipment/applyMaintain"},
-      {title:"维修记录",text:'维修记录',icon: require('../assets/repair09.svg') ,link:"/equipment/repairRecord"},
-      {title:"保养记录",text:'保养记录',icon: require('../assets/repair08.svg') ,link:"/equipment/maintainRecord"}
+      {title:"保养",text:'保养',icon: require('../assets/repair07.svg') ,link:"/equipment/do"},
+      {title:"维修记录",text:'维修记录',icon: require('../assets/repair09.svg') ,link:"/equipment/do"},
+      {title:"保养记录",text:'保养记录',icon: require('../assets/repair08.svg') ,link:"/equipment/do"}
   ]
 }
 

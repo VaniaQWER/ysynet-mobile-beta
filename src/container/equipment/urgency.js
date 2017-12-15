@@ -8,7 +8,7 @@ import { hashHistory } from 'react-router';
 const RadioItem = Radio.RadioItem;
 class UrgencyList extends Component {
     state = {
-        value: 0,
+        value: this.props.location.state.urgency,
     }
     onChange =(value) =>{
         this.setState({ value });
@@ -16,9 +16,9 @@ class UrgencyList extends Component {
 
     render(){
         const data = [
-            { value: 0, label: '一般' },
-            { value: 1, label: '急' },
-            { value: 2, label: '紧急' },
+            { value: 30, label: '一般' },
+            { value: 20, label: '急' },
+            { value: 10, label: '紧急' },
           ];
 
           const { value } = this.state;

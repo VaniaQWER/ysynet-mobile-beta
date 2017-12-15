@@ -8,7 +8,7 @@ import { hashHistory } from 'react-router';
 const RadioItem = Radio.RadioItem;
 class FailureList extends Component {
     state = {
-        value: 0,
+        value: this.props.location.state.failure,
     }
     onChange =(value) =>{
         console.log('checkbox');
@@ -17,11 +17,11 @@ class FailureList extends Component {
 
     render(){
         const data = [
-            { value: 0, label: '部分功能失效' },
-            { value: 1, label: '开机后死机' },
-            { value: 2, label: '性能指标偏离' },
-            { value: 3, label: '不规则障碍' },
-            { value: 4, label: '其他' },
+            { value: "部分功能失效", label: '部分功能失效' },
+            { value: "开机后死机", label: '开机后死机' },
+            { value: "性能指标偏离", label: '性能指标偏离' },
+            { value: "不规则障碍", label: '不规则障碍' },
+            { value: "其他", label: '其他' },
           ];
 
           const { value } = this.state;

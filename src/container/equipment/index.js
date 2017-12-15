@@ -94,7 +94,7 @@ class Equipment extends Component {
                 onClick={ (el,index) => {
                   console.log(el,'el');
                   console.log(index,'index')
-                  hashHistory.push({pathname: '/equipment/list'})
+                  hashHistory.push({pathname: '/equipment/do',state:{backlink:'/equipment'}})
                 }} 
                 columnNum='3' 
                 data={AccusationMgtData}

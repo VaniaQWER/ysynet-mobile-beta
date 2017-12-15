@@ -42,7 +42,7 @@ class FirstDetails extends Component {
                     <Grid
                         data={firstDetailsGridData}
                         columnNum={ columnNum || 3 }
-                        onClick={(el) => hashHistory.push({pathname: el.link,state:this.props.location.state})}
+                        onClick={(el) => hashHistory.push({pathname: el.link,state:{...this.props.location.state,backlink:'/equipment/firstDetails'}})}
                         hasLine={ hasLine }
                     />
                     </div>

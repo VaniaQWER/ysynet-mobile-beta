@@ -12,6 +12,8 @@ class ApplyRepair extends Component {
     state = {
         files: [],
         multiple: false,
+        urgency:this.props.location.state.urgency || 10,
+        failure:this.props.location.state.failure || "部分功能失效", 
      
     }
     //提交数据
@@ -19,9 +21,9 @@ class ApplyRepair extends Component {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
             let values = this.props.form.getFieldsValue();
-            values.urgency = this.props.location.state.urgency;
-            values.failure = this.props.location.state.failure;
-            values.imageUrl = this.state.files[0].url;
+            values.urgency = this.state.urgency;
+            values.failure = this.state.failure;
+            values.imageUrl = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");
           } else {
             alert('Validation failed');
@@ -71,14 +73,14 @@ class ApplyRepair extends Component {
                             extra={<Switch color="#2395ff" {...getFieldProps('2', { initialValue: true, valuePropName: 'checked' })} />}
                             >是否有备用</Item>
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:this.props.location.state})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgency:this.state.urgency}})}
                             >
                                紧急度 
                             </Item>
 
                           
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:this.props.location.state})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,failure:this.state.failure}})}
                             >
                                故障现象 
                             </Item>

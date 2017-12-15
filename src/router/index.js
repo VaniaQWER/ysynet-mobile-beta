@@ -142,6 +142,14 @@ export const routes =  {
               cb(null, require('../container/equipment/maintainRecord').default)
             }, 'equipment/maintainRecord')
           }
+        },
+        { 
+          path: '/equipment/do',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/do').default)
+            }, 'equipment/do')
+          }
         }
       ]
 
