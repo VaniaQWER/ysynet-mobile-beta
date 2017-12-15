@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { ListView } from 'antd-mobile';
-import { OrderList, Invoice,EquipmentList } from '../../constants';
+import { OrderList, Invoice,EquipmentList,WorkOrder } from '../../constants';
 /**
  * @file 滑动刷新 构造方法
  */
@@ -33,6 +33,9 @@ class Slider extends Component {
           break;  
         case 'equipmentList':
           data = EquipmentList;
+          break; 
+        case 'workOrderList':
+          data = WorkOrder;
           break; 
         default:
           break;

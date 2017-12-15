@@ -279,34 +279,44 @@ export const EquipmentList = [
 // 工单列表信息
 export const WorkOrder = [
   {
-    id:1,
-    WONo:'20171106',
-    fixedType:'外修',
-    WOStatus:{TF_CLO_CODE:'00',TF_CLO_NAME:'待接修'},
-    useStatus:[{TF_CLO_CODE:'00',TF_CLO_NAME:'在保'},{TF_CLO_CODE:'01',TF_CLO_NAME:'出保'}],
-    equipmentName:'医用全自动电子血压计',
-    tfBrand:'德国西门子',
-    spec:'12...',
-    deptName:'信息科',
-    buildingName:'马会楼',
-    floorName:'-1楼',
-    WOProperty:'故障维修',
-    updateTime:'2017-10-16 11:15'
+    id:1, WONo:'20171106', fixedType:'外修', WOStatus:{TF_CLO_CODE:'00',TF_CLO_NAME:'待维修'}, useStatus:[{TF_CLO_CODE:'00',TF_CLO_NAME:'在保'},{TF_CLO_CODE:'01',TF_CLO_NAME:'出保'}],
+    equipmentName:'医用全自动电子血压计',tfBrand:'德国西门子', spec:'12...', deptName:'信息科', buildingName:'马会楼',floorName:'-1楼', WOProperty:'故障维修', updateTime:'2017-10-16 11:15'
   },
   {
-    id:2,
-    WONo:'20171110',
-    fixedType:'',
-    useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}],
-    WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'已接修'},
-    equipmentName:'打印机',
-    tfBrand:'',
-    spec:'',
-    deptName:'信息科',
-    buildingName:'新版测试楼',
-    floorName:'2楼',
-    WOProperty:'暂无',
-    updateTime:'2017-10-19 12:09'
+    id:2, WONo:'20171110',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'MRI',tfBrand:'', spec:'', deptName:'信息科', buildingName:'新版测试楼', floorName:'2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:3, WONo:'20171115',fixedType:'内修', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'打印机',tfBrand:'', spec:'', deptName:'辐射科', buildingName:'住院大楼', floorName:'-2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:4, WONo:'20171120',fixedType:'', WOStatus:{TF_CLO_CODE:'03',TF_CLO_NAME:'已关闭'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'电脑',tfBrand:'', spec:'', deptName:'信息科2', buildingName:'综合楼', floorName:'4楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:5, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'多功能病床',tfBrand:'', spec:'', deptName:'信息科', buildingName:'新版测试楼', floorName:'2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:6, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:7, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'医用全自动电子血压计',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:8, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'电脑',tfBrand:'', spec:'', deptName:'信息科', buildingName:'住院大楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:9, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'03',TF_CLO_NAME:'已关闭'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+  },
+  {
+    id:10, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'辐射科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
   }
 ]
 

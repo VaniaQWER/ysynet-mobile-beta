@@ -65,7 +65,7 @@ class Equipment extends Component {
                 onClick={ (el,index) => {
                   console.log(el,'el');
                   console.log(index,'index')
-                  hashHistory.push({pathname: '/equipment/list'})
+                  hashHistory.push({pathname: '/equipment/equipmentRepaire'})
                 }} 
                 itemStyle={{backgroundColor:'#f1fff1'}}
                 columnNum='3' 

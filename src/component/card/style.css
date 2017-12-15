@@ -5,22 +5,23 @@
 .ysynet_card_header{
     font-size: 14px;
     padding: 5px 0;
-    /* border-bottom:solid 1px #ddd; */
 }
 .ysynet_card_header .header_con{
     padding:8px 12px;
     display: flex;
     justify-content:space-between;
 }
-.ysynet_card_header .header_con .workNo{
+.ysynet_card_header  .workNo{
     color: #999999;
+    font-size: 14px;
 }
-.ysynet_card_header .header_con .fixStatus{
+.ysynet_card_header  .fixStatus{
+    font-size: 12px;
     display: inline-block;
-    margin: 0 0 0 1.2vw;
-    padding: 2px 4px;
+    margin: 0 0 0 1.5vw;
+    padding: 0 .4vw;
     border: solid 1px #999999;
-    border-radius: .233333vw;
+    border-radius: 1px;
 }
 
 .ysynet_card_content{

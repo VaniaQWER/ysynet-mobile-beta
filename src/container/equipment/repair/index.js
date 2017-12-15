@@ -1,7 +1,77 @@
-import React, { Component } from 'react';
-class RepairList extends Component{
-    render(){
-        return <div>维修工单</div>
+import React from 'react';
+import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
+import { hashHistory } from 'react-router';
+import CardItem from '../../../component/card';
+import Slider from '../../common/slider';
+import './style.css';
+
+/**
+ * @summary 工单列表
+ */
+class EquipmentRepair extends Slider {
+  constructor(props) {
+    super(props);
+    this.url = 'workOrderList';
+    this.state = {
+      dataSource: this.dataSource,
+      pageIndex: 0,
+      isMore: true,
+      isLoading: true,
+      refreshing: true,
+      sectionIDs: [],
+      rowIDs: [],
+      dataBlobs: {}
     }
+  }
+  componentDidMount() {
+    this.genData();
+  }
+  onEndReached = (event) => {
+    this.genData();
+  }
+  render () {
+    return this.props.children ||
+        (
+        <div>
+          <NavBar
+            className={'ysynet-header'}
+            mode="dark"
+            icon={<Icon type="left" />}
+            onLeftClick={() => hashHistory.push({pathname: '/equipment'})}
+          >我的设备维修单
+          </NavBar>
+          <div className={'ysynet-content'}>
+            <SearchBar placeholder="设备维修单号" maxLength={8} />
+            <ListView
+              style={{height: '85vh'}}
+              dataSource={this.state.dataSource}
+              renderBodyComponent={() => <div style={{background: '#efeff4'}}></div>}
+              renderRow={
+                (rowData, sectionID, rowID) => {
+                  return (
+                  <div>
+                    <CardItem data={rowData} onClick={()=>hashHistory.push({pathname:'/equipment/equipmentDetail',state:rowData})}/>
+                    <WhiteSpace  />
+                 </div>
+                  );
+                }
+              } 
+              renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+                {this.state.isLoading ? '加载中...' : '下拉加载更多'}
+              </div>)}
+              pageSize={4}
+              pullToRefresh={<PullToRefresh style={{color: 'red'}}
+                refreshing={this.state.refreshing}
+                onRefresh={this.onRefresh}
+              />}
+              scrollEventThrottle={200}
+              onEndReached={this.onEndReached}
+              onEndReachedThreshold={10}
+            />
+          </div>
+          </div>
+    )
+  }
 }
-export default RepairList;
+
+export default EquipmentRepair;

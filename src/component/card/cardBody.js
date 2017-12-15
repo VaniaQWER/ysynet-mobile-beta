@@ -1,32 +1,44 @@
 import React from 'react';
-import { Card } from 'antd-mobile';
+import { Card,List } from 'antd-mobile';
 import PropTypes from 'prop-types';
 
+const Item = List.Item;
 const clickFunc = (item,onClick,e)=>{
     e.preventDefault();
-    return onClick(item.id)
+    return onClick(item)
+}
+function showFixStatus(value){
+    switch(value.TF_CLO_CODE){
+        case '00':
+            return <span style={{color:'#ffbf00'}}>{value.TF_CLO_NAME}</span>
+            break;
+        case '01':
+            return <span style={{color:'#28C7A0'}}>{value.TF_CLO_NAME}</span>
+            break;
+        case '02':
+            return <span style={{color:'#000'}}>{value.TF_CLO_NAME}</span>
+            break;
+        case '03':
+            return <span style={{color:'#f00'}}>{value.TF_CLO_NAME}</span>
+            break;
+        default:
+            break;
+    }
 }
 
 const CardBody = ({ item, onClick}) => (
     <div onClick={clickFunc.bind(this, item, onClick)}>
         <Card full>
             <div className={'ysynet_card_header'}>
-                <div className={'header_con'}>
-                    <div className={'workNo'}>
-                        <span>{item.WONo}</span>
+                <Item extra={showFixStatus(item.WOStatus)}>
+                    <div>
+                        <span className={'workNo'}>{item.WONo}</span>
                         {
                             item.fixedType &&
                             <span className={'fixStatus'}>{item.fixedType}</span>
                         }
                     </div>
-                    <div className={'status'}>
-                        {
-                            item.WOStatus.TF_CLO_CODE==='00'?<span style={{color:'#ffbf00'}}>{item.WOStatus.TF_CLO_NAME}</span>
-                            :
-                            <span style={{color:'#3dbd7d'}}>{item.WOStatus.TF_CLO_NAME}</span>
-                        }
-                    </div>
-                </div>
+                </Item>
             </div>
             <Card.Body>
                 <div className={'ysynet_card_content'}>

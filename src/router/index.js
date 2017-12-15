@@ -46,11 +46,27 @@ export const routes =  {
       },
       childRoutes: [
         {
-          path: '/equipment/repair',//维修工单
+          path: '/equipment/equipmentRepaire',//设备维修单
           getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
               cb(null, require('../container/equipment/repair').default)
-            }, '/equipment/repair')
+            }, '/equipment/equipmentRepaire')
+          }
+        },
+        {
+          path: '/equipment/equipmentDetail',//设备详情
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/details').default)
+            }, '/equipment/equipmentDetail')
+          }
+        },
+        {
+          path: '/equipment/troubleEdit',//设备详情
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/edit').default)
+            }, '/equipment/troubleEdit')
           }
         },
         { 
