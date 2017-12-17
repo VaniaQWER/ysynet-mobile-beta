@@ -14,7 +14,7 @@ class DoImg extends Component {
                 >正在建设中
                 </NavBar>
                 <div className={'ysynet-content'}>
-                    <img style={{marginTop:"20%"}} src={require("../../assets/do@2x.png")} width="100%"/>
+                    <img style={{marginTop:"20%"}} alt="建设中图片..." src={require("../../assets/do@2x.png")} width="100%"/>
                     <p style={{textAlign:'center',marginTop:'40px',color:'#666'}}>页面正在建设中...</p>
                 </div>
             </div>

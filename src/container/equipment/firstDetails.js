@@ -27,15 +27,15 @@ class FirstDetails extends Component {
                     onClick={() => hashHistory.push({pathname: `/equipment/secondDetails`,state: this.props.location.state})}
                     >
                       <Card.Header
-                        title={rowData.productname}
+                        title={rowData.equipmentName}
                         extra={<a>详情</a>}
                       />
                       <Card.Body>
-                        <p className="cardBodyList">编号: {rowData.number}</p>
+                        <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
                         <p className="cardBodyList">品牌: {rowData.tfBrandName}</p>
-                        <p className="cardBodyList">型号: {rowData.model}</p>
+                        <p className="cardBodyList">型号: {rowData.spec}</p>
                       </Card.Body>
-                      <Card.Footer content={"科室:" + rowData.address} />
+                      <Card.Footer content={"科室:" + rowData.address + "--" + rowData.useDeptCode} />
                     </Card>
                     <WhiteSpace  />
                     { /* 相关业务 */ }

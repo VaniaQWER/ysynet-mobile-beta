@@ -10,11 +10,11 @@ class SecondDetails extends Component {
 
      //渲染状态style
     handleStatusStyle = (rowData) =>{
-        if(rowData.TF_CLO_CODE === "00"){
+        if(rowData.useFstate === "00"){
             return <span style={{color:"#ffbf00"}}>{rowData.TF_CLO_NAME}</span>
-        }else if(rowData.TF_CLO_CODE === "01"){
+        }else if(rowData.useFstate === "01"){
         return <span style={{color:"#3dbd7d"}}>{rowData.TF_CLO_NAME}</span>
-        }else if(rowData.TF_CLO_CODE === "02"){
+        }else if(rowData.useFstate === "02"){
         return <span style={{color:"#2395ff"}}>{rowData.TF_CLO_NAME}</span>
         }
     }
@@ -35,18 +35,17 @@ class SecondDetails extends Component {
                     <Card full
                     >
                       <Card.Header
-                        title={rowData.productname}
+                        title={rowData.equipmentName}
                         extra={<span>{this.handleStatusStyle(rowData)}</span>}
                       />
                       <Card.Body>
-                        <p className="cardBodyList">编号: {rowData.number}</p>
-                        <p className="cardBodyList">品牌: {rowData.tfBrandName}</p>
-                        <p className="cardBodyList">型号: {rowData.model}</p>
+                        <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
+                        <p className="cardBodyList">型号: {rowData.spec}</p>
                         <WhiteSpace  />
 
-                        <p className="cardBodyList">使用科室: {rowData.number}</p>
-                        <p className="cardBodyList">所属科室: {rowData.tfBrandName}</p>
-                        <p className="cardBodyList">责任人: {rowData.model}</p>
+                        <p className="cardBodyList">使用科室: {rowData.useDeptCode}</p>
+                        <p className="cardBodyList">所属科室: {rowData.bDept}</p>
+                        <p className="cardBodyList">责任人: {rowData.custodian}</p>
                       </Card.Body>
                       <Card.Footer content={"详细地址:" + rowData.address} />
                     </Card>
@@ -58,12 +57,10 @@ class SecondDetails extends Component {
                         title={"设备信息"}
                       />
                       <Card.Body>
-                        <p className="cardBodyList">注册证: {rowData.number}</p>
-                        <p className="cardBodyList">生产商: {rowData.tfBrandName}</p>
-                        <p className="cardBodyList">型号: {rowData.model}</p>
-                        <WhiteSpace  />
-                        <p className="cardBodyList">生产日期: {rowData.number}</p>
-                        <p className="cardBodyList">有效期: {rowData.tfBrandName}</p>
+                        <p className="cardBodyList">注册证: {rowData.certGuid}</p>
+                        <p className="cardBodyList">生产商: {rowData.product}</p>
+                        <p className="cardBodyList">生产日期: {rowData.productionDate}</p>
+                        <p className="cardBodyList">有效期: {rowData.enableDate}</p>
                       </Card.Body>
                     </Card>
                     <WhiteSpace  />

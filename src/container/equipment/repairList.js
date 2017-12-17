@@ -1,17 +1,17 @@
 import React from 'react';
-import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
+import { NavBar, Icon, ListView, PullToRefresh,SearchBar,WhiteSpace } from 'antd-mobile';
 import { hashHistory } from 'react-router';
+import CardItem from '../../component/card';
 import Slider from '../common/slider';
-import { fetchData } from '../../utils';
-import './index.css';
+import './repair/style.css';
 
 /**
- * @summary 资产档案列表
+ * @summary 工单列表
  */
-class EquipmentList extends Slider {
+class EquipmentRepair extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'equipmentList';
+    this.url = 'workOrderList';
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 0,
@@ -25,23 +25,9 @@ class EquipmentList extends Slider {
   }
   componentDidMount() {
     this.genData();
-    //获取列表接口
-    fetchData({
-      url:''
-    }) 
   }
   onEndReached = (event) => {
     this.genData();
-  }
-  //渲染状态style
-  handleStatusStyle = (rowData) =>{
-      if(rowData.useFstate === "00"){
-          return <span style={{color:"#ffbf00"}}>{rowData.TF_CLO_NAME}</span>
-      }else if(rowData.useFstate === "01"){
-        return <span style={{color:"#3dbd7d"}}>{rowData.TF_CLO_NAME}</span>
-      }else if(rowData.useFstate === "02"){
-        return <span style={{color:"#2395ff"}}>{rowData.TF_CLO_NAME}</span>
-      }
   }
   render () {
     return this.props.children ||
@@ -51,11 +37,11 @@ class EquipmentList extends Slider {
             className={'ysynet-header'}
             mode="dark"
             icon={<Icon type="left" />}
-            onLeftClick={() => hashHistory.push({pathname: '/equipment'})}
-          >我的资产档案列表
+            onLeftClick={() => hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})}
+          >维修记录
           </NavBar>
           <div className={'ysynet-content'}>
-            <SearchBar placeholder="查找资产" maxLength={8} />
+            <SearchBar placeholder="设备维修单号" maxLength={8} />
             <ListView
               style={{height: '85vh'}}
               dataSource={this.state.dataSource}
@@ -64,21 +50,9 @@ class EquipmentList extends Slider {
                 (rowData, sectionID, rowID) => {
                   return (
                   <div>
-                    <Card full
-                    onClick={() => hashHistory.push({pathname: `/equipment/firstDetails`,state: rowData})}
-                    >
-                      <Card.Header
-                        title={"编号:" +rowData.equipmentCode}
-                        extra={<span>{this.handleStatusStyle(rowData)}</span>}
-                      />
-                      <Card.Body>
-                        <div>名称: {rowData.equipmentName}</div>
-                      </Card.Body>
-                      <Card.Footer content={rowData.address} />
-                    </Card>
+                    <CardItem data={rowData} onClick={()=>hashHistory.push({pathname:'/equipment/equipmentDetail',state:rowData})}/>
                     <WhiteSpace  />
                  </div>
-                    
                   );
                 }
               } 
@@ -100,4 +74,4 @@ class EquipmentList extends Slider {
   }
 }
 
-export default EquipmentList;
+export default EquipmentRepair;

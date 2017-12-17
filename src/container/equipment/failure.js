@@ -8,7 +8,7 @@ import { hashHistory } from 'react-router';
 const RadioItem = Radio.RadioItem;
 class FailureList extends Component {
     state = {
-        value: this.props.location.state.failure,
+        value: this.props.location.state.repairContentTyp,
     }
     onChange =(value) =>{
         console.log('checkbox');
@@ -32,7 +32,7 @@ class FailureList extends Component {
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/applyRepair',state:{...this.props.location.state,failure:this.state.value}})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/applyRepair',state:{...this.props.location.state,repairContentTyp:this.state.value}})}
                 >故障现象
                 </NavBar>
                 <div className={'ysynet-content'}>

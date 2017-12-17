@@ -65,27 +65,27 @@ export const Notice = [
 
 // 我的订单Mock数据
 export const OrderList = [
-  {id: 1, supplierId: 1, productname: '一次性切口牵开固定器(套)', price: 203500.00, address: '外科楼四楼', total: 6, logo: '',
+  {id: 1, supplierId: 1, equipmentName: '一次性切口牵开固定器(套)', price: 203500.00, address: '外科楼四楼', total: 6, logo: '',
    datetime: '2017-11-16 11:58:26', status: '已完成', more: true, supplyname: '致新康乐医疗供应链(武汉)管理有限公司'},
-  {id: 2, supplierId: 2, productname: '起搏电极导线', price: 22740.00, address: '内科一号楼15楼', total: 2, logo: '',
+  {id: 2, supplierId: 2, equipmentName: '起搏电极导线', price: 22740.00, address: '内科一号楼15楼', total: 2, logo: '',
   datetime: '2017-11-16 10:51:26', status: '已完成', more: true, supplyname: '武汉裕百恒商贸有限公司'},
-  {id: 3, supplierId: 3, productname: '无菌手术刀片', price: 840.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
+  {id: 3, supplierId: 3, equipmentName: '无菌手术刀片', price: 840.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
   datetime: '2017-11-15 17:43:21', status: '已完成', more: true, supplyname: '武汉骏龙医疗器械有限公司'},
-  {id: 4, supplierId: 4, productname: '植入式心脏起搏器', price: 170640.00, address: '二级库房结算', total: 2, logo: '',
+  {id: 4, supplierId: 4, equipmentName: '植入式心脏起搏器', price: 170640.00, address: '二级库房结算', total: 2, logo: '',
   datetime: '2017-11-15 17:43:04', status: '已完成', more: true, supplyname: '武汉裕百恒商贸有限公司'},
-  {id: 5, supplierId: 5, productname: '起搏电极导线(商品名：IsoFlex)', price: 1005936.00, address: '二级库房结算', total: 12, logo: '',
+  {id: 5, supplierId: 5, equipmentName: '起搏电极导线(商品名：IsoFlex)', price: 1005936.00, address: '二级库房结算', total: 12, logo: '',
   datetime: '2017-11-15 17:43:03', status: '已完成', more: true, supplyname: '九州通医疗器械集团有限公司'},
-  {id: 6, supplierId: 6, productname: '药物洗脱冠脉支架系统(商品名：Xience Prime)', price: 386400.00, address: '二级库房结算', total: 10, logo: '',
+  {id: 6, supplierId: 6, equipmentName: '药物洗脱冠脉支架系统(商品名：Xience Prime)', price: 386400.00, address: '二级库房结算', total: 10, logo: '',
   datetime: '2017-11-15 17:43:03', status: '待确认', more: true, supplyname: '嘉事嘉成医疗器械武汉有限公司'},
-  {id: 7, supplierId: 7, productname: '墨盒-EPSON', price: 1470.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 2, logo: '',
+  {id: 7, supplierId: 7, equipmentName: '墨盒-EPSON', price: 1470.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 2, logo: '',
   datetime: '2017-11-15 08:46:48', status: '待确认', more: true, supplyname: '武汉百英商贸有限公司'},
-  {id: 8, supplierId: 8, productname: '一次性使用离心带式血液成分分离器(商品名：COBE Spectra)', price: 19800.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
+  {id: 8, supplierId: 8, equipmentName: '一次性使用离心带式血液成分分离器(商品名：COBE Spectra)', price: 19800.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
   datetime: '2017-11-15 08:46:47', status: '已完成', more: true, supplyname: '泰尔茂比司特医疗产品贸易(上海)有限公司'},
-  {id: 9, supplierId: 9, productname: '止血海绵', price: 3300.00, address: '外科大楼3楼手术室', total: 1, logo: '',
+  {id: 9, supplierId: 9, equipmentName: '止血海绵', price: 3300.00, address: '外科大楼3楼手术室', total: 1, logo: '',
   datetime: '2017-11-14 08:35:33', status: '已完成', more: true, supplyname: '湖北天地人医药有限公司'},
-  {id: 10, supplierId: 10, productname: '一次性使用体外引流袋', price: 880.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
+  {id: 10, supplierId: 10, equipmentName: '一次性使用体外引流袋', price: 880.00, address: '协和医院综合楼2号楼3楼医学工程科库房', total: 1, logo: '',
   datetime: '2017-11-13 18:06:42', status: '已完成', more: true, supplyname: '武汉亿衡商贸有限公司'},
-  {id: 11, supplierId: 11, productname: '预冲式冲管注射器', price:  9541.80, address: '外科楼17楼', total: 1, logo: '',
+  {id: 11, supplierId: 11, equipmentName: '预冲式冲管注射器', price:  9541.80, address: '外科楼17楼', total: 1, logo: '',
   datetime: '2017-11-13 16:53:01', status: '已完成', more: true, supplyname: '山东威高集团医用高分子制品股份有限公司武汉分公司'},
 ]
 
@@ -250,31 +250,31 @@ export const EquipmentData = {
   AccusationMgt: {
     Status:[
       {TF_CLO_CODE:"00",TF_CLO_NAME:"待完成",text:'1',icon: require('../assets/repair00.svg') },
-      {TF_CLO_CODE:"01",TF_CLO_NAME:"已完成",text:'1',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"01",TF_CLO_NAME:"已完成",text:'3',icon: require('../assets/repair01.svg') },
     ]
   },
   //资产信息中的操作按钮
   firstDetailsGrid:[
       {title:"报修",text:'报修',icon: require('../assets/repair06.svg'),link:"/equipment/applyRepair" },
       {title:"保养",text:'保养',icon: require('../assets/repair07.svg') ,link:"/equipment/do"},
-      {title:"维修记录",text:'维修记录',icon: require('../assets/repair09.svg') ,link:"/equipment/do"},
+      {title:"维修记录",text:'维修记录',icon: require('../assets/repair09.svg') ,link:"/equipment/repairList"},
       {title:"保养记录",text:'保养记录',icon: require('../assets/repair08.svg') ,link:"/equipment/do"}
   ]
 }
 
 // 资产档案Mock数据
 export const EquipmentList = [
-  {id: 1, supplierId: 1, number: '20171214000001', productname: "病人监护仪", address: '外科楼四楼',model: '2mm*2mm*537mm/W', TF_CLO_NAME: '在用',TF_CLO_CODE:'00',tfBrandName: 'EPSON'},
-  {id: 2, supplierId: 2, number: '20171214000002', productname: "病人监护仪", address: '内科一号楼15楼',model: '2mm*2mm*534mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '赛诺秀'},
-  {id: 3, supplierId: 3, number: '20171214000003', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房',model: '2mm*2mm*513mm/W', TF_CLO_NAME: '报废', TF_CLO_CODE:'02',more: true, tfBrandName: '上海昕宁'},
-  {id: 4, supplierId: 4, number: '20171214000004', productname: "病人监护仪", address: '二级库房结算',model: '1mm*1mm*537mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '永信'},
-  {id: 5, supplierId: 5, number: '20171214000005', productname: "病人监护仪", address: '二级库房结算',model: '1mm*1mm*511mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '康乐保'},
-  {id: 6, supplierId: 6, number: '20171214000006', productname: "病人监护仪",address: '二级库房结算',model: '1mm*1mm*557mm/W', TF_CLO_NAME: '在用', TF_CLO_CODE:'00',more: true, tfBrandName: '江苏华夏'},
-  {id: 7, supplierId: 7, number: '20171214000007', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '	1mm*1mm*525mm/W', TF_CLO_NAME: '在用', TF_CLO_CODE:'00',more: true, tfBrandName: '上海昕宁'},
-  {id: 8, supplierId: 8, number: '20171214000008', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '2mm*2mm*542mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '德尔'},
-  {id: 9, supplierId: 9, number: '20171214000009', productname: "病人监护仪", address: '外科大楼3楼手术室', model: '2mm*2mm*506mm/W', TF_CLO_NAME: '异常',TF_CLO_CODE:'01', more: true, tfBrandName: '好玛'},
-  {id: 10, supplierId: 10, number: '201712140000010', productname: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', model: '2mm*2mm*535mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '安吉恒泰'},
-  {id: 11, supplierId: 11, number: '201712140000011', productname: "病人监护仪", address: '外科楼17楼', model: '1mm*1mm*504mm/W', TF_CLO_NAME: '报废',TF_CLO_CODE:'02', more: true, tfBrandName: '江苏鱼跃'},
+  {id: 1, supplierId: 1, equipmentCode: '20171214000001', equipmentName: "病人监护仪", address: '外科楼四楼',spec: '2mm*2mm*537mm/W', TF_CLO_NAME: '在用',useFstate:'00',tfBrandName: 'EPSON'},
+  {id: 2, supplierId: 2, equipmentCode: '20171214000002', equipmentName: "病人监护仪", address: '内科一号楼15楼',spec: '2mm*2mm*534mm/W', TF_CLO_NAME: '异常',useFstate:'01', more: true, tfBrandName: '赛诺秀'},
+  {id: 3, supplierId: 3, equipmentCode: '20171214000003', equipmentName: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房',spec: '2mm*2mm*513mm/W', TF_CLO_NAME: '报废', useFstate:'02',more: true, tfBrandName: '上海昕宁'},
+  {id: 4, supplierId: 4, equipmentCode: '20171214000004', equipmentName: "病人监护仪", address: '二级库房结算',spec: '1mm*1mm*537mm/W', TF_CLO_NAME: '报废',useFstate:'02', more: true, tfBrandName: '永信'},
+  {id: 5, supplierId: 5, equipmentCode: '20171214000005', equipmentName: "病人监护仪", address: '二级库房结算',spec: '1mm*1mm*511mm/W', TF_CLO_NAME: '报废',useFstate:'02', more: true, tfBrandName: '康乐保'},
+  {id: 6, supplierId: 6, equipmentCode: '20171214000006', equipmentName: "病人监护仪",address: '二级库房结算',spec: '1mm*1mm*557mm/W', TF_CLO_NAME: '在用', useFstate:'00',more: true, tfBrandName: '江苏华夏'},
+  {id: 7, supplierId: 7, equipmentCode: '20171214000007', equipmentName: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', spec: '	1mm*1mm*525mm/W', TF_CLO_NAME: '在用', useFstate:'00',more: true, tfBrandName: '上海昕宁'},
+  {id: 8, supplierId: 8, equipmentCode: '20171214000008', equipmentName: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', spec: '2mm*2mm*542mm/W', TF_CLO_NAME: '异常',useFstate:'01', more: true, tfBrandName: '德尔'},
+  {id: 9, supplierId: 9, equipmentCode: '20171214000009', equipmentName: "病人监护仪", address: '外科大楼3楼手术室', spec: '2mm*2mm*506mm/W', TF_CLO_NAME: '异常',useFstate:'01', more: true, tfBrandName: '好玛'},
+  {id: 10, supplierId: 10, equipmentCode: '201712140000010', equipmentName: "病人监护仪", address: '协和医院综合楼2号楼3楼医学工程科库房', spec: '2mm*2mm*535mm/W', TF_CLO_NAME: '报废',useFstate:'02', more: true, tfBrandName: '安吉恒泰'},
+  {id: 11, supplierId: 11, equipmentCode: '201712140000011', equipmentName: "病人监护仪", address: '外科楼17楼', spec: '1mm*1mm*504mm/W', TF_CLO_NAME: '报废',useFstate:'02', more: true, tfBrandName: '江苏鱼跃'},
 ]
 // 工单列表信息
 export const WorkOrder = [

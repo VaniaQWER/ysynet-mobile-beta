@@ -5,6 +5,7 @@ import { EquipmentData } from '../../constants';
 import EquipmentGrid from '../../component/equipmentGrid';
 import './index.css';
 import '../../component/user_info/style.css';
+import { fetchData } from '../../utils';
 
 const Item = List.Item;
 /**
@@ -13,6 +14,24 @@ const Item = List.Item;
 class Equipment extends Component {
   state ={
     checked: true,
+    total: 0
+  }
+  
+  componentDidMount = () => {
+    //获取资产档案台数接口
+    fetchData({
+      url:"assetsRecordController/selectAssetsRecordCount",
+      error: err => {
+        console.log(err,'err')
+      },
+      success: data => {
+        if(data.status){
+          this.setState( { total : data.result})
+        }
+      }
+    }) 
+    
+
   }
   render () {
     //维修工单数据
@@ -43,7 +62,7 @@ class Equipment extends Component {
 
             <List>
               <Item 
-                extra={EquipmentData.archivesTotal + '台'}
+                extra={this.state.total+ '台'}
                 multipleLine 
                 onClick={ (el) => {
                   console.log(el,'el');

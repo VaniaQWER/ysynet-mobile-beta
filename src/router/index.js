@@ -101,6 +101,14 @@ export const routes =  {
             }, 'equipment/applyRepair')
           }
         },
+        { 
+          path: '/equipment/repairList',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repairList').default)
+            }, 'equipment/repairList')
+          }
+        },
         //紧急度
         { 
           path: '/equipment/urgency',

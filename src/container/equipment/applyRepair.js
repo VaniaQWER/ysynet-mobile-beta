@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
+import { fetchData } from '../../utils';
 
 /**
  * @summary 资产档案列表 --详情1-报修申请
@@ -12,8 +13,8 @@ class ApplyRepair extends Component {
     state = {
         files: [],
         multiple: false,
-        urgency:this.props.location.state.urgency || 10,
-        failure:this.props.location.state.failure || "部分功能失效", 
+        urgentFlag:this.props.location.state.urgentFlag || 10,
+        repairContentTyp:this.props.location.state.repairContentTyp || "部分功能失效", 
      
     }
     //提交数据
@@ -21,10 +22,26 @@ class ApplyRepair extends Component {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
             let values = this.props.form.getFieldsValue();
-            values.urgency = this.state.urgency;
-            values.failure = this.state.failure;
-            values.imageUrl = this.state.files.length === 1 ? this.state.files[0].url : null;
+            values.equipmentCode = this.props.location.state.equipmentCode || "不知道设备编号是什么";
+            values.equipmentName = this.props.location.state.equipmentName || "不知道设备名称是什么";
+            values.address = this.props.location.state.address||"不知道地址是什么";
+            values.useDept = this.state.useDeptCode||"不知道科室是什么";
+            values.repairContentTyp = this.state.repairContentTyp;
+            values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");
+            //提交接口
+            fetchData({
+                url: 'rrpairOrderController/insertRrpair',
+                error: err => {
+                  console.log(err,'err')
+                },
+                success: data => {
+                  if(data.status){
+                    alert("保修成功!")
+                    hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                  }
+                }
+              })  
           } else {
             alert('Validation failed');
           }
@@ -38,7 +55,7 @@ class ApplyRepair extends Component {
 
     render(){
         const rowData = this.props.location.state;
-        const { getFieldProps, getFieldError } = this.props.form;
+        const { getFieldProps } = this.props.form;
    
         const { files } = this.state;
         return this.props.children ||
@@ -56,31 +73,29 @@ class ApplyRepair extends Component {
                     onClick={() => hashHistory.push({pathname: `/equipment/firstDetails`})}
                     >
                         <Card.Body>
-                            <p className="cardBodyList">编号: {rowData.number}</p>
-                            <p className="cardBodyList">品牌: {rowData.tfBrandName}</p>
+                            <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
                             <p className="cardBodyList">科室: {rowData.address}</p>
                         </Card.Body>
                     </Card>
                     <form>
                         <List
                             renderHeader={() => '请填写反馈信息'}
-                            renderFooter={() => getFieldError('account') && getFieldError('account').join(',')}
                         >
                             <Item
-                            extra={<Switch color="#2395ff" {...getFieldProps('1', { initialValue: true, valuePropName: 'checked' })} />}
+                            extra={<Switch color="#2395ff" {...getFieldProps('useFstate', { initialValue: true, valuePropName: 'checked' })} />}
                             >状态</Item>
                             <Item
-                            extra={<Switch color="#2395ff" {...getFieldProps('2', { initialValue: true, valuePropName: 'checked' })} />}
+                            extra={<Switch color="#2395ff" {...getFieldProps('spare', { initialValue: true, valuePropName: 'checked' })} />}
                             >是否有备用</Item>
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgency:this.state.urgency}})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgentFlag:this.state.urgentFlag}})}
                             >
                                紧急度 
                             </Item>
 
                           
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,failure:this.state.failure}})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,repairContentTyp:this.state.repairContentTyp}})}
                             >
                                故障现象 
                             </Item>
@@ -98,7 +113,7 @@ class ApplyRepair extends Component {
                         </List>
                         <List renderHeader={() => '请填写备注'}>
                         <TextareaItem
-                            {...getFieldProps('tfmark', {
+                            {...getFieldProps('faultWords', {
                             initialValue: '补充说明...',
                             })}
                             rows={5}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker ,ActionSheet,List, Menu } from 'antd-mobile';
+import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker ,ActionSheet,List } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import './style.css'

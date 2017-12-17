@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace,SearchBar,Tabs,Button,Accordion} from 'antd-mobile';
+import { NavBar, Icon, List, WhiteSpace,Tabs,Accordion} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 const Item = List.Item;
 /**
