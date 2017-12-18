@@ -69,6 +69,60 @@ export const routes =  {
             }, '/equipment/troubleEdit')
           }
         },
+        //编辑 故障描述
+        {
+          path: '/equipment/editTroubdesc',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/editTroubdesc').default)
+            }, '/equipment/editTroubdesc')
+          }
+        },
+        //编辑现象选择
+        {
+          path: '/equipment/troublSelect',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/troubleSelect').default)
+            }, '/equipment/troublSelect')
+          }
+        },
+        //故障原因 选择
+        {
+          path: '/equipment/selectCause',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/selectCause').default)
+            }, '/equipment/selectCause')
+          }
+        },
+        //添加备注
+        {
+          path: '/equipment/addRemark',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/remark').default)
+            }, '/equipment/addRemark')
+          }
+        },
+        //预估费用
+        {
+          path: '/equipment/estimateFee',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/EstimateFee').default)
+            }, '/equipment/estimateFee')
+          }
+        },
+        //编辑工单信息
+        {
+          path: '/equipment/editOrder',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/editOrderInfo').default)
+            }, '/equipment/editOrder')
+          }
+        },
         { 
           path: '/equipment/list',
           getComponent: (nextState, cb) => {

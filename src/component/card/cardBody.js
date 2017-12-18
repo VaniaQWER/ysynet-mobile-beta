@@ -8,19 +8,15 @@ const clickFunc = (item,onClick,e)=>{
     return onClick(item)
 }
 function showFixStatus(value){
-    switch(value.TF_CLO_CODE){
-        case '00':
-            return <span style={{color:'#ffbf00'}}>{value.TF_CLO_NAME}</span>;
-            break;
-        case '01':
-            return <span style={{color:'#28C7A0'}}>{value.TF_CLO_NAME}</span>;
-            break;
-        case '02':
-            return <span style={{color:'#000'}}>{value.TF_CLO_NAME}</span>;
-            break;
-        case '03':
-            return <span style={{color:'#f00'}}>{value.TF_CLO_NAME}</span>
-            break;
+    switch(value){
+        case '10':
+            return <span style={{color:'#ffbf00'}}>{'待接修'}</span>;
+        case '30':
+            return <span style={{color:'#28C7A0'}}>{'维修中'}</span>;
+        case '50':
+            return <span style={{color:'#000'}}>{'待验收'}</span>;
+        case '80':
+            return <span style={{color:'#f00'}}>{'已关闭'}</span>;
         default:
             break;
     }
@@ -30,12 +26,12 @@ const CardBody = ({ item, onClick}) => (
     <div onClick={clickFunc.bind(this, item, onClick)}>
         <Card full>
             <div className={'ysynet_card_header'}>
-                <Item extra={showFixStatus(item.WOStatus)}>
+                <Item extra={showFixStatus(item.orderFstate)}>
                     <div>
-                        <span className={'workNo'}>{item.WONo}</span>
+                        <span className={'workNo'}>{item.rrpairOrder}</span>
                         {
-                            item.fixedType &&
-                            <span className={'fixStatus'}>{item.fixedType}</span>
+                            item.rrpairType &&
+                            <span className={'fixStatus'}>{item.rrpairType==='01'?'外修':'内修'}</span>
                         }
                     </div>
                 </Item>
@@ -53,23 +49,18 @@ const CardBody = ({ item, onClick}) => (
                             }
                         </div>
                     <div className={'detail'}>
-                        <p className={'brand'}>
-                            <span>{item.tfBrand?item.tfBrand:'--'}</span>
-                            <span className={'line'}>|</span>
-                            <span>{item.spec?item.spec:'--'}</span>
-                        </p>
                         <p className={'address'}>
-                            <span>{item.deptName?item.deptName:'--'}</span>
-                            <span className={'adrCenter'}>{item.buildingName}</span>
-                            <span>{item.floorName}</span>
+                            <span>{item.useDept?item.useDept:'--'}</span>
+                            <span> | </span>
+                            <span>{item.address?item.address:'--'}</span>
                         </p>
                         <p className={'property'}>
-                            <span>工单性质：</span>
-                            <span>{item.WOProperty}</span>
+                            <span>申报人: </span>
+                            <span>{item.rrpairUserName}</span>
                         </p>
                         <p className={'updateTime'}>
-                            <span>最近更新时间：</span>
-                            <span>{item.updateTime}</span>
+                            <span>更新时间: </span>
+                            <span>{item.modifyTime}</span>
                         </p>
                     </div>
                 </div>

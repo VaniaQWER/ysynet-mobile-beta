@@ -1,4 +1,10 @@
 /* 详情内容 */
+.am-list-item .am-list-line .am-list-content{
+    font-size: 14px !important;
+}
+.grassColor{
+    color:#1FB591;
+}
 .detail-content{
     margin-top: 45px;
     padding-bottom: 45px;
@@ -14,15 +20,14 @@
 }
 /* 各个区块加粗字体 */
 .con_title{
-    font-size: 17px;
+    color:#113A48;
+    font-size: 16px;
     font-weight: 700;
 }
 .ysynet-repaire-detail .equiment{
     font-size: 16px;
 }
-.ysynet-repaire-detail .am-accordion .am-accordion-item .am-accordion-header{
-    height: 63px;
-}
+
 .ysynet-repaire-detail .tag{
     font-size: 12px;
     padding: 0 3px;
@@ -66,7 +71,7 @@
     justify-content: space-between;
 }
 .history-info .order-desc .order-No{
-    color:green;
+    color:#1FB591;
     margin-left: 10px;
 }
 .history-info .order-summary p{
@@ -93,8 +98,38 @@
     height: 30px;
     line-height: 30px;
     padding:0 8px;
-    border: solid 1px greenyellow;
+    border-radius: 2px;
+    border: solid 1px #1FB591;
 }
 .edit-con{
-    
+
+}
+.imagePicker{
+    padding: 5px 0;
+}
+.foot-button a{
+    font-size: 18px;
+    display: inline-block;
+    width: 50%;
+    padding: 2vh 0;
+    text-align: center;
+}
+.foot-button .btn-cancel{
+    color:#28C7A0;
+    background: #fff;
+}
+.foot-button .btn-submit{
+    background: #28C7A0;
+    color:#fff;
+}
+/* 备注文字计数 span */
+.am-list-item .am-textarea-count{
+    bottom: 10px;
+    right: 15px;
+}
+/* 编辑工单信息 */
+.ysynet-radio{
+    display: flex;
+    justify-content:space-between;
+
 }

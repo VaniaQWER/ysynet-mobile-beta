@@ -21,7 +21,6 @@ class Edit extends Component{
             if(!err){
                 let values = this.props.form.getFieldsValue();
                 values.failure = this.props.location.state.failure;
-                values.cause = this.props.location.state.cause;
                 values.imageUrl = this.state.files[0].url;
                 console.log(values);
             }
@@ -43,15 +42,12 @@ class Edit extends Component{
                 icon={<Icon type="left" />}
                 onLeftClick={() => hashHistory.push({pathname: '/equipment/equipmentDetail',state:baseData})}
             >
-           编辑维修内容
+            编辑故障描述
             </NavBar>
             <div className={'detail-content'}>
                 <List>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:baseData})}>
-                        故障类型
-                    </Item>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/selectCause',state:baseData})}>
-                        故障原因
+                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:{...baseData,key:'1'}})}>
+                        故障现象
                     </Item>
                 </List>
                 <WhiteSpace size='md' />

@@ -279,44 +279,54 @@ export const EquipmentList = [
 // 工单列表信息
 export const WorkOrder = [
   {
-    id:1, WONo:'20171106', fixedType:'外修', WOStatus:{TF_CLO_CODE:'00',TF_CLO_NAME:'待维修'}, useStatus:[{TF_CLO_CODE:'00',TF_CLO_NAME:'在保'},{TF_CLO_CODE:'01',TF_CLO_NAME:'出保'}],
-    equipmentName:'医用全自动电子血压计',tfBrand:'德国西门子', spec:'12...', deptName:'信息科', buildingName:'马会楼',floorName:'-1楼', WOProperty:'故障维修', updateTime:'2017-10-16 11:15'
+    id:1, rrpairOrder:'20171106', rrpairType:'00', orderFstate:'10',urgentFlag:'10', useStatus:[{TF_CLO_CODE:'00',TF_CLO_NAME:'在保'}],
+    rrpairUserName:'马云',orderType:'故障维修',faultDescribe:'性能指标偏离',spare:'01',repairContentType:'机械故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'医用全自动电子血压计', spec:'REPOQTSDFJSF', useDept:'信息科',address:'湖北武汉',  modifyTime:'2017-10-16 11:15'
   },
   {
-    id:2, WONo:'20171110',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'MRI',tfBrand:'', spec:'', deptName:'信息科', buildingName:'新版测试楼', floorName:'2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:2, rrpairOrder:'20171110',rrpairType:'01', orderFstate:'30',urgentFlag:'30', useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'张朝阳',orderType:'故障维修',faultDescribe:'部分功能失效',spare:'01',repairContentType:'其他',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'MRI',tfBrand:'', spec:'', useDept:'信息科',address:'武汉江汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:3, WONo:'20171115',fixedType:'内修', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'打印机',tfBrand:'', spec:'', deptName:'辐射科', buildingName:'住院大楼', floorName:'-2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:3, rrpairOrder:'20171115',rrpairType:'00',orderFstate:'50',urgentFlag:'20',  useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'李嘉诚',orderType:'故障维修',faultDescribe:'性能指标偏离',spare:'00',repairContentType:'图像显示异常',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'打印机',tfBrand:'', spec:'', useDept:'辐射科', address:'鄂州', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:4, WONo:'20171120',fixedType:'', WOStatus:{TF_CLO_CODE:'03',TF_CLO_NAME:'已关闭'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'电脑',tfBrand:'', spec:'', deptName:'信息科2', buildingName:'综合楼', floorName:'4楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:4, rrpairOrder:'20171120',rrpairType:'01',orderFstate:'80',urgentFlag:'10',  useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'雷军',orderType:'故障维修',faultDescribe:'部分功能失效',spare:'00',repairContentType:'电器故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'电脑',tfBrand:'', spec:'', useDept:'信息科2', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:5, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'多功能病床',tfBrand:'', spec:'', deptName:'信息科', buildingName:'新版测试楼', floorName:'2楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:5, rrpairOrder:'20171124',rrpairType:'00',orderFstate:'10', urgentFlag:'30', useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'张三',orderType:'故障维修',faultDescribe:'其他',spare:'01',repairContentType:'机械故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'多功能病床',tfBrand:'', spec:'', useDept:'信息科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:6, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:6, rrpairOrder:'20171124',rrpairType:'00', orderFstate:'50',urgentFlag:'10', useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'张三',orderType:'故障维修',faultDescribe:'部分功能失效',spare:'00',repairContentType:'电器故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', useDept:'信息科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:7, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'02',TF_CLO_NAME:'待验收'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'医用全自动电子血压计',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:7, rrpairOrder:'20171124',rrpairType:'01', orderFstate:'30',urgentFlag:'30', useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'张三',orderType:'故障维修',faultDescribe:'性能指标偏离',spare:'01',repairContentType:'机械故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'医用全自动电子血压计',tfBrand:'', spec:'', useDept:'信息科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:8, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'电脑',tfBrand:'', spec:'', deptName:'信息科', buildingName:'住院大楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:8, rrpairOrder:'20171124',rrpairType:'01',orderFstate:'80',urgentFlag:'10',  useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}],
+    rrpairUserName:'张三', orderType:'故障维修',faultDescribe:'开机后死机',spare:'00',repairContentType:'其他',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'电脑',tfBrand:'', spec:'', useDept:'信息科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:9, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'03',TF_CLO_NAME:'已关闭'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'信息科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:9, rrpairOrder:'20171124',rrpairType:'00',orderFstate:'10',urgentFlag:'20',  useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
+    rrpairUserName:'张三',orderType:'故障维修',faultDescribe:'性能指标偏离',spare:'01',repairContentType:'机械故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', useDept:'信息科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   },
   {
-    id:10, WONo:'20171124',fixedType:'', WOStatus:{TF_CLO_CODE:'01',TF_CLO_NAME:'维修中'}, useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}], 
-    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', deptName:'辐射科', buildingName:'综合楼', floorName:'3楼',WOProperty:'暂无', updateTime:'2017-10-19 12:09'
+    id:10, rrpairOrder:'20171124',rrpairType:'01',orderFstate:'50',urgentFlag:'10',  useStatus:[{TF_CLO_CODE:'02',TF_CLO_NAME:'停机'}],
+    rrpairUserName:'张三', orderType:'故障维修',faultDescribe:'性能指标偏离',spare:'00',repairContentType:'机械故障',repairContentTyp:'操作不当',completTime:'2017-10-22 15:00',
+    equipmentName:'电热水器热水底座',tfBrand:'', spec:'', useDept:'辐射科', address:'湖北武汉', modifyTime:'2017-10-19 12:09'
   }
 ]
 
