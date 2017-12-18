@@ -30,7 +30,7 @@ class TroubleSelect extends React.Component{
         this.setState({data:data})
       }
     getTrouble = ()=>{
-        let selected = [],troubleTypes = [], troubleCause = [];
+        let selected = [];
         const { data } = this.state;
         data.map((item,index)=>{
             if(item.selected === 1){
@@ -40,11 +40,11 @@ class TroubleSelect extends React.Component{
             return null;
         })
        console.log(selected,'勾选的选项value');
-       this.props.location.state.key==='1'?
+       /* this.props.location.state.key==='1'?
        troubleTypes = selected
        :
        troubleCause = selected
-       hashHistory.push({pathname:'/equipment/editTroubdesc',state:{...this.props.location.state,troubleTypes:selected,troubleCause:troubleCause}})
+       hashHistory.push({pathname:'/equipment/editTroubdesc',state:{...this.props.location.state,troubleTypes:selected,troubleCause:troubleCause}}) */
     }
     render(){
         

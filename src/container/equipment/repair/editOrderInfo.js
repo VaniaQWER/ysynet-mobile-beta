@@ -2,7 +2,7 @@
     @file 编辑工单信息
 */
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace,InputItem, List,Radio } from 'antd-mobile';
+import { NavBar, Icon, List,Radio } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 
