@@ -3,6 +3,7 @@ import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem} from '
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../utils';
+import querystring from 'querystring';
 
 /**
  * @summary 资产档案列表 --详情1-报修申请
@@ -22,17 +23,21 @@ class ApplyRepair extends Component {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
             let values = this.props.form.getFieldsValue();
-            values.assetsRecord = this.props.location.state.assetsRecord || "资产编号";
-            values.equipmentCode = this.props.location.state.equipmentCode || "设备编号";
-            values.equipmentName = this.props.location.state.equipmentName || "设备名称";
-            values.address = this.props.location.state.address||"地址";
-            values.useDept = this.state.useDeptCode||"使用科室";
+            values.useFstate = values.useFstate ? "01" : "00";
+            values.spare = values.spare ? "01" : "00";
+            values.assetsRecord = this.props.location.state.assetsRecord;
+            values.equipmentCode = this.props.location.state.equipmentCode;
+            values.equipmentName = this.props.location.state.equipmentName;
+            values.address = this.props.location.state.address;
+            values.useDept = this.state.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
+            values.urgentFlag = this.state.urgentFlag;
             values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");
             //提交接口
             fetchData({
                 url: 'rrpairOrderController/insertRrpair',
+                body: querystring.stringify(values),
                 error: err => {
                   console.log(err,'err')
                 },
@@ -47,7 +52,18 @@ class ApplyRepair extends Component {
             alert('Validation failed');
           }
         });
-      }
+    }
+    
+    handUrgencyValue = (value) =>{
+        if(this.state.urgentFlag=== 30){
+            return "一般"
+        }else if(this.state.urgentFlag=== 20){
+            return "急"
+
+        }else if(this.state.urgentFlag=== 10 ){
+            return "紧急"
+        }
+    }
 
     onChange = (files, type, index) => {
         console.log(files, type, index);
@@ -90,6 +106,7 @@ class ApplyRepair extends Component {
                             >是否有备用</Item>
                             <Item arrow="horizontal" multipleLine 
                             onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgentFlag:this.state.urgentFlag}})}
+                            extra={this.handUrgencyValue(this.state.urgentFlag)}
                             >
                                紧急度 
                             </Item>
@@ -97,6 +114,7 @@ class ApplyRepair extends Component {
                           
                             <Item arrow="horizontal" multipleLine 
                             onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,repairContentTyp:this.state.repairContentTyp}})}
+                            extra={this.state.repairContentTyp}
                             >
                                故障现象 
                             </Item>

@@ -11,7 +11,7 @@ import './repair/style.css';
 class EquipmentRepair extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'workOrderList';
+    this.url = 'rrpairOrderController/selectRrpairList';
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 0,
@@ -50,7 +50,7 @@ class EquipmentRepair extends Slider {
                 (rowData, sectionID, rowID) => {
                   return (
                   <div>
-                    <CardItem data={rowData} onClick={()=>hashHistory.push({pathname:'/equipment/equipmentDetail',state:rowData})}/>
+                    <CardItem data={rowData}/>
                     <WhiteSpace  />
                  </div>
                   );

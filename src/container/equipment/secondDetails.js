@@ -10,13 +10,13 @@ class SecondDetails extends Component {
 
      //渲染状态style
     handleStatusStyle = (rowData) =>{
-        if(rowData.useFstate === "00"){
-            return <span style={{color:"#ffbf00"}}>{rowData.TF_CLO_NAME}</span>
-        }else if(rowData.useFstate === "01"){
-        return <span style={{color:"#3dbd7d"}}>{rowData.TF_CLO_NAME}</span>
-        }else if(rowData.useFstate === "02"){
-        return <span style={{color:"#2395ff"}}>{rowData.TF_CLO_NAME}</span>
-        }
+      if(rowData.useFstate === "00"){
+          return <span style={{color:"#ffbf00"}}>{"在用"}</span>
+      }else if(rowData.useFstate === "01"){
+        return <span style={{color:"#3dbd7d"}}>{"异常"}</span>
+      }else if(rowData.useFstate === "02"){
+        return <span style={{color:"#2395ff"}}>{"报废"}</span>
+      }
     }
     render () {
         const rowData = this.props.location.state;
@@ -60,7 +60,7 @@ class SecondDetails extends Component {
                         <p className="cardBodyList">注册证: {rowData.certGuid}</p>
                         <p className="cardBodyList">生产商: {rowData.product}</p>
                         <p className="cardBodyList">生产日期: {rowData.productionDate}</p>
-                        <p className="cardBodyList">有效期: {rowData.enableDate}</p>
+                        <p className="cardBodyList">有效期: {rowData.validity}</p>
                       </Card.Body>
                     </Card>
                     <WhiteSpace  />

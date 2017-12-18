@@ -59,8 +59,7 @@ class Equipment extends Component {
               alert("点击扫一扫")
             }}/>
           </section>
-
-            <List>
+            <List className="ysynet-list">
               <Item 
                 extra={this.state.total+ '台'}
                 multipleLine 
@@ -73,7 +72,7 @@ class Equipment extends Component {
               </Item>
             </List>
             <WhiteSpace/>
-            <Card>
+            <Card className="ysynet-list">
               <Card.Header
                 title="设备维修单"
                 thumb={require('../../assets/repari_order.svg')}
@@ -81,8 +80,6 @@ class Equipment extends Component {
               <Card.Body>
                 <EquipmentGrid 
                 onClick={ (el,index) => {
-                  console.log(el,'el');
-                  console.log(index,'index')
                   hashHistory.push({pathname: '/equipment/equipmentRepaire'})
                 }} 
                 itemStyle={{backgroundColor:'#f1fff1'}}
@@ -102,7 +99,7 @@ class Equipment extends Component {
               </Card.Body>
             </Card>
             <WhiteSpace/>
-            <Card>
+            <Card className="ysynet-list">
               <Card.Header
                 title="设备保养单"
                 thumb={require('../../assets/quality_control.svg')}
@@ -110,8 +107,6 @@ class Equipment extends Component {
               <Card.Body>
                 <EquipmentGrid
                 onClick={ (el,index) => {
-                  console.log(el,'el');
-                  console.log(index,'index')
                   hashHistory.push({pathname: '/equipment/do',state:{backlink:'/equipment'}})
                 }} 
                 columnNum='3' 

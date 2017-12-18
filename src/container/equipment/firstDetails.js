@@ -34,7 +34,7 @@ class FirstDetails extends Component {
                         <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
                         <p className="cardBodyList">型号: {rowData.spec}</p>
                       </Card.Body>
-                      <Card.Footer content={"科室:" + rowData.address + "--" + rowData.useDeptCode} />
+                      <Card.Footer content={"科室:"  + rowData.address + "--" + rowData.useDeptCode} />
                     </Card>
                     <WhiteSpace  />
                     { /* 相关业务 */ }

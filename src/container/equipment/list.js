@@ -31,11 +31,11 @@ class EquipmentList extends Slider {
   //渲染状态style
   handleStatusStyle = (rowData) =>{
       if(rowData.useFstate === "00"){
-          return <span style={{color:"#ffbf00"}}>{rowData.TF_CLO_NAME}</span>
+          return <span style={{color:"#ffbf00"}}>{"在用"}</span>
       }else if(rowData.useFstate === "01"){
-        return <span style={{color:"#3dbd7d"}}>{rowData.TF_CLO_NAME}</span>
+        return <span style={{color:"#3dbd7d"}}>{"异常"}</span>
       }else if(rowData.useFstate === "02"){
-        return <span style={{color:"#2395ff"}}>{rowData.TF_CLO_NAME}</span>
+        return <span style={{color:"#2395ff"}}>{"报废"}</span>
       }
   }
   render () {
@@ -69,7 +69,7 @@ class EquipmentList extends Slider {
                       <Card.Body>
                         <div>名称: {rowData.equipmentName}</div>
                       </Card.Body>
-                      <Card.Footer content={rowData.address} />
+                      <Card.Footer content={"地址: " + rowData.address} />
                     </Card>
                     <WhiteSpace  />
                  </div>
