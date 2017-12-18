@@ -14,7 +14,7 @@ class EquipmentRepair extends Slider {
     this.url = 'rrpairOrderController/selectRrpairList';
     this.state = {
       dataSource: this.dataSource,
-      pageIndex: 0,
+      pageIndex: 1,
       isMore: true,
       isLoading: true,
       refreshing: true,
@@ -27,7 +27,9 @@ class EquipmentRepair extends Slider {
     this.genData();
   }
   onEndReached = (event) => {
-    this.genData();
+    if (this.state.isMore) {
+      this.genData();
+    }
   }
   render () {
     return this.props.children ||
@@ -57,7 +59,9 @@ class EquipmentRepair extends Slider {
                 }
               } 
               renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-                {this.state.isLoading ? '加载中...' : '下拉加载更多'}
+                {
+                  this.state.isMore ? this.state.isLoading ? '加载中...' : '下拉加载更多' : '没有了'
+                }
               </div>)}
               pageSize={4}
               pullToRefresh={<PullToRefresh style={{color: 'red'}}

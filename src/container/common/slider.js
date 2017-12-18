@@ -23,7 +23,7 @@ class Slider extends Component {
     let { pageIndex, sectionIDs, rowIDs, dataBlobs, isMore } = this.state;
     this.setState({ isLoading: true });
       fetchData({
-        url:this.url,
+        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${pageIndex}`,
         error:(err)=>{
           console.log(err)
         },
@@ -32,15 +32,18 @@ class Slider extends Component {
           const sectionName = `${pageIndex}:`;
           dataBlobs[sectionName] = sectionName;
           sectionIDs.push(sectionName);
-          rowIDs[pageIndex] = [];
+          rowIDs[pageIndex-1] = [];
           const pageSize = data.length > this.NUM_ROWS_PER_SECTION ? this.NUM_ROWS_PER_SECTION : data.length; 
           for (let i=0; i<pageSize; i++) {
             const row = data[i];
-            rowIDs[pageIndex].push(data[i].RN);
+            rowIDs[pageIndex-1].push(data[i].RN);
             dataBlobs[data[i].RN] = row;
           }
-          if (pageIndex > 3) {
+          if (data.length < 5) {
             isMore = false;
+          }
+          if (data.length === 0 ) {
+            return;
           }
           this.setState({
             dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
@@ -60,7 +63,7 @@ class Slider extends Component {
   }
   onRefresh = () => {
     //console.log(this.dataSource)
-    this.setState({ refreshing: true, pageIndex: 0, isLoading: true, sectionIDs: [], rowIDs: [], dataBlobs: {}});
+    this.setState({ refreshing: true, pageIndex: 1, isLoading: true, sectionIDs: [], rowIDs: [], dataBlobs: {}});
     // simulate initial Ajax
     this.genData();
   }
