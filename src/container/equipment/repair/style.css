@@ -1,7 +1,7 @@
 /* 详情内容 */
-/* .am-list-item .am-list-line .am-list-content{
+.am-list-item .am-list-line .am-list-content{
     font-size: 14px !important;
-} */
+}
 .grassColor{
     color:#1FB591;
 }
@@ -132,4 +132,8 @@
     display: flex;
     justify-content:space-between;
 
+}
+/* 各类原因右侧详细说明 */
+.am-list-item .am-list-line .am-list-extra{
+    font-size: 13px;
 }

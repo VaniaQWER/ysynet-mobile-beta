@@ -3,6 +3,7 @@ import { NavBar, Icon, ListView, PullToRefresh,SearchBar,WhiteSpace } from 'antd
 import { hashHistory } from 'react-router';
 import CardItem from '../../../component/card';
 import Slider from '../../common/slider';
+import { Equipment } from '../../../api';
 import './style.css';
 
 /**
@@ -11,7 +12,7 @@ import './style.css';
 class EquipmentRepair extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'rrpairOrderController/selectRrpairList';
+    this.url = Equipment.selectRrpairList;
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 1,

@@ -3,6 +3,7 @@ import { NavBar, Icon, List, WhiteSpace,Tabs, Accordion, Modal,Toast} from 'antd
 import { hashHistory } from 'react-router';
 import querystring from 'querystring';
 import { fetchData } from '../../../utils/index';
+import { Equipment } from '../../../api';
 const Item = List.Item;
 const alert = Modal.alert;
 /**
@@ -23,6 +24,22 @@ class RepareList extends Component{
     state = {
         baseData:this.props.location.state,
         historyData: []
+    }
+    componentDidMount = ()=>{
+        fetchData({
+            url:Equipment.selectRrpairList,
+            body:querystring.stringify({
+                assetsRecordOne:this.props.location.state.rrpairOrder
+            }),
+            error: err=>{
+                console.log(err);
+            },
+            success: data=>{
+                if(data.status){
+                    this.setState({ historyData : data.result })
+                }
+            }
+        })
     }
     AccordionHeader = (baseData)=>{
         return (
@@ -78,13 +95,13 @@ class RepareList extends Component{
         }
     }
     //历史工单card 
-    historyCard = (item)=>{
+    historyCard = (item,index)=>{
         return (
-            <List key={-1}>
+            <List key={index}>
                 <Item multipleLine>
                     <div className={'order-desc'}>
                         <p><span>工单号：</span><span className={'order-No'}>{item.rrpairOrder}</span></p>
-                        <p>维修中</p>
+                        <p>{this.showFixStatus(item.orderFstate)}</p>
                     </div>
                     <div className={'order-summary'}>
                         <p className={'address'}>
@@ -212,7 +229,7 @@ class RepareList extends Component{
     ChangeState = (orderFstate,next,rrpairType,isPass)=>{
         const { baseData } = this.state;
         fetchData({
-            url:'rrpairOrderController/updateRrpairFstate',
+            url:Equipment.updateRrpairFstate,
             body:querystring.stringify({
                 rrpairOrder:baseData.rrpairOrder,
                 assersNowRecord:orderFstate,
@@ -229,7 +246,7 @@ class RepareList extends Component{
                         hashHistory.push({pathname:'/equipment/equipmentRepaire'})
                     });
                 }else{
-                    Toast.fail(data.msg)
+                    Toast.fail("操作成功!",data.msg)
                 }
             }
         })
@@ -322,13 +339,6 @@ class RepareList extends Component{
                             </List>
                         </div>
                         <WhiteSpace size='md' />
-                        <div className={'repair-actual-cost'}>
-                            <List>
-                                <Item multipleLine arrow="horizontal" onClick={()=>console.log('添加实际费用')} extra={<a className={'grassColor'}>添加</a>}>
-                                <span className={'con_title'}>实际费用</span>
-                                </Item>
-                            </List>
-                        </div>
                     </div>
                     <div className={'order-info'}>
                         <WhiteSpace size='md' />
@@ -347,22 +357,15 @@ class RepareList extends Component{
                             <Item><span>预计完成时间: <a>{ baseData.completTime?baseData.completTime:'' }</a></span></Item>
                         </List>
                         <WhiteSpace size='md' />
-                        <List>
-                            <Item multipleLine extra={<a className={'grassColor'} onClick={()=>console.log('编辑负责人')}>编辑</a>}>
-                                <span className={'con_title'}>负责人</span>
-                            </Item>
-                        </List>
                     </div>
                     
                     <div className={'history-info'}>
                         <WhiteSpace size='md' />
                         { 
-                           /* tabs.map((item,index)=>{
+                           this.state.historyData.map((item,index)=>{
                                 return this.historyCard(item,index);
-                            }) */
-                            this.historyCard(baseData)
+                            }) 
                         }
-                        
                     </div>
                 </Tabs>
             </div>

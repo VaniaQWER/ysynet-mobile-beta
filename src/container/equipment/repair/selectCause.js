@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavBar,Icon, List, Checkbox, Button} from 'antd-mobile';
+import {NavBar,Icon, List, Checkbox, Button, Toast} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 const CheckboxItem = Checkbox.CheckboxItem;
 const Item = List.Item;
@@ -7,27 +7,24 @@ const Item = List.Item;
 const troubleCause = {
     //人为原因
     HumanCause:[
-        { value: 0, label: '操作不当', selected: 0 },
-        { value: 1, label: '校正失效', selected: 0 },
-        { value: 2, label: '保养不当', selected: 0 }
+        { value: '操作不当', label: '操作不当', selected: 0 },
+        { value: '校正失效', label: '校正失效', selected: 0 },
+        { value: '保养不当', label: '保养不当', selected: 0 }
     ],
     //设备原因
     EquipmentCause:[
-        { value: 0, label: '设备故障', selected: 0 }
+        { value: '设备故障', label: '设备故障', selected: 0 }
     ],
     //环境原因
     EnvironmentalCause:[
-        { value: 0, label: '电源', selected: 0 },
-        { value: 1, label: '温度', selected: 0 },
-        { value: 2, label: '湿度', selected: 0 },
-        { value: 4, label: '气温', selected: 0 },
-        { value: 5, label: '水源', selected: 0 },
-        { value: 6, label: '电磁干扰', selected: 0 }
+        { value: '电源', label: '电源', selected: 0 },
+        { value: '温度', label: '温度', selected: 0 },
+        { value: '湿度', label: '湿度', selected: 0 },
+        { value: '气温', label: '气温', selected: 0 },
+        { value: '水源', label: '水源', selected: 0 },
+        { value: '电磁干扰', label: '电磁干扰', selected: 0 }
     ]
 }
-
-    
-
 class TroubCause extends React.Component{
     state = {
         data:troubleCause
@@ -51,7 +48,42 @@ class TroubCause extends React.Component{
     }
     onSubmit = (e)=>{
         e.preventDefault();
-        //const data = this.state.data;
+        const data = this.state.data;
+        let selected = [],repairContentTyp = '人为原因-';
+        data['HumanCause'].map((item,index)=>{
+            if(item.selected === 1){
+                selected.push(item);
+                repairContentTyp +=item.value;
+                repairContentTyp +='、';
+                return null;
+            }
+            return null;
+        });
+        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1)+'|设备原因-';
+        data['EquipmentCause'].map((item,index)=>{
+            if(item.selected === 1){
+                selected.push(item);
+                repairContentTyp +=item.value;
+                repairContentTyp +='、';
+                return null;
+            }
+            return null;
+        });
+        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1)+'|环境原因-';
+        data['EnvironmentalCause'].map((item,index)=>{
+            if(item.selected === 1){
+                selected.push(item);
+                repairContentTyp +=item.value;
+                repairContentTyp +='、';
+                return null;
+            }
+            return null;
+        });
+        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1);
+        console.log(repairContentTyp,'原因拼接');
+        Toast.loading('loding',1,()=>{
+            hashHistory.push({pathname:'/equipment/troubleEdit',state:{...this.props.location.state,repairContentTyp:repairContentTyp}})
+        })
     }
     render(){
         return this.props.children ||

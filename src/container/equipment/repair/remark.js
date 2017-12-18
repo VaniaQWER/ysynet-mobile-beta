@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, TextareaItem} from 'antd-mobile';
+import { NavBar, Icon, List, TextareaItem,Toast} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import querystring from 'querystring';
 import { createForm } from 'rc-form';
@@ -23,13 +23,16 @@ class Remark extends Component{
                     },
                     success: data => {
                       if(data.status){
-                          alert('提交成功！');
-                          hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
+                          Toast.success('提交成功',2,()=>{
+                              hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
+                          })
+                      }else{
+                          Toast.fail(data.msg)
                       }
                     }
                   }) 
             }else{
-                alert('Validation failed');
+                Toast.fail('Validation failed');
             }
         })
     }

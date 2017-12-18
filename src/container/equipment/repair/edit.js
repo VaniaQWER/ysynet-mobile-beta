@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker ,List, } from 'antd-mobile';
+import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker ,List,Toast } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
+import { fetchData } from '../../../utils/index';
+import querystring from 'querystring';
+import { Equipment } from '../../../api';
 import './style.css'
+
 const Item = List.Item;
 
 class Edit extends Component{
     state = {
-        clicked:'none',
         multiple:false,
         files: [],
     }
@@ -19,11 +22,39 @@ class Edit extends Component{
         e.preventDefault();
         this.props.form.validateFields({ force: true }, (err) => {
             if(!err){
+                const baseData  = this.props.location.state;
                 let values = this.props.form.getFieldsValue();
-                values.failure = this.props.location.state.failure;
-                values.cause = this.props.location.state.cause;
-                values.imageUrl = this.state.files[0].url;
-                console.log(values);
+                values.rrpairOrder = baseData.rrpairOrder;
+                values.faultDescribe = baseData.faultDescribe;
+                values.repairContentType = baseData.repairContentType;
+                values.repairContentTyp = baseData.repairContentTyp;
+                let faultAccessory = [];
+                this.state.files.map((item,index)=>{
+                     faultAccessory.push(item.url)
+                     return null;
+                })
+                values.faultAccessory = faultAccessory;
+                console.log(values,'values');
+                fetchData({
+                    url:Equipment.updateRrpairType,
+                    body:querystring.stringify(values),
+                    err: err=>{
+                        console.log(err);
+                    },
+                    success: data =>{
+                        if(data.status){
+                            Toast.success('操作成功',2,()=>{
+                                hashHistory.push({
+                                    pathname:'/equipment/equipmentDetail',
+                                    state:this.props.location.state
+                                })
+                            })
+                        }else{
+                            Toast.fail('操作成功',data.msg)
+                        }
+                    }
+                })
+
             }
         })
     }
@@ -47,10 +78,10 @@ class Edit extends Component{
             </NavBar>
             <div className={'detail-content'}>
                 <List>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:baseData})}>
+                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/brokeCause',state:baseData})} extra={this.props.location.state.repairContentType}>
                         故障类型
                     </Item>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/selectCause',state:baseData})}>
+                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/selectCause',state:baseData})} extra={this.props.location.state.repairContentTyp}>
                         故障原因
                     </Item>
                 </List>
@@ -58,7 +89,7 @@ class Edit extends Component{
                 <List>
                     <Item>
                         <TextareaItem
-                            {...getFieldProps('note3')}
+                            {...getFieldProps('faultWords')}
                             autoHeight
                             placeholder="请输入文字说明"
                             rows={3}
@@ -73,7 +104,7 @@ class Edit extends Component{
                             files={files}
                             onChange={this.onChange}
                             onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={files.length < 1}
+                            selectable={files.length < 4}
                             multiple={this.state.multiple}
                             />
                     </div>
