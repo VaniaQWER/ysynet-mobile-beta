@@ -75,7 +75,7 @@ class Equipment extends Component {
             <Card className="ysynet-list">
               <Card.Header
                 title="设备维修单"
-                thumb={require('../../assets/repari_order.svg')}
+                thumb={require('../../assets/repair_order.svg')}
               />
               <Card.Body>
                 <EquipmentGrid 
