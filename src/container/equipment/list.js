@@ -14,13 +14,14 @@ class EquipmentList extends Slider {
     this.url = Equipment.selectAssetsList;
     this.state = {
       dataSource: this.dataSource,
-      pageIndex: 0,
+      pageIndex: 1,
       isMore: true,
       isLoading: true,
       refreshing: true,
       sectionIDs: [],
       rowIDs: [],
-      dataBlobs: {}
+      dataBlobs: {},
+      values :{}
     }
   }
   componentDidMount() {
@@ -79,7 +80,9 @@ class EquipmentList extends Slider {
                 }
               } 
               renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-                {this.state.isLoading ? '加载中...' : '下拉加载更多'}
+                {
+                  this.state.isMore ? this.state.isLoading ? '加载中...' : '下拉加载更多' : '没有了'
+                }
               </div>)}
               pageSize={4}
               pullToRefresh={<PullToRefresh style={{color: 'red'}}
