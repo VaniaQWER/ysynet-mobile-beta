@@ -2,6 +2,7 @@ import React from 'react';
 import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import Slider from '../common/slider';
+import { Equipment } from '../../api';
 import './index.css';
 
 /**
@@ -10,7 +11,7 @@ import './index.css';
 class EquipmentList extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'assetsRecordController/selectAssetsList';
+    this.url = Equipment.selectAssetsList;
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 0,

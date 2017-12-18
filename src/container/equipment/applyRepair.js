@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem} from 'antd-mobile';
+import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Modal} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../utils';
 import querystring from 'querystring';
+import { Equipment } from '../../api';
 
 /**
  * @summary 资产档案列表 --详情1-报修申请
@@ -29,21 +30,21 @@ class ApplyRepair extends Component {
             values.equipmentCode = this.props.location.state.equipmentCode;
             values.equipmentName = this.props.location.state.equipmentName;
             values.address = this.props.location.state.address;
-            values.useDept = this.state.useDeptCode;
+            values.useDept = this.props.location.state.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
             values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");
             //提交接口
             fetchData({
-                url: 'rrpairOrderController/insertRrpair',
+                url: Equipment.insertRrpair,
                 body: querystring.stringify(values),
                 error: err => {
                   console.log(err,'err')
                 },
                 success: data => {
                   if(data.status){
-                    alert("保修成功!")
+                    Modal.alert("提示","报修成功!")
                     hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
                   }
                 }

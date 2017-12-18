@@ -3,6 +3,7 @@ import { NavBar, Icon, List, WhiteSpace,Card} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { EquipmentData } from '../../constants';
 import EquipmentGrid from '../../component/equipmentGrid';
+import { Equipment } from '../../api';
 import './index.css';
 import '../../component/user_info/style.css';
 import { fetchData } from '../../utils';
@@ -11,7 +12,7 @@ const Item = List.Item;
 /**
  * @file 设备
  */
-class Equipment extends Component {
+class EquipmentPage extends Component {
   state ={
     checked: true,
     total: 0
@@ -20,7 +21,7 @@ class Equipment extends Component {
   componentDidMount = () => {
     //获取资产档案台数接口
     fetchData({
-      url:"assetsRecordController/selectAssetsRecordCount",
+      url:Equipment.selectAssetsRecordCount,
       error: err => {
         console.log(err,'err')
       },
@@ -129,4 +130,4 @@ class Equipment extends Component {
   }
 }
 
-export default Equipment;
+export default EquipmentPage;
