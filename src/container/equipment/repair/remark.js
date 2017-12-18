@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavBar, Icon, List, TextareaItem} from 'antd-mobile';
 import { hashHistory } from 'react-router';
+import querystring from 'querystring';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../../utils';
 class Remark extends Component{
@@ -12,21 +13,28 @@ class Remark extends Component{
                 console.log(value,'value');
                 fetchData({
                     url:"rrpairOrderController/updateRrpairContent",
-                    body:{
+                    body:querystring.stringify({
                         rrpairOrder:this.props.location.state.rrpairOrder,
                         type:0,
                         value:value
-                    },
-                    error: err => {
-                      console.log(err,'err')
+                    }),
+                    error: data => {
+                      console.log(data.msg,'err')
                     },
                     success: data => {
-                      console.log(data,'111')
+                      if(data.status){
+                          alert('提交成功！');
+                          hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
+                      }
                     }
                   }) 
+            }else{
+                alert('Validation failed');
             }
         })
-
+    }
+    cancel = ()=>{
+        hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
     }
 
     render(){

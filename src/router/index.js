@@ -123,6 +123,42 @@ export const routes =  {
             }, '/equipment/editOrder')
           }
         },
+        //维修类型选择
+        {
+          path: '/equipment/selRepaireType',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/repaireType').default)
+            }, '/equipment/selRepaireType')
+          }
+        },
+        //是否返修
+        {
+          path: '/equipment/BackRepaire',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/backRepaire').default)
+            }, '/equipment/BackRepaire')
+          }
+        },
+        //编辑工单 紧急度
+        {
+          path: '/equipment/urgencys',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/urgency').default)
+            }, '/equipment/urgencys')
+          }
+        },
+        //备用机
+        {
+          path: '/equipment/spare',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/equipment/repair/spare').default)
+            }, '/equipment/spare')
+          }
+        },
         { 
           path: '/equipment/list',
           getComponent: (nextState, cb) => {

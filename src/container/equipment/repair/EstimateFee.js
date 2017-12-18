@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace,InputItem,TextareaItem, List, Modal } from 'antd-mobile';
+import { NavBar, Icon, WhiteSpace,InputItem,TextareaItem, List,Toast } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
-const alert = Modal.alert;
+import { fetchData } from '../../../utils';
+import querystring from 'querystring';
+
 class EstimateFee extends Component{
 
     onSubmit = (e)=>{
@@ -10,9 +12,26 @@ class EstimateFee extends Component{
         this.props.form.validateFields({ force: true }, (err) => {
             if(!err){
                 let values = this.props.form.getFieldsValue();
-                console.log(values,'value')
+                values.rrpairOrder = this.props.location.state.rrpairOrder;
+                console.log(values,'value');
+                fetchData({
+                    url:'rrpairOrderController/updateRrpairQuoredPrice',
+                    body:querystring.stringify(values),
+                    error: err=>{
+                        console.log(err,'err')
+                    },
+                    success: data=>{
+                        if(data.status){
+                            Toast.success('提交成功!',2, () => {
+                                hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
+                            });
+                        }else{
+                            Toast.fail(data.msg);
+                        }
+                    }
+                })
             }else{
-                alert('请输入预估费用！');
+                Toast.fail('请填写相关信息');
             }
         })
     }
@@ -32,8 +51,8 @@ class EstimateFee extends Component{
             </NavBar>
             <div className={'ysynet-content'}>
                 <InputItem
-                    {...getFieldProps('money',{
-                        rules:[{required:true}]
+                    {...getFieldProps('quoredPrice',{
+                        rules:[{required:true,message:'请输入预估费用'}]
                     })}
                     type={'money'}
                     placeholder="填写预估费用"
@@ -44,8 +63,9 @@ class EstimateFee extends Component{
                 <WhiteSpace size='md' />
                 <List renderHeader={() => '费用详情'}>
                     <TextareaItem
-                        {...getFieldProps('feeDetail', {
-                        initialValue: '',
+                        {...getFieldProps('costDetail', {
+                            initialValue: '',
+                            rules:[{required:true,message:'请输入费用详情'}]
                         })}
                         placeholder='填写费用详情'
                         rows={7}

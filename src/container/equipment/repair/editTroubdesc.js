@@ -7,7 +7,6 @@ const Item = List.Item;
 
 class Edit extends Component{
     state = {
-        clicked:'none',
         multiple:false,
         files: [],
     }
@@ -23,6 +22,8 @@ class Edit extends Component{
                 values.failure = this.props.location.state.failure;
                 values.imageUrl = this.state.files[0].url;
                 console.log(values);
+            }else{
+                alert('Validation failed');
             }
         })
     }

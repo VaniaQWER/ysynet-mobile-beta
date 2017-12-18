@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace,Tabs, Accordion, Modal} from 'antd-mobile';
+import { NavBar, Icon, List, WhiteSpace,Tabs, Accordion, Modal,Toast} from 'antd-mobile';
 import { hashHistory } from 'react-router';
+import querystring from 'querystring';
 import { fetchData } from '../../../utils/index';
 const Item = List.Item;
 const alert = Modal.alert;
@@ -23,16 +24,6 @@ class RepareList extends Component{
         baseData:this.props.location.state,
         historyData: []
     }
-    /* componentDidMount = ()=>{
-        fetchData({
-            url:'rrpairOrderController/selectRrpairList',
-            body:{
-
-            },
-        },(data)=>{
-
-        })
-    } */
     AccordionHeader = (baseData)=>{
         return (
                 <div className={'equiment'}>
@@ -133,11 +124,11 @@ class RepareList extends Component{
     urgentFlag = (value)=>{
         switch(value){
             case '10':
-                return <span>紧急</span>;
+                return <span style={{color:'#FA6268'}}>紧急</span>;
             case '20':
-                return <span>很急</span>;
+                return <span style={{color:'#F29736'}}>急</span>;
             case '30':
-                return <span>一般</span>;
+                return <span style={{color:'#20B78B'}}>一般</span>;
             default:
                 break;
         }
@@ -222,18 +213,24 @@ class RepareList extends Component{
         const { baseData } = this.state;
         fetchData({
             url:'rrpairOrderController/updateRrpairFstate',
-            body:{
+            body:querystring.stringify({
                 rrpairOrder:baseData.rrpairOrder,
                 assersNowRecord:orderFstate,
                 assersNextRecord:next,
                 rrpairType:rrpairType,
                 isPass:isPass
-            }
-        },(data)=>{
-            if(data.result){
-                console.log('Ok');
-            }else{
-                console.log('Not ok');
+            }),
+            err: data =>{
+                console.log(data.msg)
+            },
+            success:data=>{
+                if(data.status){
+                    Toast.success("操作成功!",2,()=>{
+                        hashHistory.push({pathname:'/equipment/equipmentRepaire'})
+                    });
+                }else{
+                    Toast.fail(data.msg)
+                }
             }
         })
     }
