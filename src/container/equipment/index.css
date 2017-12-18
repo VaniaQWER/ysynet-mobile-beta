@@ -38,4 +38,8 @@
     vertical-align: middle;
 }
 
+.am-card-header-content{
+    flex: none;
+}
+
 

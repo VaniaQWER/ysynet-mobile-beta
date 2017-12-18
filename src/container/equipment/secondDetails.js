@@ -43,7 +43,7 @@ class SecondDetails extends Component {
                         <p className="cardBodyList">型号: {rowData.spec}</p>
                         <WhiteSpace  />
 
-                        <p className="cardBodyList">使用科室: {rowData.useDeptCode}</p>
+                        <p className="cardBodyList">使用科室: {rowData.useDept}</p>
                         <p className="cardBodyList">所属科室: {rowData.bDept}</p>
                         <p className="cardBodyList">责任人: {rowData.custodian}</p>
                       </Card.Body>

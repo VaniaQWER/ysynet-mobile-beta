@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Modal} from 'antd-mobile';
+import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Toast} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../utils';
@@ -15,6 +15,8 @@ class ApplyRepair extends Component {
     state = {
         files: [],
         multiple: false,
+        useFstate:this.props.location.state.useFstate === "00" ||this.props.location.state.useFstate===false  ?  false : true,
+        spare:this.props.location.state.spare === undefined ?  true : this.props.location.state.spare,
         urgentFlag:this.props.location.state.urgentFlag || 10,
         repairContentTyp:this.props.location.state.repairContentTyp || "部分功能失效", 
      
@@ -24,13 +26,13 @@ class ApplyRepair extends Component {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
             let values = this.props.form.getFieldsValue();
-            values.useFstate = values.useFstate ? "01" : "00";
-            values.spare = values.spare ? "01" : "00";
+            values.useFstate = this.state.useFstate ? "01" : "00";
+            values.spare = this.state.spare? "01" : "00";
             values.assetsRecord = this.props.location.state.assetsRecord;
             values.equipmentCode = this.props.location.state.equipmentCode;
             values.equipmentName = this.props.location.state.equipmentName;
             values.address = this.props.location.state.address;
-            values.useDept = this.props.location.state.useDeptCode;
+            values.useDeptCode = this.props.location.state.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
             values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
@@ -44,14 +46,15 @@ class ApplyRepair extends Component {
                 },
                 success: data => {
                   if(data.status){
-                    Modal.alert("提示","报修成功!")
-                    hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                    Toast.success('操作成功',2,()=>{
+                        hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                    })
+                  }else{
+                    Toast.fail('操作成功',data.msg)
                   }
                 }
               })  
-          } else {
-            alert('Validation failed');
-          }
+          } 
         });
     }
     
@@ -76,6 +79,7 @@ class ApplyRepair extends Component {
         const { getFieldProps } = this.props.form;
    
         const { files } = this.state;
+        console.log(this.props.location.state.useFstate,'state')
         return this.props.children ||
         (
             <div>
@@ -100,13 +104,13 @@ class ApplyRepair extends Component {
                             renderHeader={() => '请填写反馈信息'}
                         >
                             <Item
-                            extra={<Switch color="#2395ff" {...getFieldProps('useFstate', { initialValue: true, valuePropName: 'checked' })} />}
+                            extra={<Switch color="#2395ff" onClick={(checked)=>{ this.setState({useFstate : checked})}} checked={this.state.useFstate}/>}
                             >状态</Item>
                             <Item
-                            extra={<Switch color="#2395ff" {...getFieldProps('spare', { initialValue: true, valuePropName: 'checked' })} />}
+                            extra={<Switch color="#2395ff" onClick={(checked)=>{this.setState({spare : checked})}} checked={this.state.spare} />}
                             >是否有备用</Item>
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgentFlag:this.state.urgentFlag}})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgentFlag:this.state.urgentFlag,useFstate:this.state.useFstate,spare:this.state.spare}})}
                             extra={this.handUrgencyValue(this.state.urgentFlag)}
                             >
                                紧急度 
@@ -114,7 +118,7 @@ class ApplyRepair extends Component {
 
                           
                             <Item arrow="horizontal" multipleLine 
-                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,repairContentTyp:this.state.repairContentTyp}})}
+                            onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,repairContentTyp:this.state.repairContentTyp,useFstate:this.state.useFstate,spare:this.state.spare}})}
                             extra={this.state.repairContentTyp}
                             >
                                故障现象 
