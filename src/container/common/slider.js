@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { ListView } from 'antd-mobile';
-import { OrderList, Invoice,EquipmentList,WorkOrder } from '../../constants';
+//import { OrderList, Invoice,EquipmentList,WorkOrder } from '../../constants';
+import { fetchData } from '../../utils';
 /**
  * @file 滑动刷新 构造方法
  */
@@ -21,51 +22,41 @@ class Slider extends Component {
   genData = (callback) => {
     let { pageIndex, sectionIDs, rowIDs, dataBlobs, isMore } = this.state;
     this.setState({ isLoading: true });
-    // 模拟 ajax
-    setTimeout(() => {
-      let data = [];
-      switch (this.url) {
-        case 'order':
-          data = OrderList;
-          break;
-        case 'invoice':
-          data = Invoice;
-          break;  
-        case 'equipmentList':
-          data = EquipmentList;
-          break; 
-        case 'workOrderList':
-          data = WorkOrder;
-          break; 
-        default:
-          break;
-      }
-      const sectionName = `${pageIndex}:`;
-      dataBlobs[sectionName] = sectionName;
-      sectionIDs.push(sectionName);
-      rowIDs[pageIndex] = [];
-      for (let i=0; i<this.NUM_ROWS_PER_SECTION; i++) {
-        const row = data[i];
-        rowIDs[pageIndex].push(data[i].id);
-        dataBlobs[data[i].id] = row;
-      }
-      if (pageIndex > 3) {
-        isMore = false;
-      }
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-        isLoading: false,
-        pageIndex: pageIndex + 1,
-        sectionIDs,
-        refreshing: false,
-        isMore,
-        rowIDs,
-        dataBlobs
-      });
-      if (typeof callback === 'function') {
-        callback();
-      }
-    }, 600)
+      fetchData({
+        url:this.url,
+        error:(err)=>{
+          console.log(err)
+        },
+        success: (res) =>{
+          let data = res.result;
+          const sectionName = `${pageIndex}:`;
+          dataBlobs[sectionName] = sectionName;
+          sectionIDs.push(sectionName);
+          rowIDs[pageIndex] = [];
+          const pageSize = data.length > this.NUM_ROWS_PER_SECTION ? this.NUM_ROWS_PER_SECTION : data.length; 
+          for (let i=0; i<pageSize; i++) {
+            const row = data[i];
+            rowIDs[pageIndex].push(data[i].RN);
+            dataBlobs[data[i].RN] = row;
+          }
+          if (pageIndex > 3) {
+            isMore = false;
+          }
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+            isLoading: false,
+            pageIndex: pageIndex + 1,
+            sectionIDs,
+            refreshing: false,
+            isMore,
+            rowIDs,
+            dataBlobs
+          });
+          if (typeof callback === 'function') {
+            callback();
+          }
+        }
+      }) 
   }
   onRefresh = () => {
     //console.log(this.dataSource)

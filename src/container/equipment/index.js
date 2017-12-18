@@ -65,7 +65,6 @@ class Equipment extends Component {
                 extra={this.state.total+ '台'}
                 multipleLine 
                 onClick={ (el) => {
-                  console.log(el,'el');
                   hashHistory.push({pathname: '/equipment/list'})
                 }} 
                 thumb={require('../../assets/archives.svg')}

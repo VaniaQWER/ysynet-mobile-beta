@@ -32,7 +32,6 @@ class FirstDetails extends Component {
                       />
                       <Card.Body>
                         <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
-                        <p className="cardBodyList">品牌: {rowData.tfBrandName}</p>
                         <p className="cardBodyList">型号: {rowData.spec}</p>
                       </Card.Body>
                       <Card.Footer content={"科室:" + rowData.address + "--" + rowData.useDeptCode} />

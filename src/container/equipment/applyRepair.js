@@ -22,10 +22,11 @@ class ApplyRepair extends Component {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
             let values = this.props.form.getFieldsValue();
-            values.equipmentCode = this.props.location.state.equipmentCode || "不知道设备编号是什么";
-            values.equipmentName = this.props.location.state.equipmentName || "不知道设备名称是什么";
-            values.address = this.props.location.state.address||"不知道地址是什么";
-            values.useDept = this.state.useDeptCode||"不知道科室是什么";
+            values.assetsRecord = this.props.location.state.assetsRecord || "资产编号";
+            values.equipmentCode = this.props.location.state.equipmentCode || "设备编号";
+            values.equipmentName = this.props.location.state.equipmentName || "设备名称";
+            values.address = this.props.location.state.address||"地址";
+            values.useDept = this.state.useDeptCode||"使用科室";
             values.repairContentTyp = this.state.repairContentTyp;
             values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");

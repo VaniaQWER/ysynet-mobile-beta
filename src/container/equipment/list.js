@@ -2,7 +2,6 @@ import React from 'react';
 import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import Slider from '../common/slider';
-import { fetchData } from '../../utils';
 import './index.css';
 
 /**
@@ -11,7 +10,7 @@ import './index.css';
 class EquipmentList extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'equipmentList';
+    this.url = 'assetsRecordController/selectAssetsList';
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 0,
@@ -25,10 +24,6 @@ class EquipmentList extends Slider {
   }
   componentDidMount() {
     this.genData();
-    //获取列表接口
-    fetchData({
-      url:''
-    }) 
   }
   onEndReached = (event) => {
     this.genData();
