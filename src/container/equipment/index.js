@@ -17,10 +17,35 @@ class EquipmentPage extends Component {
     checked: true,
     assetsRecordCount: 0,
     rrpairOrderCount: 0 ,
-    RepairGridData:[]
+    RepairGridData:[],
+    userInfo: ""
   }
   
   componentDidMount = () => {
+    //获取用户信息
+    fetchData({
+      url:Equipment.getPermission,
+      error: err => {
+        console.log(err,'err')
+      },
+      success: data => {
+        if(data.status){
+         
+          fetchData({
+            url:data.result,
+            error: err => {
+              console.log(err,'err')
+            },
+            success: data => {
+              if(data.status){
+               
+                this.setState( { userInfo : data.result });
+              }
+            }
+          }) 
+        }
+      }
+    }) 
 
      //获取设备维修数据
      fetchData({
@@ -53,10 +78,7 @@ class EquipmentPage extends Component {
     //维修工单数据
     const RepairGridData = this.state.RepairGridData;
     const AccusationMgtData = EquipmentData.AccusationMgt.Status;
-    const userInfo = {
-      avatar: require('../../assets/avatar.png'),
-      username: '萌萌的拖鞋酱'
-    }
+    const { userInfo } = this.state;
     return this.props.children ||
         (
         <div>
@@ -67,7 +89,7 @@ class EquipmentPage extends Component {
           >我的工作台
           </NavBar>
           <section className={'ysynet-profile'}>
-            <img alt='用户头像' src={userInfo.avatar}/>
+            <img alt='用户头像' src={userInfo.headeimgurl}/>
             <div className={'ysynet-profile-detail'}>
               <p className={'name'}> { userInfo.username } </p>
             </div>

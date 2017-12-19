@@ -3,6 +3,7 @@ export default {
     selectAssetsRecordCount: '/assetsRecordController/selectAssetsRecordCount',
     selectRrpairList: '/rrpairOrderController/selectRrpairList',
     insertRrpair: '/rrpairOrderController/insertRrpair',
+    getPermission: '/test/permission',
     FTP:'http://192.168.0.183/ysynet',//图片预览
     selectRrpairFstateNum: '/rrpairOrderController/selectRrpairFstateNum',
     selectRrpairEvaluate:'/rrpairOrderController/selectRrpairEvaluate',//维修单详情——查询 备注/评价
