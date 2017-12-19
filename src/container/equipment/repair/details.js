@@ -296,7 +296,11 @@ class RepareList extends Component{
                                 </Item>
                             </List>
                             <List>
-                                <Item multipleLine>{baseData.faultDescribe?baseData.faultDescribe:'暂无现象'}</Item>
+                                <Item multipleLine>
+                                    <div className={'ysy-edit-con'}>
+                                        {baseData.faultDescribe?baseData.faultDescribe:'暂无现象'}
+                                    </div>
+                                </Item>
                             </List>
                         </div>
                         <WhiteSpace size='md' />
@@ -308,8 +312,14 @@ class RepareList extends Component{
                             </List>
                             <List>
                                 <Item>
-                                    <p><span>故障类型：</span><span>{baseData.repairContentType?baseData.repairContentType:'暂无'}</span></p>
-                                    <p><span>故障原因：</span><span>{baseData.repairContentTyp?baseData.repairContentTyp:'暂无'}</span></p>
+                                    <dl className={'trouble-info'}>
+                                        <dt>故障类型：</dt>
+                                        <dd>{baseData.repairContentType?baseData.repairContentType:'暂无'}</dd>
+                                    </dl>
+                                    <dl className={'trouble-info'}>
+                                        <dt>故障原因：</dt>
+                                        <dd>{baseData.repairContentTyp?baseData.repairContentTyp:'暂无'}</dd>
+                                    </dl>
                                 </Item>
                             </List>
                         </div>

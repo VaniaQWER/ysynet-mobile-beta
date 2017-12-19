@@ -4,7 +4,8 @@ export default {
     selectRrpairList: '/rrpairOrderController/selectRrpairList',
     insertRrpair: '/rrpairOrderController/insertRrpair',
     getPermission: '/test/permission',
-    FTP:'http://120.26.128.15:8905',//图片预览
+    FTP:'http://hsms.com.cn/ftp',//图片预览
+    
     selectRrpairFstateNum: '/rrpairOrderController/selectRrpairFstateNum',
     selectRrpairEvaluate:'/rrpairOrderController/selectRrpairEvaluate',//维修单详情——查询 备注/评价
     updateRrpairCount:'/rrpairOrderController/updateRrpairContent',//维修单详情——添加备注/评价

@@ -2,6 +2,10 @@
 .am-list-item .am-list-line .am-list-content{
     font-size: 14px !important;
 }
+dl,dt,dd{
+    margin: 0;
+    padding: 0;
+}
 .grassColor{
     color:#108ee9;
 }
@@ -23,6 +27,24 @@
     color:#113A48;
     font-size: 16px;
     font-weight: 700;
+}
+.am-tabs .am-list-line .am-list-content .ysy-edit-con{
+    overflow: visible;
+    white-space:normal
+}
+.trouble-info dt{
+    float: left;
+}
+.trouble-info dl:after {  
+  content: " ";  
+  display: table;  
+}
+.trouble-info dt{
+    width: 80px;
+}
+.trouble-info dd{
+    white-space: normal !important;
+    margin-left: 80px;
 }
 .ysynet-repaire-detail .equiment{
     font-size: 16px;
