@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Toast} from 'antd-mobile';
+import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Toast,Modal} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../utils';
 import querystring from 'querystring';
 import { Equipment } from '../../api';
+const alert = Modal.alert;
 
 /**
  * @summary 资产档案列表 --详情1-报修申请
@@ -17,7 +18,6 @@ class ApplyRepair extends Component {
       const { state } = this.props.location;
       this.state = {
         files: [],
-        loading: false,
         multiple: false,
         useFstate: state && state.useFstate ? state.useFstate === "00" || !state.useFstate ? false : true : true,
         spare: state &&  state.spare ? state.spare : true,
@@ -56,26 +56,32 @@ class ApplyRepair extends Component {
             values.urgentFlag = this.state.urgentFlag;
             values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
             console.log(values,"提交的数据");
-            this.setState ( {loading : true })
-            //提交接口
-            fetchData({
-                url: Equipment.insertRrpair,
-                body: querystring.stringify(values),
-                error: err => {
-                    this.setState ( {loading : false })
-                  console.log(err,'err')
-                },
-                success: data => {
-                    this.setState ( {loading : false })
-                  if(data.status){
-                    Toast.success('操作成功',2,()=>{
-                        hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
-                    })
-                  }else{
-                    Toast.fail(data.msg)
+
+            alert('报修', '是否确认报修？', [
+              { text: '取消', style: 'default' },
+              { text: '确定', onPress: () => {
+                  //提交接口
+                  fetchData({
+                    url: Equipment.insertRrpair,
+                    body: querystring.stringify(values),
+                    error: err => {
+                      console.log(err,'err')
+                    },
+                    success: data => {
+                      if(data.status){
+                        Toast.success('操作成功',2,()=>{
+                            hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                        })
+                      }else{
+                        Toast.fail(data.msg)
+                      }
+                    }
+                  })
                   }
-                }
-              })
+                
+              }
+            ]);
+          
   
             }
       });
@@ -163,7 +169,7 @@ class ApplyRepair extends Component {
                       />
                     </List>
    
-                    <Button type="primary" style={{marginTop:'16px'}}   onClick={this.onSubmit} loading={this.state.loading}>报修</Button>
+                    <Button type="primary" style={{marginTop:'16px'}}   onClick={this.onSubmit}>报修</Button>
                 
                     </form>
                 </div>
