@@ -64,7 +64,7 @@ class ApplyRepair extends Component {
               success: data => {
                 if(data.status){
                   Toast.success('操作成功',2,()=>{
-                      hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                      hashHistory.push({pathname: '/equipment/firstDetails', state: this.state.rowData})
                   })
                 }else{
                   Toast.fail('操作成功',data.msg)
@@ -100,7 +100,7 @@ class ApplyRepair extends Component {
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/firstDetails', state: this.state.rowData})}
                 >报修申请
                 </NavBar>
                 <div className={'ysynet-content'}>
