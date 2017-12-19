@@ -248,6 +248,12 @@ export const EquipmentData = {
       50 : "待验收",
       80 : "已关闭"
     },
+  EquimentIcon : {
+      10 : require('../assets/repair00.svg'),
+      30 : require('../assets/repair01.svg'),
+      50 : require('../assets/repair02.svg'),
+      80 : require('../assets/repair03.svg')
+    },
   Repair: {
     Status:[
       {TF_CLO_CODE:"10",TF_CLO_NAME:"待维修",text:'',icon: require('../assets/repair00.svg') },
