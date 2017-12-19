@@ -25,7 +25,7 @@ class RepaireType extends Component{
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,rrpairType:this.state.value}})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,afterRepairType:this.state.value}})}
             >维修类型选择
             </NavBar>
             <div className={'ysynet-content'}>

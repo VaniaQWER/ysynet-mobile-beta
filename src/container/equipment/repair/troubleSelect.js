@@ -26,22 +26,20 @@ class TroubleSelect extends React.Component{
         this.setState({data:data})
       }
     getTrouble = ()=>{
-        let selected = [],faultDescribe = '';
+        let faultDescribe = '';
         const { data } = this.state;
         data.map((item,index)=>{
             if(item.selected === 1){
-                selected.push(item.value);
                 faultDescribe +=item.value;
                 faultDescribe +='、';
                 return null;
             };
             return null;
         });
-       faultDescribe = faultDescribe.substring(0,faultDescribe.length-1)
-       console.log(selected,'勾选的选项value');
+       faultDescribe = faultDescribe.substring(0,faultDescribe.length-1);
        console.log(faultDescribe,'原因')
        Toast.loading('loding',1,()=>{
-           hashHistory.push({pathname:'/equipment/editTroubdesc',state:{...this.props.location.state,faultDescribe:faultDescribe}});
+           hashHistory.push({pathname:'/equipment/editTroubdesc',state:{...this.props.location.state,afterFaultDescribe:faultDescribe}});
        })
     }
     render(){

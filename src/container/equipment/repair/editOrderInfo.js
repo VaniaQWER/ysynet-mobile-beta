@@ -14,20 +14,21 @@ const now = new Date(nowTimeStamp);
 
 class EditOrderInfo extends Component{
     state = {
-        orderType: this.props.location.state.orderType,
+        orderType: this.props.location.state.orderType, //故障类型
         repaireType: this.props.location.state.rrpairType, //维修类型
         rrpairFlag: this.props.location.state.rrpairFlag, //是否返修
         urgentFlag: this.props.location.state.urgentFlag, //紧急度
         spare: this.props.location.state.spare, //备用
-        completTime:'' //预计完成时间
+        completTime:this.props.location.state.completTime? new Date(this.props.location.state.completTime.replace(/-/g,"/")):now, //预计完成时间
+        formatDate:''
     }
      
     //维修性质
     selectFix = ()=>{
         operation([
-            { text: '故障维修', onPress: () => {this.props.location.state.orderType = '故障维修';this.setState({ orderType:'故障维修' })} },
-            { text: 'PM后维修', onPress: () => {this.props.location.state.orderType = 'PM后维修'; this.setState({ orderType:'PM后维修' })} },
-            { text: '计量检测后维修', onPress: () => {this.props.location.state.orderType = '计量检测后维修';this.setState({ orderType:'计量检测后维修' })} },
+            { text: '故障维修', onPress: () => { this.setState({ afterOrderType:'故障维修' })} },
+            { text: 'PM后维修', onPress: () => { this.setState({ afterOrderType:'PM后维修' })} },
+            { text: '计量检测后维修', onPress: () => { this.setState({ afterOrderType:'计量检测后维修' })} },
         ])
     }
     //紧急度
@@ -43,6 +44,14 @@ class EditOrderInfo extends Component{
                 break;
         }
     }
+    
+    changeDate = (date)=>{
+        let d = new Date(date);
+        let formatDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+        console.log(formatDate,'formatDate');
+        this.props.location.state.formatDate = formatDate;
+        this.setState({ completTime:date, formatDate: formatDate });
+    }
     onSubmit = (e)=>{
         e.preventDefault();
         console.log(this.state.repaireNature,111);
@@ -51,11 +60,11 @@ class EditOrderInfo extends Component{
             if(!err){
                 let values = {};
                 values.rrpairOrder = baseData.rrpairOrder;
-                values.orderType = this.state.orderType;
-                values.rrpairType = baseData.rrpairType;
-                values.rrpairFlag = baseData.rrpairFlag;
-                values.spare = baseData.spare;
-                values.completTime = this.state.completTime;
+                baseData.orderType = values.orderType = this.state.afterOrderType ? this.state.afterOrderType : this.state.orderType;
+                baseData.rrpairType = values.rrpairType = baseData.afterRepairType ? baseData.afterRepairType:baseData.rrpairType;
+                baseData.rrpairFlag =  values.rrpairFlag = baseData.afterRrpairFlag ? baseData.afterRrpairFlag:baseData.rrpairFlag;
+                baseData.spare =  values.spare = baseData.afterSpare ? baseData.afterSpare: baseData.spare;
+                baseData.completTime =  values.completTime = this.state.formatDate;
                 console.log(values,'values');
                 fetchData({
                     url: 'rrpairOrderController/updateRrpairInfo',
@@ -66,7 +75,7 @@ class EditOrderInfo extends Component{
                     success: data=>{
                         if(data.status){
                             Toast.success('操作成功',2,()=>{
-                                hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
+                                hashHistory.push({pathname:'equipment/equipmentDetail',state:baseData})
                             })
                         }else{
                             Toast.fail(data.msg);
@@ -81,7 +90,8 @@ class EditOrderInfo extends Component{
     }
     render(){
         console.log(this.props,'11')
-        const { orderType, repaireType, rrpairFlag, urgentFlag, spare } = this.state;
+        const { afterOrderType,orderType, repaireType, rrpairFlag, urgentFlag, spare } = this.state;
+        const {  afterRepairType, afterRrpairFlag, afterUrgenFlag, afterSpare } = this.props.location.state;
         return this.props.children ||
         (<div>
             <NavBar
@@ -93,24 +103,24 @@ class EditOrderInfo extends Component{
             </NavBar>
             <div className={'ysynet-content'}>
                 <List>
-                    <Item multipleLine arrow="horizontal" onClick={this.selectFix} extra={orderType === null ?'暂无':orderType}>
+                    <Item multipleLine arrow="horizontal" onClick={this.selectFix} extra={afterOrderType? afterOrderType: orderType === null ?'暂无':orderType}>
                         <span>维修性质</span>
                     </Item>
-                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/selRepaireType',state:this.props.location.state})} extra={repaireType ==='01'?'外修':'内修'}>
+                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/selRepaireType',state:{...this.props.location.state}})} extra={afterRepairType ? afterRepairType ==='00'? '内修':'外修':repaireType==='00'?'内修':'外修'}>
                         <span>维修类型</span>
                     </Item>
-                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/BackRepaire',state:this.props.location.state})} extra={rrpairFlag ==='01'?'是':'否'}>
+                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/BackRepaire',state:{...this.props.location.state}})} extra={afterRrpairFlag? afterRrpairFlag ==='01'?'是':'否': rrpairFlag ==='01'?'是':'否'}>
                         <span>是否返修</span>
                     </Item>
-                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/urgencys',state:this.props.location.state})} extra={this.showUrgency(urgentFlag)}>
+                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/urgencys',state:{...this.props.location.state}})} extra={afterUrgenFlag? this.showUrgency(afterUrgenFlag):this.showUrgency(urgentFlag)}>
                         <span>紧急度</span>
                     </Item>
-                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/spare',state:this.props.location.state})} extra={spare==='01'?'有':'无'}>
+                    <Item arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/spare',state:{...this.props.location.state}})} extra={afterSpare? afterSpare==='01'?'有':'无':spare ==='01'?'有':'无'}>
                         <span>备用机</span>
                     </Item>
                     <DatePicker
-                        value={this.props.location.state.completTime?this.props.location.state.completTime:now}
-                        onChange={date => this.setState({ completTime:date })}
+                        value={this.state.completTime}
+                        onChange={date => this.changeDate(date)}
                         >
                         <List.Item arrow="horizontal" extra={this.state.completTime}>预计完成时间</List.Item>
                     </DatePicker>

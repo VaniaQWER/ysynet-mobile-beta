@@ -26,7 +26,7 @@ class BackRepaire extends Component{
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,rrpairFlag:this.state.value}})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,afterRrpairFlag:this.state.value}})}
             >是否返修
             </NavBar>
             <div className={'ysynet-content'}>

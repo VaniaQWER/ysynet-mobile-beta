@@ -49,9 +49,13 @@ class TroubCause extends React.Component{
     onSubmit = (e)=>{
         e.preventDefault();
         const data = this.state.data;
-        let selected = [],repairContentTyp = '人为原因-';
+        let selected = [],repairContentTyp = '',flag = false;
         data['HumanCause'].map((item,index)=>{
             if(item.selected === 1){
+                if(!flag){
+                    repairContentTyp += '人为原因-';
+                }
+                flag = true;
                 selected.push(item);
                 repairContentTyp +=item.value;
                 repairContentTyp +='、';
@@ -59,19 +63,28 @@ class TroubCause extends React.Component{
             }
             return null;
         });
-        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1)+'|设备原因-';
+        flag = false;
+        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1);
         data['EquipmentCause'].map((item,index)=>{
             if(item.selected === 1){
+                if(!flag){
+                    repairContentTyp +='|设备原因-';
+                }
+                flag = true;
                 selected.push(item);
                 repairContentTyp +=item.value;
-                repairContentTyp +='、';
                 return null;
             }
             return null;
         });
-        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1)+'|环境原因-';
+        flag = false;
+        repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length);
         data['EnvironmentalCause'].map((item,index)=>{
             if(item.selected === 1){
+                if(!flag){
+                    repairContentTyp +='|环境原因-';
+                }
+                flag = true
                 selected.push(item);
                 repairContentTyp +=item.value;
                 repairContentTyp +='、';
@@ -82,7 +95,7 @@ class TroubCause extends React.Component{
         repairContentTyp = repairContentTyp.substring(0,repairContentTyp.length-1);
         console.log(repairContentTyp,'原因拼接');
         Toast.loading('loding',1,()=>{
-            hashHistory.push({pathname:'/equipment/troubleEdit',state:{...this.props.location.state,repairContentTyp:repairContentTyp}})
+            hashHistory.push({pathname:'/equipment/troubleEdit',state:{...this.props.location.state,afterRepairContentTyp:repairContentTyp}})
         })
     }
     render(){

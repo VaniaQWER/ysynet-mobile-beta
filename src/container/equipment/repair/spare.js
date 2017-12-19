@@ -25,7 +25,7 @@ class SpareList extends Component{
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,spare:this.state.value}})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,afterSpare:this.state.value}})}
             >备用机
             </NavBar>
             <div className={'ysynet-content'}>

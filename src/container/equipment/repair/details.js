@@ -147,7 +147,7 @@ class RepareList extends Component{
             case '30':
                 return <span style={{color:'#20B78B'}}>一般</span>;
             default:
-                break;
+                return <span style={{color:'#20B78B'}}>一般</span>;
         }
     }
     redirect = (url, record) => {
@@ -253,8 +253,7 @@ class RepareList extends Component{
     }
     render(){
         const baseData = this.props.location.state;
-        console.log(baseData,'baseData');
-        
+        console.log(baseData.urgentFlag,'紧急度')
         const tabs = [
             { title: '维护信息' },
             { title: '工单信息' },
@@ -347,11 +346,11 @@ class RepareList extends Component{
                                 <span className={'con_title'}>工单信息</span>
                             </Item>
                             <Item><span>维修性质: <a>{ baseData.orderType?baseData.orderType:'暂无' }</a></span></Item>
-                            <Item><span>维修类型: <a>{ baseData.rrpairType==='00'?'内修':'外修' }</a></span></Item>
-                            <Item><span>是否返修: <a>{ baseData.rrpairFlag==='00'?'否':'是' }</a></span></Item>
+                            <Item><span>维修类型: <a>{ baseData.rrpairType? baseData.rrpairType ==='00'?'内修':'外修': '外修'}</a></span></Item>
+                            <Item><span>是否返修: <a>{ baseData.rrpairFlag? baseData.rrpairFlag==='00'?'否':'是':'否' }</a></span></Item>
                             <Item><span>紧急度: <a>{ this.urgentFlag(baseData.urgentFlag) }</a></span></Item>
-                            <Item><span>备用机: <a>{ baseData.spare==='00'?'无':'有' }</a></span></Item>
-                            <Item><span>报修人: <a>{ baseData.rrpairUserName?baseData.rrpairUserName:'' }
+                            <Item><span>备用机: <a>{ baseData.spare? baseData.spare==='00'?'无':'有':'无' }</a></span></Item>
+                            <Item><span>报修人: <a>{ baseData.rrpairUserName ? baseData.rrpairUserName:'' }
                                     <label className={'grassColor'} style={{marginLeft:8}}>{baseData.rrpairPhone?baseData.rrpairPhone:''}</label></a></span>
                             </Item>
                             <Item><span>预计完成时间: <a>{ baseData.completTime?baseData.completTime:'' }</a></span></Item>

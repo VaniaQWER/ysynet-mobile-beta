@@ -29,7 +29,7 @@ class UrgencyList extends Component {
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,urgentFlag:this.state.value}})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/editOrder',state: {...this.props.location.state,afterUrgenFlag:this.state.value}})}
                 >紧急度
                 </NavBar>
                 <div className={'ysynet-content'}>

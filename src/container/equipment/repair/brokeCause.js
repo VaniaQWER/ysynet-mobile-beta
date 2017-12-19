@@ -39,7 +39,7 @@ class TroubleSelect extends React.Component{
         console.log(repairContentType,'原因')
        console.log(selected,'勾选的选项value');
         Toast.loading('loding',1,()=>{
-            hashHistory.push({pathname:'/equipment/troubleEdit',state:{...this.props.location.state,repairContentType:repairContentType}})
+            hashHistory.push({pathname:'/equipment/troubleEdit',state:{...this.props.location.state,afterRepairContentType:repairContentType}})
         })
     }
     render(){

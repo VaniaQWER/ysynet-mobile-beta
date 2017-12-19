@@ -8,10 +8,20 @@ import { Equipment } from '../../../api';
 import './style.css'
 
 const Item = List.Item;
+
 class Edit extends Component{
     state = {
         multiple:false,
         files: []
+    }
+    componentWillMount = ()=>{
+        if(this.props.location.state.faultAccessory!==null){
+            this.setState({ files: [{
+                    url:Equipment.FTP + this.props.location.state.faultAccessory.substring(0,this.props.location.state.faultAccessory.length-1),
+                    id:this.props.location.state.RN
+                } 
+            ]})
+        }
     }
     onChange = (files, type, index) => {
         console.log(files, type, index);
@@ -23,8 +33,9 @@ class Edit extends Component{
             if(!err){
                 const baseData = this.props.location.state;
                 let values = this.props.form.getFieldsValue();
+                baseData.faultWords = values.faultWords;
                 values.rrpairOrder = baseData.rrpairOrder;
-                values.faultDescribe = baseData.faultDescribe;
+                values.faultDescribe = baseData.afterFaultDescribe ? baseData.afterFaultDescribe: baseData.faultDescribe;
                 values.repairContentType = baseData.repairContentType;
                 values.repairContentTyp = baseData.repairContentTyp;
                 let faultAccessory = [],files = this.state.files;
@@ -57,7 +68,7 @@ class Edit extends Component{
         hashHistory.push({pathname:'/equipment/equipmentDetail',state:{...this.props.location.state}})
     }
     render(){
-        console.log(this.props)
+        console.log(this.props.location.state,'state')
         const baseData = this.props.location.state;
         const { files } = this.state;
         const { getFieldProps } = this.props.form;
@@ -73,7 +84,7 @@ class Edit extends Component{
             </NavBar>
             <div className={'detail-content'}>
                 <List>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:baseData})} extra={this.props.location.state.faultDescribe}>
+                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:baseData})} extra={baseData.afterFaultDescribe?baseData.afterFaultDescribe:baseData.faultDescribe}>
                         故障现象
                     </Item>
                 </List>
