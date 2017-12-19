@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace,Card,Grid} from 'antd-mobile';
+import { NavBar, Icon, WhiteSpace,Card,Grid,List} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { EquipmentData } from '../../constants';
-
+import './index.css';
+const Item = List.Item;
 /**
  * @summary 资产档案列表 --详情1
  */
@@ -24,12 +25,15 @@ class FirstDetails extends Component {
                 </NavBar>
                 <div className={'ysynet-content'}>
                     <Card full
+                    
                     onClick={() => hashHistory.push({pathname: `/equipment/secondDetails`,state: this.props.location.state})}
                     >
-                      <Card.Header
-                        title={rowData.equipmentName}
-                        extra={<a>详情</a>}
-                      />
+                    <div className={'ysynet_card_header'}>
+                        <Item extra={<a>详情</a>}>
+                            <span className={'workNo'}>{rowData.equipmentName}</span>
+                        </Item>
+                    </div>
+         
                       <Card.Body>
                         <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
                         <p className="cardBodyList">型号: {rowData.spec}</p>

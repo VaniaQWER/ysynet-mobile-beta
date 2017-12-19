@@ -42,4 +42,12 @@
     flex: none;
 }
 
+.ysynet_card_header  .workNo{
+    color: #999999;
+    font-size: 14px;
+}
+.am-grid .am-flexbox .am-flexbox-item .am-grid-item-content .am-grid-item-inner-content.column-num-3 .am-grid-text{
+    font-size: 12px;
+}
+
 

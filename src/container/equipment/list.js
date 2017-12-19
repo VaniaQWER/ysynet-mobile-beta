@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavBar, Icon, ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
+import { NavBar, Icon, List,ListView, PullToRefresh,SearchBar,Card,WhiteSpace } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import Slider from '../common/slider';
 import { Equipment } from '../../api';
 import './index.css';
+const Item = List.Item;
 
 /**
  * @summary 资产档案列表
@@ -32,13 +33,16 @@ class EquipmentList extends Slider {
   }
   //渲染状态style
   handleStatusStyle = (rowData) =>{
-      if(rowData.useFstate === "00"){
-          return <span style={{color:"#ffbf00"}}>{"在用"}</span>
-      }else if(rowData.useFstate === "01"){
-        return <span style={{color:"#3dbd7d"}}>{"异常"}</span>
-      }else if(rowData.useFstate === "02"){
-        return <span style={{color:"#2395ff"}}>{"报废"}</span>
-      }
+      switch(rowData.useFstate){
+        case '00':
+            return <span style={{color:'#ffbf00'}}>{'在用'}</span>;
+        case '01':
+            return <span style={{color:'#28C7A0'}}>{'异常'}</span>;
+        case '02':
+            return <span style={{color:'#000'}}>{'报废'}</span>;
+        default:
+            break;
+    }
   }
   render () {
     return this.props.children ||
@@ -64,10 +68,12 @@ class EquipmentList extends Slider {
                     <Card full
                     onClick={() => hashHistory.push({pathname: `/equipment/firstDetails`,state: rowData})}
                     >
-                      <Card.Header
-                        title={"编号:" +rowData.equipmentCode}
-                        extra={<span>{this.handleStatusStyle(rowData)}</span>}
-                      />
+                    <div className={'ysynet_card_header'}>
+                        <Item extra={this.handleStatusStyle(rowData)}>
+                            <span className={'workNo'}>{"编号: " +rowData.equipmentCode}</span>
+                      </Item>
+                    </div>
+         
                       <Card.Body>
                         <div>名称: {rowData.equipmentName}</div>
                       </Card.Body>
