@@ -45,13 +45,6 @@ class RepareList extends Component{
         return (
                 <div className={'equiment'}>
                     <span className={'con_title'}>{baseData.equipmentName}</span>
-                        {
-                            baseData.useStatus?baseData.useStatus.map((item,index)=>
-                                <span className={item.TF_CLO_CODE==='00'?'tag maintain':(item.TF_CLO_CODE==='01'?'tag out_maintain':'tag not_maintain')} key={index}>{item.TF_CLO_NAME}</span>
-                            )
-                            :
-                            null
-                        }
                 </div>
         )
     }
@@ -90,7 +83,6 @@ class RepareList extends Component{
         else {
             return (<div className={'button-group'}>
                     {actions.tfReamrk(this.tfReamrk.bind(this,baseData))}
-                    {actions.evaluate(this.evaluate.bind(this,baseData))}
                 </div>);
         }
     }
@@ -216,10 +208,6 @@ class RepareList extends Component{
             }
           ]);
     }
-    //评价
-    evaluate = (record)=>{
-        console.log('评价')
-    }
     /* 
         orderFstate: 当前状态
         assersNextRecord：转变后状态
@@ -253,7 +241,6 @@ class RepareList extends Component{
     }
     render(){
         const baseData = this.props.location.state;
-        console.log(baseData.urgentFlag,'紧急度')
         const tabs = [
             { title: '维护信息' },
             { title: '工单信息' },
@@ -265,7 +252,7 @@ class RepareList extends Component{
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/equipmentRepaire'})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/equipmentRepaire',state:this.props.location.state})}
             >
             维修单详情
             </NavBar>
@@ -280,7 +267,7 @@ class RepareList extends Component{
                 </List>
                 <WhiteSpace size='md' />
                 <div className={'ysynet-repaire-detail'}>
-                    <div className={'pd13 product'}>
+                    <div className={'product'}>
                         <List>
                             <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
                                 <Accordion.Panel header={this.AccordionHeader(baseData)}>
@@ -311,9 +298,6 @@ class RepareList extends Component{
                             <List>
                                 <Item multipleLine>{baseData.faultDescribe?baseData.faultDescribe:'暂无现象'}</Item>
                             </List>
-                            <List>
-                                <Item multipleLine>{baseData.faultWords?baseData.faultWords:'暂无'}</Item>
-                            </List>
                         </div>
                         <WhiteSpace size='md' />
                         <div className={'repair-con'}>
@@ -338,6 +322,9 @@ class RepareList extends Component{
                             </List>
                         </div>
                         <WhiteSpace size='md' />
+                        <List>
+                            <Item multipleLine>{baseData.faultWords?baseData.faultWords:'暂无'}</Item>
+                        </List>
                     </div>
                     <div className={'order-info'}>
                         <WhiteSpace size='md' />
@@ -361,9 +348,12 @@ class RepareList extends Component{
                     <div className={'history-info'}>
                         <WhiteSpace size='md' />
                         { 
+                           this.state.historyData.length>0?
                            this.state.historyData.map((item,index)=>{
                                 return this.historyCard(item,index);
                             }) 
+                            :
+                            <p style={{textAlign:'center'}}>暂无数据</p>
                         }
                     </div>
                 </Tabs>

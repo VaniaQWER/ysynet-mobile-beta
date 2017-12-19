@@ -3,7 +3,7 @@
     font-size: 14px !important;
 }
 .grassColor{
-    color:#1FB591;
+    color:#108ee9;
 }
 .detail-content{
     margin-top: 45px;
@@ -27,29 +27,6 @@
 .ysynet-repaire-detail .equiment{
     font-size: 16px;
 }
-
-.ysynet-repaire-detail .tag{
-    font-size: 12px;
-    padding: 0 3px;
-    margin:0 0 0 5px;
-    border: solid 1px;
-}
-/* 设备 启用 tag */
-.ysynet-repaire-detail .not_maintain{
-    color: #EC6F66;
-    background:#FFECF5;
-    border-color: #FFECF5;
-}
-.ysynet-repaire-detail .maintain{
-    color:#28C7A0;
-    background:#E6F9F6;
-    border-color: #E6F9F6;
-}
-.ysynet-repaire-detail .out_maintain{
-    color:#F0BE6F;
-    background:#FEFAF0;
-    border-color: #FEFAF0;
-}
 /* 地址信息 */
 .ysynet-repaire-detail .brand .line{
     margin: 0 3px;
@@ -63,15 +40,12 @@
 }
 
 /* 历史工单 */
-.history-info{
-    
-}
 .history-info .order-desc{
     display: flex;
     justify-content: space-between;
 }
 .history-info .order-desc .order-No{
-    color:#1FB591;
+    color:#108ee9;
     margin-left: 10px;
 }
 .history-info .order-summary p{
@@ -99,10 +73,7 @@
     line-height: 30px;
     padding:0 8px;
     border-radius: 2px;
-    border: solid 1px #1FB591;
-}
-.edit-con{
-
+    border: solid 1px #108ee9;
 }
 .imagePicker{
     padding: 5px 0;
@@ -115,11 +86,11 @@
     text-align: center;
 }
 .foot-button .btn-cancel{
-    color:#28C7A0;
+    color:#108ee9;
     background: #fff;
 }
 .foot-button .btn-submit{
-    background: #28C7A0;
+    background: #108ee9;
     color:#fff;
 }
 /* 备注文字计数 span */

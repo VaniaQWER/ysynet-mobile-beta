@@ -25,7 +25,9 @@ class EquipmentRepair extends Slider {
     }
   }
   componentDidMount() {
-    this.genData();
+    const orderFstate = this.props.location.state.TF_CLO_CODE ? this.props.location.state.TF_CLO_CODE:'';
+    console.log(orderFstate,'fstate')
+    this.genData({orderFstate:orderFstate});
   }
   onEndReached = (event) => {
     if (this.state.isMore) {
@@ -33,6 +35,7 @@ class EquipmentRepair extends Slider {
     }
   }
   render () {
+    console.log(this.props,'1111')
     return this.props.children ||
         (
         <div>
@@ -40,7 +43,7 @@ class EquipmentRepair extends Slider {
             className={'ysynet-header'}
             mode="dark"
             icon={<Icon type="left" />}
-            onLeftClick={() => hashHistory.push({pathname: '/equipment'})}
+            onLeftClick={() => hashHistory.push({pathname: '/equipment',state:this.props.location.state})}
           >我的设备维修单
           </NavBar>
           <div className={'ysynet-content'}>

@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../../utils';
 import querystring from 'querystring';
-
+import { Equipment } from '../../../api';
 class EstimateFee extends Component{
 
     onSubmit = (e)=>{
@@ -15,7 +15,7 @@ class EstimateFee extends Component{
                 values.rrpairOrder = this.props.location.state.rrpairOrder;
                 console.log(values,'value');
                 fetchData({
-                    url:'rrpairOrderController/updateRrpairQuoredPrice',
+                    url:Equipment.updateRrpairCount,
                     body:querystring.stringify(values),
                     error: err=>{
                         console.log(err,'err')
