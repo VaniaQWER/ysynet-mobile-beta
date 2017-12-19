@@ -56,9 +56,7 @@ class EquipmentPage extends Component {
             <div className={'ysynet-profile-detail'}>
               <p className={'name'}> { userInfo.username } </p>
             </div>
-            <img alt='扫一扫' src={require('../../assets/scan.svg')} onClick={()=>{
-              alert("点击扫一扫")
-            }}/>
+            <a href='http://hsms.com.cn/test/test.html' className='scannig'> </a>
           </section>
             <List className="ysynet-list">
               <Item 
