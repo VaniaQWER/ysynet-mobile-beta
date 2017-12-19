@@ -31,6 +31,8 @@ class EquipmentList extends Slider {
   onEndReached = (event) => {
     this.genData();
   }
+
+
   //渲染状态style
   handleStatusStyle = (rowData) =>{
       switch(rowData.useFstate){
@@ -81,7 +83,7 @@ class EquipmentList extends Slider {
                       <Card.Body>
                         <div>名称: {rowData.equipmentName}</div>
                       </Card.Body>
-                      <Card.Footer content={"地址: " + rowData.address} />
+                      <Card.Footer content={rowData.address ? "地址: " + rowData.address : "地址: " + ""} />
                     </Card>
                     <WhiteSpace  />
                  </div>
