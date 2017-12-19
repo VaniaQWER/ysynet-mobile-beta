@@ -18,10 +18,11 @@ class EquipmentPage extends Component {
     assetsRecordCount: 0,
     rrpairOrderCount: 0 ,
     RepairGridData:[],
-    userInfo: ""
+    userInfo: "",
   }
   
   componentDidMount = () => {
+    //alert('开始获取头像')
     //获取用户信息
     fetchData({
       url:Equipment.getPermission,
@@ -29,20 +30,18 @@ class EquipmentPage extends Component {
         console.log(err,'err')
       },
       success: data => {
+        //alert('第一次')
+        //alert(data.status)
         if(data.status){
-         
-          fetchData({
-            url:data.result,
-            error: err => {
-              console.log(err,'err')
-            },
-            success: data => {
-              if(data.status){
-               
-                this.setState( { userInfo : data.result });
-              }
-            }
-          }) 
+          //alert(data.result)
+          fetch(`${data.result}`, {
+            method: 'get',
+            credentials: 'include',
+            mode: 'cors'
+          })
+          .then(res => res.json())
+          .then(data => alert(data.result.userName))
+          //.catch(err => alert(err))
         }
       }
     }) 
@@ -89,9 +88,9 @@ class EquipmentPage extends Component {
           >我的工作台
           </NavBar>
           <section className={'ysynet-profile'}>
-            <img alt='用户头像' src={userInfo.headeimgurl}/>
+            <img alt='用户头像' src={userInfo.headimgurl}/>
             <div className={'ysynet-profile-detail'}>
-              <p className={'name'}> { userInfo.username } </p>
+              <p className={'name'}> { userInfo.userName } </p>
             </div>
             <a href='http://hsms.com.cn/test/test.html' className='scannig'> </a>
           </section>
@@ -112,7 +111,7 @@ class EquipmentPage extends Component {
               <Card.Header
                 title="设备维修单"
                 thumb={require('../../assets/repair_order.svg')}
-                extra={this.state.rrpairOrderCount + '台'}
+                extra={this.state.rrpairOrderCount + '条'}
               />
               <Card.Body>
                 <EquipmentGrid 

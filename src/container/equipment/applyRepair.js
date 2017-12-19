@@ -44,14 +44,15 @@ class ApplyRepair extends Component {
     onSubmit = () => {
         this.props.form.validateFields({ force: true }, (error) => {
           if (!error) {
+            const { rowData } = this.state;
             let values = this.props.form.getFieldsValue();
             values.useFstate = this.state.useFstate ? "01" : "00";
             values.spare = this.state.spare? "01" : "00";
-            values.assetsRecord = this.props.location.state.assetsRecord;
-            values.equipmentCode = this.props.location.state.equipmentCode;
-            values.equipmentName = this.props.location.state.equipmentName;
-            values.address = this.props.location.state.address;
-            values.useDeptCode = this.props.location.state.useDeptCode;
+            values.assetsRecord = rowData.assetsRecord;
+            values.equipmentCode = rowData.equipmentCode;
+            values.equipmentName = rowData.equipmentName;
+            values.address = rowData.address;
+            values.useDeptCode = rowData.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
             const faultImg = [];
@@ -73,7 +74,7 @@ class ApplyRepair extends Component {
                     success: data => {
                       if(data.status){
                         Toast.success('操作成功',2,()=>{
-                            hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                            hashHistory.push({pathname: '/equipment/firstDetails',state: this.state.rowData})
                         })
                       }else{
                         Toast.fail(data.msg)

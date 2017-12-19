@@ -29,7 +29,7 @@ class RepareList extends Component{
         fetchData({
             url:Equipment.selectRrpairList,
             body:querystring.stringify({
-                assetsRecordOne:this.props.location.state.rrpairOrder
+                assetsRecordOne: this.props.location.query.rrpairOrder || this.props.location.state.rrpairOrder
             }),
             error: err=>{
                 console.log(err);
