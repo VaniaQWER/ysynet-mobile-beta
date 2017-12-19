@@ -54,9 +54,10 @@ class ApplyRepair extends Component {
             values.useDeptCode = this.props.location.state.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
-            values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
+            const faultImg = [];
+            faultImg.push(this.state.files.length === 1 ? this.state.files[0].url : null);
+            values.faultAccessory = faultImg;
             console.log(values,"提交的数据");
-
             alert('报修', '是否确认报修？', [
               { text: '取消', style: 'default' },
               { text: '确定', onPress: () => {
