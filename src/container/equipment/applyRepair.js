@@ -131,14 +131,15 @@ class ApplyRepair extends Component {
                   >
                     <Card.Body>
                       <p className="cardBodyList">编号: {rowData.equipmentCode}</p>
-                      <p className="cardBodyList">科室: {rowData.address}</p>
+                      <p className="cardBodyList">地址: {rowData.address}</p>
+                      <p className="cardBodyList">科室: {rowData.useDept}</p>
                     </Card.Body>
                   </Card>
                   <form>
                     <List renderHeader={() => '请填写反馈信息'}>
                       <Item
                         extra={<Switch color="#2395ff" onClick={(checked)=>{ this.setState({useFstate : checked})}} checked={this.state.useFstate}/>}
-                      >状态</Item>
+                      >使用状态</Item>
                       <Item
                       extra={<Switch color="#2395ff" onClick={(checked)=>{this.setState({spare : checked})}} checked={this.state.spare} />}
                       >是否有备用</Item>
