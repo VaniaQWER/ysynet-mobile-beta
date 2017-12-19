@@ -17,6 +17,7 @@ class ApplyRepair extends Component {
       const { state } = this.props.location;
       this.state = {
         files: [],
+        loading: false,
         multiple: false,
         useFstate: state && state.useFstate ? state.useFstate === "00" || !state.useFstate ? false : true : true,
         spare: state &&  state.spare ? state.spare : true,
@@ -38,52 +39,62 @@ class ApplyRepair extends Component {
         })
       }
     }
+
     //提交数据
     onSubmit = () => {
-      this.props.form.validateFields({ force: true }, (error) => {
-        if (!error) {
-          let values = this.props.form.getFieldsValue();
-          values.useFstate = this.state.useFstate ? "01" : "00";
-          values.spare = this.state.spare? "01" : "00";
-          values.assetsRecord = this.props.location.state.assetsRecord;
-          values.equipmentCode = this.props.location.state.equipmentCode;
-          values.equipmentName = this.props.location.state.equipmentName;
-          values.address = this.props.location.state.address;
-          values.useDeptCode = this.props.location.state.useDeptCode;
-          values.repairContentTyp = this.state.repairContentTyp;
-          values.urgentFlag = this.state.urgentFlag;
-          values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
-          console.log(values,"提交的数据");
-          //提交接口
-          fetchData({
-              url: Equipment.insertRrpair,
-              body: querystring.stringify(values),
-              error: err => {
-                console.log(err,'err')
-              },
-              success: data => {
-                if(data.status){
-                  Toast.success('操作成功',2,()=>{
-                      hashHistory.push({pathname: '/equipment/firstDetails', state: this.state.rowData})
-                  })
-                }else{
-                  Toast.fail('操作成功',data.msg)
+        this.props.form.validateFields({ force: true }, (error) => {
+          if (!error) {
+            let values = this.props.form.getFieldsValue();
+            values.useFstate = this.state.useFstate ? "01" : "00";
+            values.spare = this.state.spare? "01" : "00";
+            values.assetsRecord = this.props.location.state.assetsRecord;
+            values.equipmentCode = this.props.location.state.equipmentCode;
+            values.equipmentName = this.props.location.state.equipmentName;
+            values.address = this.props.location.state.address;
+            values.useDeptCode = this.props.location.state.useDeptCode;
+            values.repairContentTyp = this.state.repairContentTyp;
+            values.urgentFlag = this.state.urgentFlag;
+            values.faultAccessory = this.state.files.length === 1 ? this.state.files[0].url : null;
+            console.log(values,"提交的数据");
+            this.setState ( {loading : true })
+            //提交接口
+            fetchData({
+                url: Equipment.insertRrpair,
+                body: querystring.stringify(values),
+                error: err => {
+                    this.setState ( {loading : false })
+                  console.log(err,'err')
+                },
+                success: data => {
+                    this.setState ( {loading : false })
+                  if(data.status){
+                    Toast.success('操作成功',2,()=>{
+                        hashHistory.push({pathname: '/equipment/firstDetails',state:this.props.location.state})
+                    })
+                  }else{
+                    Toast.fail(data.msg)
+                  }
                 }
-              }
-            })  
-        } 
+              })
+  
+            }
       });
     }
     
     handUrgencyValue = (value) =>{
-      if(this.state.urgentFlag=== 30){
-        return "一般"
-      }else if(this.state.urgentFlag=== 20){
-        return "急"
-      }else if(this.state.urgentFlag=== 10 ){
-        return "紧急"
-      }
+        switch(value){
+            case 10:
+                return <span style={{color:'#FA6268'}}>紧急</span>;
+            case 20:
+                return <span style={{color:'#F29736'}}>急</span>;
+            case 30:
+                return <span style={{color:'#20B78B'}}>一般</span>;
+            default:
+                break;
+        }
     }
+
+
 
     onChange = (files, type, index) => {
       console.log(files, type, index);
@@ -151,8 +162,10 @@ class ApplyRepair extends Component {
                         count={100}
                       />
                     </List>
-                    <Button type="primary" style={{marginTop:'16px'}}   onClick={this.onSubmit}>报修</Button>
-                  </form>
+   
+                    <Button type="primary" style={{marginTop:'16px'}}   onClick={this.onSubmit} loading={this.state.loading}>报修</Button>
+                
+                    </form>
                 </div>
                 
             </div>

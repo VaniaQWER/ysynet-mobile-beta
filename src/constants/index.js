@@ -235,16 +235,25 @@ export const Supplier = {
   card3: '',
   card4: ''
 }
+
+
+
 //资产档案
 export const EquipmentData = {
   archivesTotal: '13',
   contractTotal: '2',
+  EquimentType : {
+      10 : "待维修",
+      30 : "维修中",
+      50 : "待验收",
+      80 : "已关闭"
+    },
   Repair: {
     Status:[
-      {TF_CLO_CODE:"00",TF_CLO_NAME:"待维修",text:'83',icon: require('../assets/repair00.svg') },
-      {TF_CLO_CODE:"01",TF_CLO_NAME:"维修中",text:'1',icon: require('../assets/repair01.svg') },
-      {TF_CLO_CODE:"02",TF_CLO_NAME:"待验收",text:'0',icon: require('../assets/repair02.svg') },
-      {TF_CLO_CODE:"03",TF_CLO_NAME:"已关闭",text:'2',icon: require('../assets/repair03.svg') }
+      {TF_CLO_CODE:"10",TF_CLO_NAME:"待维修",text:'',icon: require('../assets/repair00.svg') },
+      {TF_CLO_CODE:"30",TF_CLO_NAME:"维修中",text:'',icon: require('../assets/repair01.svg') },
+      {TF_CLO_CODE:"80",TF_CLO_NAME:"待验收",text:'',icon: require('../assets/repair02.svg') },
+      {TF_CLO_CODE:"20",TF_CLO_NAME:"已关闭",text:'',icon: require('../assets/repair03.svg') }
     ]
   },
   AccusationMgt: {
