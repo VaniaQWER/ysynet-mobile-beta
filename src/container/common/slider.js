@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ListView } from 'antd-mobile';
 //import { OrderList, Invoice,EquipmentList,WorkOrder } from '../../constants';
 import { fetchData } from '../../utils';
+import querystring from 'querystring';
 /**
  * @file 滑动刷新 构造方法
  */
@@ -17,43 +18,48 @@ class Slider extends Component {
       rowHasChanged: (row1, row2) => row1 !== row2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
     });
+    this.dataBlobs = {};
+    this.sectionIDs = [];
+    this.rowIDs = [];
     this.dataSource = dataSource;
   }
-  genData = (callback) => {
-    let { pageIndex, sectionIDs, rowIDs, dataBlobs, isMore } = this.state;
+  genData = (searchName, callback) => {
+    let { pageIndex, isMore } = this.state;
     this.setState({ isLoading: true });
       fetchData({
-        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${pageIndex}`,
+        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}
+          &page=${searchName ? 1 : pageIndex}
+          &${querystring.stringify(searchName)}`,
         error:(err)=>{
           console.log(err)
         },
         success: (res) =>{
           let data = res.result;
-          const sectionName = `${pageIndex}:`;
-          dataBlobs[sectionName] = sectionName;
-          sectionIDs.push(sectionName);
-          rowIDs[pageIndex-1] = [];
-          const pageSize = data.length > this.NUM_ROWS_PER_SECTION ? this.NUM_ROWS_PER_SECTION : data.length; 
-          for (let i=0; i<pageSize; i++) {
-            const row = data[i];
-            rowIDs[pageIndex-1].push(data[i].RN);
-            dataBlobs[data[i].RN] = row;
-          }
-          if (data.length < 5) {
-            isMore = false;
-          }
-          if (data.length === 0 ) {
-            return;
+          if (data.length > 0) {
+            const sectionName = `${pageIndex}:`;
+            this.dataBlobs[sectionName] = sectionName;
+            this.sectionIDs.push(sectionName);
+            this.rowIDs[pageIndex-1] = [];
+            const pageSize = data.length > this.NUM_ROWS_PER_SECTION ? this.NUM_ROWS_PER_SECTION : data.length; 
+            for (let i=0; i<pageSize; i++) {
+              const row = data[i];
+              this.rowIDs[pageIndex-1].push(data[i].RN);
+              this.dataBlobs[data[i].RN] = row;
+            }
+            if (data.length < 5) {
+              isMore = false;
+            }
+          } else {
+            this.sectionIDs = [];
+            this.rowIDs = [];
+            this.dataBlobs = {};
           }
           this.setState({
-            dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+            dataSource: this.dataSource.cloneWithRowsAndSections(this.dataBlobs, this.sectionIDs, this.rowIDs),
             isLoading: false,
-            pageIndex: pageIndex + 1,
-            sectionIDs,
+            pageIndex: searchName ? pageIndex : pageIndex + 1,
             refreshing: false,
-            isMore,
-            rowIDs,
-            dataBlobs
+            isMore
           });
           if (typeof callback === 'function') {
             callback();
@@ -61,11 +67,21 @@ class Slider extends Component {
         }
       }) 
   }
-  onRefresh = () => {
-    //console.log(this.dataSource)
-    this.setState({ refreshing: true, pageIndex: 1, isLoading: true, sectionIDs: [], rowIDs: [], dataBlobs: {}});
-    // simulate initial Ajax
+  onRefresh = (callback) => {
+    this.setState({ 
+      refreshing: true, 
+      pageIndex: 1, 
+      isLoading: true,
+    });
+    // 清空
+    this.sectionIDs = [];
+    this.rowIDs = [];
+    this.dataBlobs = {};
+    // // simulate initial Ajax
     this.genData();
+    if (typeof callback === 'function') {
+      callback();
+    }
   }
 }
 

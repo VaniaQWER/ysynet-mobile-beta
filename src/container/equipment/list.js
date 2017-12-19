@@ -56,7 +56,11 @@ class EquipmentList extends Slider {
           >我的资产档案列表
           </NavBar>
           <div className={'ysynet-content'}>
-            <SearchBar placeholder="查找资产" maxLength={8} />
+            <SearchBar 
+              placeholder="查找资产" 
+              maxLength={8} 
+              onSubmit={value => this.onRefresh({searchName: value})}
+            />
             <ListView
               style={{height: '85vh'}}
               dataSource={this.state.dataSource}
@@ -87,7 +91,7 @@ class EquipmentList extends Slider {
               } 
               renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
                 {
-                  this.state.isMore ? this.state.isLoading ? '加载中...' : '下拉加载更多' : '没有了'
+                  this.state.isMore ? this.state.isLoading ? '加载中...' : '下拉加载更多' : '没有数据了'
                 }
               </div>)}
               pageSize={4}

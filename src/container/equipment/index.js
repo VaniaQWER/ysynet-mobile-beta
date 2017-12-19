@@ -37,9 +37,6 @@ class EquipmentPage extends Component {
           for(let i = 0 ; i < 4 ; i++ ){
             Status.push({TF_CLO_CODE: total[i].code, TF_CLO_NAME : EquimentType[total[i].code], text: total[i].num,icon : EquimentIcon[total[i].code]})
           }
-
-          console.log(Status)
-       
           this.setState( { 
             assetsRecordCount :  total[4].code === "assetsRecordCount" ? total[4].num : 0 ,
             rrpairOrderCount : total[5].code === "rrpairOrderCount" ? total[5].num: 0 ,

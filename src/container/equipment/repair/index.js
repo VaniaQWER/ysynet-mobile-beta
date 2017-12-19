@@ -44,7 +44,14 @@ class EquipmentRepair extends Slider {
           >我的设备维修单
           </NavBar>
           <div className={'ysynet-content'}>
-            <SearchBar placeholder="设备维修单号" maxLength={8} />
+            <SearchBar 
+              placeholder="设备维修单号" 
+              maxLength={8} 
+              onSubmit={value => {
+                //this.setState({query: {rrpairOrder: value}});
+                this.genData({rrpairOrder: value});
+              }}
+            />
             <ListView
               style={{height: '85vh'}}
               dataSource={this.state.dataSource}
