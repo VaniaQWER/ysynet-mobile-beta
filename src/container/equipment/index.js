@@ -15,19 +15,37 @@ const Item = List.Item;
 class EquipmentPage extends Component {
   state ={
     checked: true,
-    total: 0
+    assetsRecordCount: 0,
+    rrpairOrderCount: 0 ,
+    RepairGridData:[]
   }
   
   componentDidMount = () => {
-    //获取资产档案台数接口
-    fetchData({
-      url:Equipment.selectAssetsRecordCount,
+
+     //获取设备维修数据
+     fetchData({
+      url:Equipment.selectRrpairFstateNum,
       error: err => {
         console.log(err,'err')
       },
       success: data => {
         if(data.status){
-          this.setState( { total : data.result})
+          const total = data.result;
+          const Status = [];
+          const EquimentType = EquipmentData.EquimentType;
+          const EquimentIcon = EquipmentData.EquimentIcon;
+          for(let i = 0 ; i < 4 ; i++ ){
+            Status.push({TF_CLO_CODE: total[i].code, TF_CLO_NAME : EquimentType[total[i].code], text: total[i].num,icon : EquimentIcon[total[i].code]})
+          }
+
+          console.log(Status)
+       
+          this.setState( { 
+            assetsRecordCount :  total[4].code === "assetsRecordCount" ? total[4].num : 0 ,
+            rrpairOrderCount : total[5].code === "rrpairOrderCount" ? total[5].num: 0 ,
+            RepairGridData: Status
+          })
+          
         }
       }
     }) 
@@ -36,7 +54,7 @@ class EquipmentPage extends Component {
   }
   render () {
     //维修工单数据
-    const RepairGridData = EquipmentData.Repair.Status;
+    const RepairGridData = this.state.RepairGridData;
     const AccusationMgtData = EquipmentData.AccusationMgt.Status;
     const userInfo = {
       avatar: require('../../assets/avatar.png'),
@@ -60,7 +78,7 @@ class EquipmentPage extends Component {
           </section>
             <List className="ysynet-list">
               <Item 
-                extra={this.state.total+ '台'}
+                extra={this.state.assetsRecordCount + '台'}
                 multipleLine 
                 onClick={ (el) => {
                   hashHistory.push({pathname: '/equipment/list'})
@@ -75,6 +93,7 @@ class EquipmentPage extends Component {
               <Card.Header
                 title="设备维修单"
                 thumb={require('../../assets/repair_order.svg')}
+                extra={this.state.rrpairOrderCount + '台'}
               />
               <Card.Body>
                 <EquipmentGrid 
