@@ -25,9 +25,9 @@ class EquipmentRepair extends Slider {
     }
   }
   componentDidMount() {
-    const orderFstate = this.props.location.state.TF_CLO_CODE ? this.props.location.state.TF_CLO_CODE:'';
-    console.log(orderFstate,'fstate')
-    this.genData({orderFstate:orderFstate});
+    /* const orderFstate = this.props.location.state.TF_CLO_CODE ? this.props.location.state.TF_CLO_CODE:'';
+    console.log(orderFstate,'fstate') */
+    this.genData();
   }
   onEndReached = (event) => {
     if (this.state.isMore) {
