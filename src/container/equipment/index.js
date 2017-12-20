@@ -39,7 +39,10 @@ class EquipmentPage extends Component {
         }
       }
     }) 
-
+    this.getEquipment();
+  }
+  //获取设备数据
+  getEquipment = () => {
      //获取设备维修数据
      fetchData({
       url:Equipment.selectRrpairFstateNum,
@@ -63,10 +66,14 @@ class EquipmentPage extends Component {
           
         }
       }
-    }) 
-    
-
+    })
   }
+  componentWillReceiveProps = () => {
+    if(this.props.location.pathname === "/equipment/equipmentRepaire"){
+      this.getEquipment();
+    }
+  }
+
   render () {
     //维修工单数据
     const RepairGridData = this.state.RepairGridData;

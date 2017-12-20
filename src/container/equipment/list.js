@@ -29,7 +29,9 @@ class EquipmentList extends Slider {
     this.genData();
   }
   onEndReached = (event) => {
-    this.genData();
+    if (this.state.isMore) {
+      this.genData();
+    }
   }
 
 
@@ -60,8 +62,9 @@ class EquipmentList extends Slider {
           <div className={'ysynet-content'}>
             <SearchBar 
               placeholder="查找资产" 
-              maxLength={8} 
-              onSubmit={value => this.onRefresh({searchName: value})}
+              onSubmit={value => {
+                this.genData({equipmetStandarName: value});
+              }}
             />
             <ListView
               style={{height: '85vh'}}
