@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace,Card} from 'antd-mobile';
+import { NavBar, List, WhiteSpace,Card} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { EquipmentData } from '../../constants';
 import EquipmentGrid from '../../component/equipmentGrid';
@@ -76,8 +76,6 @@ class EquipmentPage extends Component {
         <div>
           <NavBar
             mode="dark"
-            icon={<Icon type="left" />}
-            onLeftClick={() => hashHistory.push({pathname: '/'})}
           >我的工作台
           </NavBar>
           <section className={'ysynet-profile'}>

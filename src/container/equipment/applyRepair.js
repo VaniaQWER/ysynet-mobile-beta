@@ -56,11 +56,12 @@ class ApplyRepair extends Component {
             values.useDeptCode = rowData.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
-            let faultAccessory = [];
-            this.state.fileUrls.map((item,index)=>{
-                 faultAccessory.push(item.url)
-                 return null;
-            })
+            let faultAccessory = this.state.fileUrls;
+            // console.log(this.state.fileUrls,'111')
+            // this.state.fileUrls.map((item,index)=>{
+            //      faultAccessory.push(item.url)
+            //      return null;
+            // })
             values.faultAccessory = faultAccessory;
             console.log(values,"提交的数据");
             alert('报修', '是否确认报修？', [
