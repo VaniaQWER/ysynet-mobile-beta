@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon,Card,List, Switch, Button,ImagePicker,TextareaItem,Toast,Modal} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
-import { fetchData } from '../../utils';
+import { fetchData, compressImage } from '../../utils';
 import querystring from 'querystring';
 import { Equipment } from '../../api';
 const alert = Modal.alert;
@@ -18,6 +18,7 @@ class ApplyRepair extends Component {
       const { state } = this.props.location;
       this.state = {
         files: [],
+        fileUrls: [],
         multiple: false,
         useFstate: state && state.useFstate ? state.useFstate === "00" || !state.useFstate ? false : true : true,
         spare: state &&  state.spare ? state.spare : true,
@@ -56,7 +57,7 @@ class ApplyRepair extends Component {
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
             let faultAccessory = [];
-            this.state.files.map((item,index)=>{
+            this.state.fileUrls.map((item,index)=>{
                  faultAccessory.push(item.url)
                  return null;
             })
@@ -108,6 +109,10 @@ class ApplyRepair extends Component {
 
 
     onChange = (files, type, index) => {
+       compressImage(files, base64 => {
+          const { fileUrls } = this.state;
+          this.setState({fileUrls: [...fileUrls, base64]});
+      })
       this.setState({ files });
     }
 

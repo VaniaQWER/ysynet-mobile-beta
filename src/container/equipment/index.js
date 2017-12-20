@@ -23,8 +23,9 @@ class EquipmentPage extends Component {
   }
   
   componentDidMount = () => {
+    const { query } = this.props.location;
     fetchData({
-      url: 'http://192.168.0.217:80/test/getWxUser ',
+      url: `/test/getWxUser?openid=${query.openid}`,
       error: err => {
         alert(err + '报错啦');
         console.log(err,'err')
