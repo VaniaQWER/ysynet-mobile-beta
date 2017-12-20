@@ -18,30 +18,23 @@ class EquipmentPage extends Component {
     assetsRecordCount: 0,
     rrpairOrderCount: 0 ,
     RepairGridData:[],
-    userInfo: "",
+    userName: '游客',
+    avatar: ''
   }
   
   componentDidMount = () => {
-    //alert('开始获取头像')
-    //获取用户信息
     fetchData({
-      url:Equipment.getPermission,
+      url: 'http://192.168.0.217:80/test/getWxUser ',
       error: err => {
+        alert(err + '报错啦');
         console.log(err,'err')
       },
       success: data => {
-        //alert('第一次')
-        //alert(data.status)
-        if(data.status){
-          //alert(data.result)
-          fetch(`${data.result}`, {
-            method: 'get',
-            credentials: 'include',
-            mode: 'cors'
+        if (data.result) {
+          this.setState({
+            userName: data.result.userName,
+            avatar: data.result.headimgurl
           })
-          .then(res => res.json())
-          .then(data => alert(data.result.userName))
-          //.catch(err => alert(err))
         }
       }
     }) 
@@ -77,7 +70,6 @@ class EquipmentPage extends Component {
     //维修工单数据
     const RepairGridData = this.state.RepairGridData;
     const AccusationMgtData = EquipmentData.AccusationMgt.Status;
-    const { userInfo } = this.state;
     return this.props.children ||
         (
         <div>
@@ -88,9 +80,9 @@ class EquipmentPage extends Component {
           >我的工作台
           </NavBar>
           <section className={'ysynet-profile'}>
-            <img alt='用户头像' src={userInfo.headimgurl}/>
+            <img alt='用户头像' src={this.state.avatar}/>
             <div className={'ysynet-profile-detail'}>
-              <p className={'name'}> { userInfo.userName } </p>
+              <p className={'name'}> { this.state.userName } </p>
             </div>
             <a href='http://hsms.com.cn/test/test.html' className='scannig'> </a>
           </section>
