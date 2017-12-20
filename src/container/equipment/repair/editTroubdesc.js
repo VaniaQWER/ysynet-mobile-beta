@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker, List, Toast} from 'antd-mobile';
+import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker, List, Checkbox,Toast, Accordion} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../../utils/index';
@@ -8,10 +8,19 @@ import { Equipment } from '../../../api';
 import './style.css'
 
 const Item = List.Item;
-
+const CheckboxItem = Checkbox.CheckboxItem;
+//故障现象
+const checkboxOps = [
+    { value: '部分功能失效', label: '部分功能失效', selected: 0 },
+    { value: '开机后死机', label: '开机后死机', selected: 0 },
+    { value: '性能指标偏离', label: '性能指标偏离', selected: 0 },
+    { value: '不规则或偶发故障', label: '不规则或偶发故障', selected: 0 },
+    { value: '其他', label: '其他', selected: 0 }
+];
 class Edit extends Component{
     state = {
         multiple:false,
+        data: checkboxOps,
         files: []
     }
     componentWillMount = ()=>{
@@ -28,6 +37,11 @@ class Edit extends Component{
             this.setState({ files:file})
         }
     }
+    troubleChange = (e,val,index) => {
+        const { data } = this.state;
+        data[index].selected = 1;
+        this.setState({data:data})
+      }
     onChange = (files, type, index) => {
         console.log(files, type, index);
         this.setState({ files });
@@ -36,11 +50,23 @@ class Edit extends Component{
         e.preventDefault();
         this.props.form.validateFields({ force: true }, (err) => {
             if(!err){
+                let faultDescribe = '';
+                const { data } = this.state;
+                data.map((item,index)=>{
+                    if(item.selected === 1){
+                        faultDescribe +=item.value;
+                        faultDescribe +='、';
+                        return null;
+                    };
+                    return null;
+                });
+               faultDescribe = faultDescribe.substring(0,faultDescribe.length-1);
+               console.log(faultDescribe,'原因')
                 const baseData = this.props.location.state;
                 let values = this.props.form.getFieldsValue();
                 baseData.faultWords = values.faultWords;
                 values.rrpairOrder = baseData.rrpairOrder;
-                values.faultDescribe = baseData.afterFaultDescribe ? baseData.afterFaultDescribe: baseData.faultDescribe;
+                baseData.faultDescribe = values.faultDescribe = faultDescribe ? faultDescribe: baseData.faultDescribe;
                 values.repairContentType = baseData.repairContentType;
                 values.repairContentTyp = baseData.repairContentTyp;
                 let faultAccessory = [],files = this.state.files;
@@ -73,7 +99,6 @@ class Edit extends Component{
         hashHistory.push({pathname:'/equipment/equipmentDetail',state:{...this.props.location.state}})
     }
     render(){
-        console.log(this.props.location.state,'state')
         const baseData = this.props.location.state;
         const { files } = this.state;
         const { getFieldProps } = this.props.form;
@@ -89,9 +114,21 @@ class Edit extends Component{
             </NavBar>
             <div className={'detail-content'}>
                 <List>
-                    <Item arrow='horizontal' onClick={()=>hashHistory.push({pathname:'/equipment/troublSelect',state:baseData})} extra={baseData.afterFaultDescribe?baseData.afterFaultDescribe:baseData.faultDescribe}>
-                        故障现象
-                    </Item>
+                    <Accordion accordion openAnimation={{}} className="my-accordion">
+                            <Accordion.Panel header={'故障现象'}>
+                                <List className="my-list">
+                                    <List>
+                                        <Item>
+                                            {this.state.data.map((i,ind) => (
+                                                <CheckboxItem multipleLine key={i.value} defaultChecked={this.props.location.state.faultDescribe===i.value?true:false} onChange={(e) => this.troubleChange(e,i.value,ind)}>
+                                                    {i.label}
+                                                </CheckboxItem>
+                                            ))}
+                                        </Item>
+                                    </List>
+                                </List>
+                            </Accordion.Panel>
+                        </Accordion>
                 </List>
                 <WhiteSpace size='md' />
                 <List>

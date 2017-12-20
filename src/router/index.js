@@ -78,15 +78,6 @@ export const routes =  {
             }, '/equipment/editTroubdesc')
           }
         },
-        //编辑现象选择
-        {
-          path: '/equipment/troublSelect',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/troubleSelect').default)
-            }, '/equipment/troublSelect')
-          }
-        },
         //故障原因 选择
         {
           path: '/equipment/selectCause',
@@ -130,42 +121,6 @@ export const routes =  {
             require.ensure([], (require) => {
               cb(null, require('../container/equipment/repair/editOrderInfo').default)
             }, '/equipment/editOrder')
-          }
-        },
-        //维修类型选择
-        {
-          path: '/equipment/selRepaireType',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/repaireType').default)
-            }, '/equipment/selRepaireType')
-          }
-        },
-        //是否返修
-        {
-          path: '/equipment/BackRepaire',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/backRepaire').default)
-            }, '/equipment/BackRepaire')
-          }
-        },
-        //编辑工单 紧急度
-        {
-          path: '/equipment/urgencys',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/urgency').default)
-            }, '/equipment/urgencys')
-          }
-        },
-        //备用机
-        {
-          path: '/equipment/spare',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/spare').default)
-            }, '/equipment/spare')
           }
         },
         { 

@@ -270,7 +270,7 @@ class RepareList extends Component{
                 <div className={'ysynet-repaire-detail'}>
                     <div className={'product'}>
                         <List>
-                            <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
+                            <Accordion accordion openAnimation={{}} className="my-accordion">
                                 <Accordion.Panel header={this.AccordionHeader(baseData)}>
                                     <List className="my-list">
                                         <List>
