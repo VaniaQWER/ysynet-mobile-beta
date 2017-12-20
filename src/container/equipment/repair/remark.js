@@ -4,7 +4,28 @@ import { hashHistory } from 'react-router';
 import querystring from 'querystring';
 import { createForm } from 'rc-form';
 import { fetchData } from '../../../utils';
+import { Equipment } from '../../../api';
 class Remark extends Component{
+    state = {
+        tfRemark:''
+    }
+    componentWillMount = ()=>{
+        fetchData({
+            url:Equipment.selectRrpairEvaluate,
+            body:querystring.stringify({
+                rrpairOrder:this.props.location.state.rrpairOrder,
+                type:0
+            }),
+            err: err=>{
+                console.log(err,'err')
+            },
+            success: data=>{
+                if(data.status){
+                    this.setState({tfRemark:data.result.value})
+                }
+            }
+        })
+    }
     onSubmit = (e)=>{
         e.preventDefault();
         this.props.form.validateFields({ force: true }, (err) => {
@@ -12,11 +33,11 @@ class Remark extends Component{
                 let value = this.props.form.getFieldsValue();
                 console.log(value,'value');
                 fetchData({
-                    url:"rrpairOrderController/updateRrpairContent",
+                    url:Equipment.updateRrpairCount,
                     body:querystring.stringify({
                         rrpairOrder:this.props.location.state.rrpairOrder,
                         type:0,
-                        value:value
+                        value:value.tfRemark
                     }),
                     error: data => {
                       console.log(data.msg,'err')
@@ -57,7 +78,7 @@ class Remark extends Component{
                 <List>
                     <TextareaItem
                         {...getFieldProps('tfRemark', {
-                        initialValue: '',
+                        initialValue: this.state.tfRemark?this.state.tfRemark:'',
                         })}
                         rows={6}
                         style={{border:'solid 1px #ccc',height:'auto',borderRadius:3}}

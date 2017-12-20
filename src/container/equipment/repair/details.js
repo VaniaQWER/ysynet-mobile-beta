@@ -241,6 +241,7 @@ class RepareList extends Component{
     }
     render(){
         const baseData = this.props.location.state;
+        console.log(baseData,'baseData')
         const tabs = [
             { title: '维护信息' },
             { title: '工单信息' },
@@ -327,8 +328,21 @@ class RepareList extends Component{
                         <div className={'repair-estimate-cost'}>
                             <List>
                                 <Item multipleLine arrow="horizontal" onClick={()=>hashHistory.push({pathname:'/equipment/estimateFee',state:baseData})} extra={<a className={'grassColor'}>添加</a>}>
-                                <span className={'con_title'}>预估费用</span>
+                                    <span className={'con_title'}>预估费用</span>
                                 </Item>
+                                {
+                                    baseData.quoredPrice &&
+                                    <Item>
+                                        <dl className={'trouble-info'}>
+                                            <dt>预估费用：</dt>
+                                            <dd>{baseData.quoredPrice + '元'}</dd>
+                                        </dl>
+                                        <dl className={'trouble-info'}>
+                                            <dt>费用说明：</dt>
+                                            <dd>{baseData.costDetail?baseData.costDetail:'暂无'}</dd>
+                                        </dl>
+                                    </Item>
+                                }
                             </List>
                         </div>
                         <WhiteSpace size='md' />

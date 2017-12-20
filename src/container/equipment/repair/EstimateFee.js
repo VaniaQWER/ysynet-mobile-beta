@@ -15,13 +15,15 @@ class EstimateFee extends Component{
                 values.rrpairOrder = this.props.location.state.rrpairOrder;
                 console.log(values,'value');
                 fetchData({
-                    url:Equipment.updateRrpairCount,
+                    url:Equipment.updateRrpairQuoredPrice,
                     body:querystring.stringify(values),
                     error: err=>{
                         console.log(err,'err')
                     },
                     success: data=>{
                         if(data.status){
+                            this.props.location.state.quoredPrice = values.quoredPrice;
+                            this.props.location.state.costDetail = values.costDetail;
                             Toast.success('提交成功!',2, () => {
                                 hashHistory.push({pathname:'equipment/equipmentDetail',state:this.props.location.state})
                             });
