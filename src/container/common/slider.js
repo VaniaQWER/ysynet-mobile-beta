@@ -23,13 +23,11 @@ class Slider extends Component {
     this.rowIDs = [];
     this.dataSource = dataSource;
   }
-  genData = (searchName, callback) => {
+  genData = (query, callback) => {
     let { pageIndex, isMore } = this.state;
     this.setState({ isLoading: true });
       fetchData({
-        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}
-          &page=${searchName ? 1 : pageIndex}
-          &${querystring.stringify(searchName)}`,
+        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${query ? 1 : pageIndex}&${querystring.stringify(this.searchName)}&${querystring.stringify(query)}`,
         error:(err)=>{
           console.log(err)
         },
@@ -57,7 +55,7 @@ class Slider extends Component {
           this.setState({
             dataSource: this.dataSource.cloneWithRowsAndSections(this.dataBlobs, this.sectionIDs, this.rowIDs),
             isLoading: false,
-            pageIndex: searchName ? pageIndex : pageIndex + 1,
+            pageIndex: query ? 1 : pageIndex + 1,
             refreshing: false,
             isMore
           });

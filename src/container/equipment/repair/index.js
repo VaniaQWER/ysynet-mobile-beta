@@ -13,6 +13,8 @@ class EquipmentRepair extends Slider {
   constructor(props) {
     super(props);
     this.url = Equipment.selectRrpairList;
+    const orderFstate = this.props.location.state.orderFstate ? this.props.location.state.orderFstate:'';
+    this.searchName = { orderFstate: orderFstate };
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 1,
@@ -25,13 +27,11 @@ class EquipmentRepair extends Slider {
     }
   }
   componentDidMount() {
-    const orderFstate = this.props.location.state.orderFstate ? this.props.location.state.orderFstate:'';
-    this.genData({orderFstate:orderFstate});
+    this.genData();
   }
   onEndReached = (event) => {
     if (this.state.isMore) {
-      const orderFstate = this.props.location.state.orderFstate ? this.props.location.state.orderFstate:'';
-      this.genData({orderFstate:orderFstate});
+      this.genData();
     }
   }
   render () {
@@ -48,7 +48,6 @@ class EquipmentRepair extends Slider {
           <div className={'ysynet-content'}>
             <SearchBar 
               placeholder="设备维修单号" 
-              maxLength={8} 
               onSubmit={value => {
                 //this.setState({query: {rrpairOrder: value}});
                 this.genData({rrpairOrder: value});

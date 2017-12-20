@@ -19,7 +19,7 @@ class ApplyRepair extends Component {
       const { state } = this.props.location;
       this.state = {
         files:   [],
-        sumbitFiles:[],
+        submitFiles:[],
         multiple: false,
         useFstate: state && state.useFstate ? state.useFstate === "00" || !state.useFstate ? false : true : true,
         spare: state &&  state.spare ? state.spare : true,
@@ -103,8 +103,16 @@ class ApplyRepair extends Component {
 
 
     onChange = (files, type, index) => {
-      const sumbitFiles = compressImage(files)
-      this.setState({ files, sumbitFiles });
+      const len = files.length - 1;
+      const { submitFiles } = this.state;
+      if (type === 'add') {
+        compressImage(files[len], newImgData => {
+          this.setState({ files, submitFiles: [...submitFiles, newImgData]});
+        })
+      } else {
+        submitFiles.splice(index, 1);
+        this.setState({ files, submitFiles: submitFiles});
+      }
     }
 
     selectUrgentFlag = () =>{

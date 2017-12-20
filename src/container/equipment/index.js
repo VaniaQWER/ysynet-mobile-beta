@@ -19,7 +19,7 @@ class EquipmentPage extends Component {
     rrpairOrderCount: 0 ,
     RepairGridData:[],
     userName: '游客',
-    avatar: ''
+    avatar: '',
   }
   
   componentDidMount = () => {
