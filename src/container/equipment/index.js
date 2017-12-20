@@ -116,7 +116,7 @@ class EquipmentPage extends Component {
               <Card.Body>
                 <EquipmentGrid 
                 onClick={ (el,index) => {
-                  hashHistory.push({pathname: '/equipment/equipmentRepaire',state:el})
+                  hashHistory.push({pathname: '/equipment/equipmentRepaire',state:{orderFstate:el.TF_CLO_CODE}})
                 }} 
                 itemStyle={{backgroundColor:'#f1fff1'}}
                 columnNum='3' 

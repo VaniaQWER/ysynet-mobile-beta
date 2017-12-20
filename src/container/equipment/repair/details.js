@@ -231,7 +231,7 @@ class RepareList extends Component{
             success:data=>{
                 if(data.status){
                     Toast.success("操作成功!",2,()=>{
-                        hashHistory.push({pathname:'/equipment/equipmentRepaire'})
+                        hashHistory.push({pathname:'/equipment/equipmentRepaire',state:baseData})
                     });
                 }else{
                     Toast.fail("操作成功!",data.msg)

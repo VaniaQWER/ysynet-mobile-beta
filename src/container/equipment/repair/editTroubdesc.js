@@ -16,11 +16,16 @@ class Edit extends Component{
     }
     componentWillMount = ()=>{
         if(this.props.location.state.faultAccessory!==null){
-            this.setState({ files: [{
-                    url:Equipment.FTP + this.props.location.state.faultAccessory.substring(0,this.props.location.state.faultAccessory.length-1),
-                    id:this.props.location.state.RN
-                } 
-            ]})
+            let urls = this.props.location.state.faultAccessory.split(';');
+            let u = urls.splice(0,urls.length-1);
+            let file = [];
+            u.map((item,index)=>{
+                return file.push({
+                    url: Equipment.FTP+item,
+                    id: index
+                })
+            });
+            this.setState({ files:file})
         }
     }
     onChange = (files, type, index) => {
