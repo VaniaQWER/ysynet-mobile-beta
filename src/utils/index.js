@@ -111,7 +111,8 @@ export const logout = () => {
  * base64图片压缩
  * @param {*} file 
  */
-export const compressImage = (files, callback) => {
+export const compressImage = (files) => {
+  const newfiles = [];
   files.map(item => {
     const file = item.file;
     const fileType = file.type;
@@ -124,7 +125,6 @@ export const compressImage = (files, callback) => {
       image.onload = function(){  //创建一个image对象，给canvas绘制使用  
         let cvs = document.createElement('canvas');  
         var scale = 1;    
-        console.log(this.width, this.height)
         if(this.width > 500 || this.height > 500){  //800只是示例，可以根据具体的要求去设定    
           if(this.width > this.height){    
             scale = 500 / this.width;  
@@ -137,10 +137,13 @@ export const compressImage = (files, callback) => {
         let ctx = cvs.getContext('2d');    
         ctx.drawImage(this, 0, 0, cvs.width, cvs.height);  
         let newImageData = cvs.toDataURL(fileType, 0.8);   //重新生成图片，<span style="font-family: Arial, Helvetica, sans-serif;">fileType为用户选择的图片类型</span>  
-        return callback(newImageData);
+        //return callback(newImageData);
+        newfiles.push(newImageData)
       }
       return image;  
     }
     return file;
   })
+
+  return  newfiles;
 }

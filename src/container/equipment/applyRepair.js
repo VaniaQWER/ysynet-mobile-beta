@@ -5,7 +5,8 @@ import { createForm } from 'rc-form';
 import { fetchData, compressImage } from '../../utils';
 import querystring from 'querystring';
 import { Equipment } from '../../api';
-const alert = Modal.alert;
+const ModalAlert = Modal.alert;
+const operation = Modal.operation;
 
 /**
  * @summary 资产档案列表 --详情1-报修申请
@@ -17,8 +18,8 @@ class ApplyRepair extends Component {
       super(props);
       const { state } = this.props.location;
       this.state = {
-        files: [],
-        fileUrls: [],
+        files:   [],
+        sumbitFiles:[],
         multiple: false,
         useFstate: state && state.useFstate ? state.useFstate === "00" || !state.useFstate ? false : true : true,
         spare: state &&  state.spare ? state.spare : true,
@@ -56,15 +57,9 @@ class ApplyRepair extends Component {
             values.useDeptCode = rowData.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
-            let faultAccessory = this.state.fileUrls;
-            // console.log(this.state.fileUrls,'111')
-            // this.state.fileUrls.map((item,index)=>{
-            //      faultAccessory.push(item.url)
-            //      return null;
-            // })
-            values.faultAccessory = faultAccessory;
+            values.faultAccessory = this.state.sumbitFiles;
             console.log(values,"提交的数据");
-            alert('报修', '是否确认报修？', [
+            ModalAlert('报修', '是否确认报修？', [
               { text: '取消', style: 'default' },
               { text: '确定', onPress: () => {
                   //提交接口
@@ -84,13 +79,11 @@ class ApplyRepair extends Component {
                       }
                     }
                   })
-                  }
+                 }
                 
-              }
-            ]);
-          
-  
-            }
+             }
+           ]);
+        }
       });
     }
     
@@ -110,11 +103,25 @@ class ApplyRepair extends Component {
 
 
     onChange = (files, type, index) => {
-       compressImage(files, base64 => {
-          const { fileUrls } = this.state;
-          this.setState({fileUrls: [...fileUrls, base64]});
-      })
-      this.setState({ files });
+      const sumbitFiles = compressImage(files)
+      this.setState({ files, sumbitFiles });
+    }
+
+    selectUrgentFlag = () =>{
+      operation([
+        { text: '紧急', onPress: () => { this.setState({ urgentFlag:10 })} },
+        { text: '急', onPress: () => { this.setState({ urgentFlag:20 })} },
+        { text: '一般', onPress: () => { this.setState({ urgentFlag:30 })} },
+      ])
+    }
+    selectFailure = () =>{
+      operation([
+        { text: '部分功能失效', onPress: () => { this.setState({ repairContentTyp:"部分功能失效"})} },
+        { text: '开机后死机', onPress: () => { this.setState({ repairContentTyp:"开机后死机" })} },
+        { text: '性能指标偏离', onPress: () => { this.setState({ repairContentTyp:"性能指标偏离"})} },
+        { text: '不规则障碍', onPress: () => { this.setState({ repairContentTyp:"不规则障碍"})} },
+        { text: '其他', onPress: () => { this.setState({ repairContentTyp:"其他"})} },
+      ])
     }
 
     render(){
@@ -150,12 +157,14 @@ class ApplyRepair extends Component {
                       extra={<Switch color="#2395ff" onClick={(checked)=>{this.setState({spare : checked})}} checked={this.state.spare} />}
                       >是否有备用</Item>
                       <Item 
-                        arrow="horizontal" multipleLine 
-                        onClick={() => hashHistory.push({pathname: '/equipment/urgency',state:{...this.props.location.state,urgentFlag:this.state.urgentFlag,useFstate:this.state.useFstate,spare:this.state.spare}})}
+                        arrow="horizontal" 
+                        multipleLine 
+                        onClick={this.selectUrgentFlag}
                         extra={this.handUrgencyValue(this.state.urgentFlag)}
                       >紧急度</Item>
-                      <Item arrow="horizontal" multipleLine 
-                      onClick={() => hashHistory.push({pathname: '/equipment/failure',state:{...this.props.location.state,repairContentTyp:this.state.repairContentTyp,useFstate:this.state.useFstate,spare:this.state.spare}})}
+                      <Item arrow="horizontal" 
+                      multipleLine 
+                      onClick={this.selectFailure}
                       extra={this.state.repairContentTyp}
                       >
                         故障现象 

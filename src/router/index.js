@@ -163,24 +163,6 @@ export const routes =  {
             }, 'equipment/repairList')
           }
         },
-        //紧急度
-        { 
-          path: '/equipment/urgency',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/urgency').default)
-            }, 'equipment/urgency')
-          }
-        },
-        //故障现象
-        { 
-          path: '/equipment/failure',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/failure').default)
-            }, 'equipment/failure')
-          }
-        },
         { 
           path: '/equipment/applyMaintain',
           getComponent: (nextState, cb) => {
