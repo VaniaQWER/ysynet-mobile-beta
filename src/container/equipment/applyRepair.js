@@ -55,11 +55,12 @@ class ApplyRepair extends Component {
             values.useDeptCode = rowData.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
-            const faultImg = [];
-            if(this.state.files.length > 0 ){
-              faultImg.push( this.state.files[0].url );
-            }
-            values.faultAccessory = faultImg;
+            let faultAccessory = [];
+            this.state.files.map((item,index)=>{
+                 faultAccessory.push(item.url)
+                 return null;
+            })
+            values.faultAccessory = faultAccessory;
             console.log(values,"提交的数据");
             alert('报修', '是否确认报修？', [
               { text: '取消', style: 'default' },
@@ -107,7 +108,6 @@ class ApplyRepair extends Component {
 
 
     onChange = (files, type, index) => {
-      console.log(files, type, index);
       this.setState({ files });
     }
 
@@ -155,13 +155,13 @@ class ApplyRepair extends Component {
                         故障现象 
                       </Item>
                       <Item>
-                        <ImagePicker
-                          files={files}
-                          onChange={this.onChange}
-                          onImageClick={(index, fs) => console.log(index, fs)}
-                          selectable={files.length < 1}
-                          multiple={this.state.multiple}
-                        />
+                      <ImagePicker
+                      files={files}
+                      onChange={this.onChange}
+                      onImageClick={(index, fs) => console.log(index, fs)}
+                      selectable={files.length < 4}
+                      multiple={this.state.multiple}
+                      />
                       </Item>
                     </List>
                     <List renderHeader={() => '请填写备注'}>
