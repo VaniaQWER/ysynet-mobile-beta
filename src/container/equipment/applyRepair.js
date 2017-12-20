@@ -57,7 +57,7 @@ class ApplyRepair extends Component {
             values.useDeptCode = rowData.useDeptCode;
             values.repairContentTyp = this.state.repairContentTyp;
             values.urgentFlag = this.state.urgentFlag;
-            values.faultAccessory = this.state.sumbitFiles;
+            values.faultAccessory = this.state.submitFiles;
             console.log(values,"提交的数据");
             ModalAlert('报修', '是否确认报修？', [
               { text: '取消', style: 'default' },
@@ -103,16 +103,17 @@ class ApplyRepair extends Component {
 
 
     onChange = (files, type, index) => {
-      const len = files.length - 1;
-      const { submitFiles } = this.state;
-      if (type === 'add') {
-        compressImage(files[len], newImgData => {
-          this.setState({ files, submitFiles: [...submitFiles, newImgData]});
-        })
-      } else {
-        submitFiles.splice(index, 1);
-        this.setState({ files, submitFiles: submitFiles});
-      }
+        const len = files.length - 1;
+        const { submitFiles } = this.state;
+        if (type === 'add') {
+          compressImage(files[len], newImgData => {
+            this.setState({ files, submitFiles: [...submitFiles, newImgData]});
+          })
+        } else {
+          submitFiles.splice(index, 1);
+          this.setState({ files, submitFiles: submitFiles});
+        }
+
     }
 
     selectUrgentFlag = () =>{
