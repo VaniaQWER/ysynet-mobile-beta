@@ -22,10 +22,26 @@ const actions = {
 
 class RepareList extends Component{
     state = {
-        baseData:this.props.location.state,
+        baseData:'',
         historyData: []
     }
     componentDidMount = ()=>{
+        //当前的工单信息
+        fetchData({
+            url:Equipment.selectRrpairList,
+            body:querystring.stringify({
+                rrpairOrder: this.props.location.query.rrpairOrder || this.props.location.state.rrpairOrder
+            }),
+            err: err=>{
+                console.log(err,'err')
+            },
+            success: data=>{
+                if(data.status){
+                    this.setState({baseData:data.result[0]})
+                }
+            }
+        })
+        //历史工单
         fetchData({
             url:Equipment.selectRrpairList,
             body:querystring.stringify({
@@ -165,7 +181,7 @@ class RepareList extends Component{
         alert('完成维修', '是否确认完成维修？', [
             { text: '取消', style: 'default' },
             { text: '确定', onPress: () => 
-                this.ChangeState('50','80')
+                this.ChangeState('30','50')
             }
           ]);
     }
@@ -194,7 +210,7 @@ class RepareList extends Component{
         alert('验收通过', '是否确认转验收通过？', [
             { text: '取消', style: 'default' },
             { text: '确定', onPress: () => 
-                this.ChangeState('50','80',record.rrpairType,'1')
+                this.ChangeState('50','80',record.rrpairType,'0')
             }
           ]);
         
@@ -204,7 +220,7 @@ class RepareList extends Component{
         alert('验收不通过', '是否确认转验收不通过？', [
             { text: '取消', style: 'default' },
             { text: '确定', onPress: () => 
-                this.ChangeState('50','80',record.rrpairType,'0')
+                this.ChangeState('50','80',record.rrpairType,'1')
             }
           ]);
     }
@@ -240,7 +256,7 @@ class RepareList extends Component{
         })
     }
     render(){
-        const baseData = this.props.location.state;
+        const  { baseData } = this.state;
         console.log(baseData,'baseData')
         const tabs = [
             { title: '维护信息' },
@@ -253,7 +269,7 @@ class RepareList extends Component{
                 className={'ysynet-header'}
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => hashHistory.push({pathname: '/equipment/equipmentRepaire',state:this.props.location.state})}
+                onLeftClick={() => hashHistory.push({pathname: '/equipment/equipmentRepaire',state:baseData})}
             >
             维修单详情
             </NavBar>
