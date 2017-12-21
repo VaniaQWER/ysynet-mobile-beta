@@ -23,7 +23,7 @@ class EquipmentRepair extends Slider {
       refreshing: true,
       sectionIDs: [],
       rowIDs: [],
-      dataBlobs: {}
+      dataBlobs: {},
     }
   }
   componentDidMount() {
@@ -31,7 +31,9 @@ class EquipmentRepair extends Slider {
   }
   onEndReached = (event) => {
     if (this.state.isMore) {
-      this.genData();
+      this.genData({
+        endReached: true
+      });
     }
   }
   render () {
@@ -49,8 +51,9 @@ class EquipmentRepair extends Slider {
             <SearchBar 
               placeholder="设备维修单号" 
               onSubmit={value => {
-                //this.setState({query: {rrpairOrder: value}});
-                this.genData({rrpairOrder: value});
+                this.genData({
+                  query: { rrpairOrder: value }
+                });
               }}
             />
             <ListView
