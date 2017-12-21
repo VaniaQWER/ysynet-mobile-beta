@@ -87,15 +87,6 @@ export const routes =  {
             }, '/equipment/selectCause')
           }
         },
-        //故障类型 选择
-        {
-          path: '/equipment/brokeCause',
-          getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-              cb(null, require('../container/equipment/repair/brokeCause').default)
-            }, '/equipment/brokeCause')
-          }
-        },
         //添加备注
         {
           path: '/equipment/addRemark',

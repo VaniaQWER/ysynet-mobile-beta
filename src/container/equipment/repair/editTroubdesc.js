@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker, List, Checkbox,Toast, Accordion} from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
-import { fetchData } from '../../../utils/index';
+import { fetchData, compressImage } from '../../../utils/index';
 import querystring from 'querystring';
 import { Equipment } from '../../../api';
 import './style.css'
@@ -21,20 +21,22 @@ class Edit extends Component{
     state = {
         multiple:false,
         data: checkboxOps,
+        submitFiles: [],
         files: []
     }
     componentWillMount = ()=>{
         if(this.props.location.state.faultAccessory!==null){
             let urls = this.props.location.state.faultAccessory.split(';');
             let u = urls.splice(0,urls.length-1);
-            let file = [];
+            let file = [],submitFile = [];
             u.map((item,index)=>{
+                submitFile.push(Equipment.FTP+item)
                 return file.push({
                     url: Equipment.FTP+item,
                     id: index
                 })
             });
-            this.setState({ files:file})
+            this.setState({ files:file,submitFiles : submitFile})
         }
     }
     troubleChange = (e,val,index) => {
@@ -43,8 +45,16 @@ class Edit extends Component{
         this.setState({data:data})
       }
     onChange = (files, type, index) => {
-        console.log(files, type, index);
-        this.setState({ files });
+        const len = files.length - 1;
+        const { submitFiles } = this.state;
+        if (type === 'add') {
+           compressImage(files[len], newImgData => {
+            this.setState({ files, submitFiles: [...submitFiles, newImgData]});
+          }) 
+        } else {
+          submitFiles.splice(index, 1);
+          this.setState({ files, submitFiles: submitFiles});
+        } 
       };
     onSubmit = (e)=>{
         e.preventDefault();
@@ -69,13 +79,8 @@ class Edit extends Component{
                 baseData.faultDescribe = values.faultDescribe = faultDescribe ? faultDescribe: baseData.faultDescribe;
                 values.repairContentType = baseData.repairContentType;
                 values.repairContentTyp = baseData.repairContentTyp;
-                let faultAccessory = [],files = this.state.files;
-                files.map((item,index)=>{
-                    faultAccessory.push(item.url);
-                    return null;
-                })
-                values.faultAccessory = faultAccessory;
-                console.log(values);
+                values.faultAccessory = this.state.submitFiles;
+                console.log(values,'values');
                  fetchData({
                     url:Equipment.updateRrpairType,
                     body:querystring.stringify(values),
@@ -120,7 +125,7 @@ class Edit extends Component{
                                     <List>
                                         <Item>
                                             {this.state.data.map((i,ind) => (
-                                                <CheckboxItem multipleLine key={i.value} defaultChecked={this.props.location.state.faultDescribe===i.value?true:false} onChange={(e) => this.troubleChange(e,i.value,ind)}>
+                                                <CheckboxItem multipleLine key={i.value} defaultChecked={baseData.faultDescribe===i.value?true:false} onChange={(e) => this.troubleChange(e,i.value,ind)}>
                                                     {i.label}
                                                 </CheckboxItem>
                                             ))}

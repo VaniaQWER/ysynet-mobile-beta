@@ -104,7 +104,7 @@ dl,dt,dd{
     font-size: 18px;
     display: inline-block;
     width: 50%;
-    padding: 2vh 0;
+    padding: 2.2vh 0;
     text-align: center;
 }
 .foot-button .btn-cancel{
@@ -130,3 +130,4 @@ dl,dt,dd{
 .am-list-item .am-list-line .am-list-extra{
     font-size: 13px;
 }
+
