@@ -51,6 +51,7 @@ class EquipmentRepair extends Slider {
             <SearchBar 
               placeholder="设备维修单号" 
               onSubmit={value => {
+                document.querySelector('.am-list-view-scrollview').scrollTo(0, 0);
                 this.genData({
                   query: { rrpairOrder: value }
                 });
