@@ -30,10 +30,11 @@ class EquipmentList extends Slider {
   }
   onEndReached = (event) => {
     if (this.state.isMore) {
-      this.genData();
+      this.genData({
+        endReached: true
+      });
     }
   }
-
 
   //渲染状态style
   handleStatusStyle = (rowData) =>{
@@ -63,7 +64,10 @@ class EquipmentList extends Slider {
             <SearchBar 
               placeholder="查找资产" 
               onSubmit={value => {
-                this.genData({equipmetStandarName: value});
+                document.querySelector('.am-list-view-scrollview').scrollTo(0, 0);
+                this.genData({
+                  query: { equipmetStandarName: value }
+                });
               }}
             />
             <ListView
