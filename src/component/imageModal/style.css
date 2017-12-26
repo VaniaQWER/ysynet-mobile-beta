@@ -1,0 +1,41 @@
+/* 图片展示 模态框 */
+.am-modal-wrap{
+    align-items: flex-start !important;
+}
+.am-modal.am-modal-transparent{
+    width: 85.333333vw !important;
+    box-shadow: 0 0.133333vw 0.8vw 0 rgba(0,0,0,.1);
+    border-radius: 1.066667vw;
+    padding: 16.6666vw 0 0;
+    box-sizing: border-box;
+}
+/* 模态框 图片文字说明 */
+.ysy-modal-content dl{
+    font-size: 13px;
+    letter-spacing: 0;
+    line-height: 3.733333vw;
+    padding: 0 3.333333vw 2.666667vw;
+    text-align: left;
+}
+.ysy-modal-content dt{
+    font-weight: 700;
+    width: 60px;
+}
+.ysy-modal-content dd{
+    margin-left: 60px;
+}
+.ysy-modal-content{
+    position: relative;
+    width :100%;
+}
+.am-modal.am-modal-transparent .am-modal-content{
+    padding-top: 0 !important; 
+    box-shadow: 0 0.133333vw 0.8vw 0 rgba(0,0,0,.1);
+    border-radius: 1.066667vw !important;
+}
+.am-modal.am-modal-transparent .am-modal-content .am-modal-body{
+    padding: 0 !important;
+}
+.ysy-modal-content-desc{
+    padding: 2.67777vw 0;
+}

@@ -32,10 +32,10 @@ dl,dt,dd{
     overflow: visible;
     white-space:normal
 }
-.trouble-info dt{
+.trouble-info dt,.ysy-modal-content dt{
     float: left;
 }
-.trouble-info dl:after {  
+.trouble-info dl:after,.ysy-modal-content dl:after {  
   content: " ";  
   display: table;  
 }
@@ -80,7 +80,7 @@ dl,dt,dd{
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
+    z-index: 99;
 }
 /* 底部按钮 */
 .ysynet-detail-foot .button-group{
@@ -124,10 +124,10 @@ dl,dt,dd{
 .ysynet-radio{
     display: flex;
     justify-content:space-between;
-
 }
 /* 各类原因右侧详细说明 */
 .am-list-item .am-list-line .am-list-extra{
     font-size: 13px;
 }
+
 

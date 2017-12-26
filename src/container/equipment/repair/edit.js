@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon, WhiteSpace, TextareaItem, ImagePicker ,List,Toast,Accordion,Checkbox } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import { createForm } from 'rc-form';
+import ImageModal  from '../../../component/imageModal'
 import { fetchData,compressImage } from '../../../utils/index';
 import querystring from 'querystring';
 import { Equipment } from '../../../api';
@@ -21,6 +22,8 @@ class Edit extends Component{
         multiple:false,
         data: troubleTypes,
         submitFiles: [],
+        visible: false,
+        src:null,
         files: []
     }
     componentWillMount = ()=>{
@@ -35,6 +38,7 @@ class Edit extends Component{
                     id: index
                 })
             });
+            console.log(file,'file')
             this.setState({ files:file,submitFiles : submitFile})
         }
     }
@@ -107,7 +111,9 @@ class Edit extends Component{
     cancel = ()=>{
         hashHistory.push({pathname:'/equipment/equipmentDetail',state:{...this.props.location.state}})
     }
-    
+    showModal = (index,fs)=>{
+        this.setState({ visible:true,src:fs[index].url })
+    }
     render(){
         const baseData = this.props.location.state;
         const { files } = this.state;
@@ -163,11 +169,23 @@ class Edit extends Component{
                         <ImagePicker
                             files={files}
                             onChange={this.onChange}
-                            onImageClick={(index, fs) => console.log(index, fs)}
+                            onImageClick={(index, fs) => this.showModal(index,fs)}
                             selectable={files.length < 4}
                             multiple={this.state.multiple}
                             />
                     </div>
+                    <ImageModal 
+                        visible={this.state.visible}
+                        transparent={true}
+                        closable={true}
+                        maskClosable={true}
+                        onClose={()=>this.setState({visible:false})}
+                        data={{
+                            src:this.state.src,
+                            equipmentName:baseData.equipmentName,
+                            faultWords:baseData.faultWords
+                        }}
+                    />
                 </List>
                 <div className={'ysynet-detail-foot'}>
                     <div className={'foot-button'}>
