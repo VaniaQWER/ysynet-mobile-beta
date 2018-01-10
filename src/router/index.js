@@ -313,15 +313,14 @@ export const routes =  {
       }
     },
     {
-<<<<<<< Updated upstream
       path: '/test',// 测试页面
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
           cb(null, require('../container/test').default)
         }, 'test')
       }
-    }
-=======
+    },
+    {
       path: '/auditMgt',//审批管理
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
@@ -339,6 +338,5 @@ export const routes =  {
         }
       ]
     },
->>>>>>> Stashed changes
   ]
 }
