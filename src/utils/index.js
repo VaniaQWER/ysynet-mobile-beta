@@ -55,7 +55,7 @@ export const fetchData = ({
     .catch(e => {
       console.log(e)
       if (typeof error === 'function') {
-        error();
+        error(e);
       }
       //message.error('存在异常' + e.message)
     });

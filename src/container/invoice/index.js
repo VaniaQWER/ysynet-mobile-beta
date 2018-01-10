@@ -38,6 +38,9 @@ class Invoice extends Slider {
           mode="dark"
           icon={<Icon type="left" />}
           onLeftClick={() => hashHistory.push({pathname: '/'})}
+          rightContent={
+            <div>1234567</div>
+          }
         >发票
         </NavBar>
         <div className={'ysynet-content'}>

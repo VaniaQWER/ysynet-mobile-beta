@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavBar, Icon, ListView, PullToRefresh } from 'antd-mobile';
+import { NavBar, Icon, ListView, PullToRefresh, Toast } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import CardList from '../../component/cardList';
 import Footer from '../../component/footer';
 import SearchMirror from '../../component/search_mirror';
+import Screen from '../../component/screen';
 import Slider from '../common/slider';
 import { Status } from '../../constants';
 import './style.css';
@@ -16,20 +17,27 @@ class Order extends Slider {
     this.url = 'order';
     this.state = {
       dataSource: this.dataSource,
-      pageIndex: 0,
+      pageIndex: 1,
       isMore: true,
       isLoading: true,
       refreshing: true,
       sectionIDs: [],
       rowIDs: [],
-      dataBlobs: {}
+      dataBlobs: {},
     }
   }
   componentDidMount() {
-    this.genData();
+    this.genData({
+      error: err => Toast.fail('请求超时, 请重新连接'),
+    });
   }
   onEndReached = (event) => {
-    this.genData();
+    if (this.state.isMore) {
+      this.genData({
+        error: err => Toast.fail('请求超时, 请重新连接'),
+        endReached: true
+      });
+    }
   }
   render () {
     return this.props.children ||
@@ -47,6 +55,7 @@ class Order extends Slider {
               placeholder={'请输入订单号或公司'}
               onClick={() => hashHistory.push({pathname: '/search', state: {type: 'order'}})}
             />
+            <Screen />
             <ListView
               style={{height: '85vh'}}
               dataSource={this.state.dataSource}
@@ -78,7 +87,9 @@ class Order extends Slider {
                 }
               } 
               renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-                {this.state.isLoading ? '加载中...' : '下拉加载更多'}
+              {
+                this.state.isMore ? this.state.isLoading ? '加载中...' : '下拉加载更多' : '没有了'
+              }
               </div>)}
               pageSize={4}
               pullToRefresh={<PullToRefresh style={{color: 'red'}}

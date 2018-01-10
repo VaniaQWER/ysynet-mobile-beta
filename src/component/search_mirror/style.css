@@ -5,6 +5,8 @@
   text-align: center;
   border-radius: 3px;
   overflow: hidden;
+  position: relative;
+  z-index: 10;
 }
 
 .ysynet-search-mirror-container  .ysynet-search-mirror-wrapper {

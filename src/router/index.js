@@ -293,6 +293,14 @@ export const routes =  {
           cb(null, require('../container/search').default)
         }, 'search')
       }
+    },
+    {
+      path: '/test',// 测试页面
+      getComponent: (nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('../container/test').default)
+        }, 'test')
+      }
     }
   ]
 }

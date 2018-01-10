@@ -38,7 +38,13 @@ class Slider extends Component {
       fetchData({
         url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${index}&${querystring.stringify(this.searchName)}&${querystring.stringify(query)}`,
         error:(err)=>{
-          console.log(err)
+          if ( params.error && typeof params.error === 'function' ) {
+            this.setState({
+              isMore: false,
+              refreshing: false
+            })
+            params.error(err);
+          }
         },
         success: (res) =>{
           let data = res.result;
