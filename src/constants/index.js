@@ -12,6 +12,8 @@ export const MAIN_TOOLS = [
   { icon: require('../assets/auditing.svg'), text: '订单审核' },
   { icon: require('../assets/equipment.svg'), text: '设备', link: '/equipment' },
   { icon: require('../assets/balance.svg'), text: '余额' },
+  { icon: require('../assets/yan.svg'), text: '送货单验收' , link: '/deliveryCheck'},
+  { icon: require('../assets/yan.svg'), text: '审批管理' , link: '/auditMgt'},
   { icon: require('../assets/more.svg'), text: '更多' }
 ]
 

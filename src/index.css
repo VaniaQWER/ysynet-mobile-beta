@@ -70,3 +70,14 @@ html {
   background-image: url(./assets/scan.svg);
   background-size: 100% 100%;
 }
+
+.ysynet-content p{
+  margin-bottom: 8px;
+}
+.ysynet-content p.list{
+  color: #333;
+}
+.ysynet-content .money{
+ font-size: 16px;
+ color: #2395ff;
+}

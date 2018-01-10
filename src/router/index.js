@@ -38,6 +38,24 @@ export const routes =  {
       }
     },
     {
+      path: '/deliveryCheck',//送货单验收
+      getComponent: (nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('../container/deliveryCheck').default)
+        }, 'deliveryCheck')
+      },
+      childRoutes: [
+        {
+          path: '/deliveryCheck/detail',//送货单验收详情
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/deliveryCheck/detail').default)
+            }, '/deliveryCheck/detail')
+          }
+        }
+      ]
+    },
+    {
       path: '/equipment',//设备
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
@@ -243,7 +261,7 @@ export const routes =  {
       ]
     },
     {
-      path: '/supplier',//订单
+      path: '/supplier',
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
           cb(null, require('../container/supplier').default)
@@ -295,6 +313,7 @@ export const routes =  {
       }
     },
     {
+<<<<<<< Updated upstream
       path: '/test',// 测试页面
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
@@ -302,5 +321,24 @@ export const routes =  {
         }, 'test')
       }
     }
+=======
+      path: '/auditMgt',//审批管理
+      getComponent: (nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('../container/auditMgt').default)
+        }, 'auditMgt')
+      },
+      childRoutes: [
+        { 
+          path: '/auditMgt/details',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/auditMgt/details').default)
+            }, 'auditMgt/details')
+          },
+        }
+      ]
+    },
+>>>>>>> Stashed changes
   ]
 }
