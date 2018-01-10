@@ -1,12 +1,13 @@
+import {_local} from './local';
 export default {
-    rSearchDeliveryList: '/delivery/rSearchDeliveryList',
-    deliveryDetails: '/delivery/deliveryDetails',
-    findMyInvoiceList: '/invoiceController/findMyInvoiceList',
-    searchDeliveryListByInvoiceId: '/invoiceController/searchDeliveryListByInvoiceId',
-    findPackageListByOrderId: '/approvalRecordController/selectMyApprovalRecordList',
-    selectOneApprovalRecord: '/approvalRecordController/selectOneApprovalRecord',
-    selectOneApprovalRecord: '/approvalRecordController/selectOneApprovalRecord',
-    updateApprovalRecordFstate: '/approvalRecordController/updateApprovalRecordFstate',
-    deliveryThrough: '/check/deliveryThrough',
-    deliveryNotThrough: '/check/deliveryNotThrough',
+    rSearchDeliveryList: `${_local}/delivery/rSearchDeliveryList`,
+    deliveryDetails: `${_local}/delivery/deliveryDetails`,
+    findMyInvoiceList: `${_local}/invoiceController/findMyInvoiceList`,
+    searchDeliveryListByInvoiceId: `${_local}/invoiceController/searchDeliveryListByInvoiceId`,
+    findPackageListByOrderId: `${_local}/approvalRecordController/selectMyApprovalRecordList`,
+    selectOneApprovalRecord: `${_local}/approvalRecordController/selectOneApprovalRecord`,
+    selectOneApprovalRecord: `${_local}/approvalRecordController/selectOneApprovalRecord`,
+    updateApprovalRecordFstate: `${_local}/approvalRecordController/updateApprovalRecordFstate`,
+    deliveryThrough: `${_local}/check/deliveryThrough`,
+    deliveryNotThrough: `${_local}/check/deliveryNotThrough`,
 }

@@ -20,11 +20,6 @@ const clickFunc = (item, onClick, subClick, event) => {
  */
 const CardBody = ({ item, onClick, subClick }) => (
   <div className={'card-body'} onClick={clickFunc.bind(this, item, onClick, subClick)}>
-    <div className={'card-avatar'}>
-      <img 
-        alt={item.supplyname}
-        src={item.logo || 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'}/>
-    </div>
     <div className={'card-content'}>
       <div className={'card-head'}>
         <div className={'title'}>

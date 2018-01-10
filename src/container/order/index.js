@@ -6,15 +6,15 @@ import Footer from '../../component/footer';
 import SearchMirror from '../../component/search_mirror';
 import Screen from '../../component/screen';
 import Slider from '../common/slider';
-import { Status } from '../../constants';
+import { Order } from '../../api';
 import './style.css';
 /**
  * @summary 我的订单
  */
-class Order extends Slider {
+class OrderList extends Slider {
   constructor(props) {
     super(props);
-    this.url = 'order';
+    this.url = Order.findMyOrderList;
     this.state = {
       dataSource: this.dataSource,
       pageIndex: 1,
@@ -27,6 +27,7 @@ class Order extends Slider {
     }
   }
   componentDidMount() {
+
     this.genData({
       error: err => Toast.fail('请求超时, 请重新连接'),
     });
@@ -62,7 +63,6 @@ class Order extends Slider {
               renderBodyComponent={() => <div style={{background: '#efeff4'}}></div>}
               renderRow={
                 (rowData, sectionID, rowID) => {
-                  console.log(Status[rowData.status])
                   return (
                     <CardList 
                       onClick={(key) => hashHistory.push({pathname: `/order/${key}`})}
@@ -70,14 +70,13 @@ class Order extends Slider {
                       key={rowID} 
                       data={{
                         key: rowData.id,
-                        title: `${rowData.supplyname}(${rowData.address})`,
-                        watermark: Status[rowData.status],
-                        subTitle: rowData.datetime,
-                        content: 
-                                  <span className={'productname ellipsis'}>
-                                  { rowData.productname }
-                                  <span>等{ rowData.total }件商品</span>
-                                  </span>,
+                        title: `${rowData.rOrgName}`,
+                        watermark: rowData.status,
+                        subTitle: <div>
+                                    <p>{rowData.orderType } {"(" +rowData.orderNo + ")"}</p>
+                                    <p className="mt8">到货时间: {rowData.expectDate}</p>
+                                    </div>,
+                        content: <span >送货单总数量{ rowData.deliveryTotal }  / 已发货送货单: { rowData.shippedTotal } </span>,
                         extra: `￥${ rowData.price.toFixed(2) }`,        
                         logo: rowData.logo,
                       }} 
@@ -108,4 +107,4 @@ class Order extends Slider {
   }
 }
 
-export default Order;
+export default OrderList;

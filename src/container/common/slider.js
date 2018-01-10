@@ -36,7 +36,7 @@ class Slider extends Component {
     const index = params && params.query && !params.endReached ? 1 : pageIndex;
     this.setState({ isLoading: true });
       fetchData({
-        url:`/${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${index}&${querystring.stringify(this.searchName)}&${querystring.stringify(query)}`,
+        url:`${this.url}?pagesize=${this.NUM_ROWS_PER_SECTION}&page=${index}&${querystring.stringify(this.searchName)}&${querystring.stringify(query)}`,
         error:(err)=>{
           if ( params.error && typeof params.error === 'function' ) {
             this.setState({

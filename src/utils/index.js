@@ -7,7 +7,6 @@ import sha1 from 'sha1';
 import md5 from 'md5';
 import { User } from '../api';
 // 192.168.0.103:8686/ysynet-mobile/login/userLogin?userNo=30089&pwd=3e29d79c1e1d3deb3cfe5b6f90b065ad788154a6&token=vania
-const _remote = 'http://120.26.128.15:8905';//'http://192.168.0.183:80'
 
 /**
  * @summary fetch方法
@@ -23,7 +22,7 @@ export const fetchData = ({
   url, body, success, error, method, type
 }) => {
   const query = typeof body === 'object' ? JSON.stringify(body) : body;
-  fetch(`${_remote}${url}`, {
+  fetch(`${url}`, {
     method: method || 'post',
     credentials: 'include',
     mode: 'cors',

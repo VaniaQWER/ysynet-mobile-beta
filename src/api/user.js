@@ -1,5 +1,6 @@
+import {_local} from './local';
 export default {
-  loginCheck: '/login/userLogin',
-  logout: '/login/sessionTimeout',
-  sessionCheck: '/login/sessionIsExists'
+  loginCheck: `${_local}/login/userLogin`,
+  logout: `${_local}/login/sessionTimeout`,
+  sessionCheck: `${_local}/login/sessionIsExists`
 }
