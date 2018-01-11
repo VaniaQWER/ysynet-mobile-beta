@@ -52,7 +52,7 @@ class Home extends Component {
         </Header> 
         { /* 系统公告 */ }
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-          公告: 庆祝双11，医商云服务费用1折抢购，最低仅需998元！！！
+          公告: 庆祝双11，医商云服务费用1折抢购，最低仅需998元!!
         </NoticeBar>
         { /* 行业信息 */ }
         <Carousel
