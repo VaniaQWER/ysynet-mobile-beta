@@ -19,7 +19,23 @@
   width: 80px;
   height: 80px;
 }
-
+.ysynet-welcome .am-list-item.am-input-error .am-input-error-extra{
+  position: absolute;
+  right: 15px;
+}
+.ysynet-login-form .checkCode,.ysynet-login-form .pwd{
+  padding-left: 0;
+}
+.ysynet-login-form .checkCode .am-list-content,.ysynet-login-form .pwd .am-list-content{
+  padding-left: 15px;
+}
+.ysynet-login-form .ysy-child{
+  margin-left: -15px;
+}
+.ysynet-login-form .checkCode .am-list-extra img{
+  width: 80px;
+  height: auto;
+}
 /* .ysynet-login-form .am-list-item .am-input-label.am-input-label-5 {
   width: 40px;
 }

@@ -139,3 +139,16 @@ export const compressImage = (imageFile, callback) => {
     return image;  
   }
 }
+/**
+ * jsonNull 判断
+ */
+export const jsonNull =function(obj){
+  for(var key in obj) { 
+      if(JSON.stringify(obj[key])==="null") {
+          obj[key] = "";
+      } else if (typeof obj[key] ==="object") {
+          obj[key] = jsonNull(obj[key]);
+      }
+   }
+   return obj;
+}

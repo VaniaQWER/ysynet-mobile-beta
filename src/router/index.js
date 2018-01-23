@@ -4,7 +4,7 @@ export const routes =  {
   childRoutes: [
     {
       path: '/',//主页
-      component: require('../container/home').default,
+      component: require('../container/login').default,
       onEnter: (nextState, replace, next) => {
         loginCheck().then(
           data => {
@@ -19,6 +19,14 @@ export const routes =  {
           }
         )
         next();
+      }
+    },
+    {
+      path: '/home',//主页
+      getComponent: (nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('../container/home').default)
+        }, 'home')
       }
     },
     {
@@ -225,7 +233,50 @@ export const routes =  {
               cb(null, require('../container/profile/user').default)
             }, 'profile/user')
           }
-        }
+        },
+        //地址
+        {
+          path: '/profile/address',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/profile/address/').default)
+            }, 'profile/address')
+          }
+        },
+        {
+          path: '/profile/EditAddr',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/profile/address/edit').default)
+            }, 'profile/EditAddr')
+          }
+        },
+        {
+          path: '/profile/newAdd',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/profile/address/add').default)
+            }, 'profile/newAdd')
+          }
+        },
+        //消息
+        { 
+          path: '/profile/message',
+          getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+              cb(null, require('../container/profile/message/').default)
+            }, 'profile/message')
+          },
+          childRoutes: [
+            {
+              path: '/profile/message/show',
+              getComponent: (nextState, cb) => {
+              require.ensure([], (require) => {
+                cb(null, require('../container/profile/message/show').default)
+              }, 'profile/message/show')
+            }
+          }]
+        },
       ]  
     },
     {

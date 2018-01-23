@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace, Badge } from 'antd-mobile';
+import { NavBar, Icon, List, WhiteSpace, Badge,Toast } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import Footer from '../../component/footer';
 import UserInfo from '../../component/user_info';
+import { fetchData } from '../../utils';
+import { User } from '../../api';
 import './style.css';
 const Item = List.Item;
 
@@ -15,7 +17,33 @@ const userInfo = {
 /**
  * @summary 用户模块
  */
-class User extends Component {
+class MyUser extends Component {
+  state = {
+    userInfo: '',
+    unreadMessage: 0
+  }
+  componentWillMount = ()=>{
+    this.getUserInfo();
+  }
+  
+  componentWillReceiveProps = ()=>{
+    if(this.props.location.pathname === "/profile/message"){
+      this.getUserInfo();
+    }
+  }
+  getUserInfo = ()=>{
+    fetchData({
+      url: User.GETUSERINFO,
+      err: err=>console.log(err,'err'),
+      success: data=>{
+        if(data.status){
+          this.setState({ userInfo:data.result,unreadMessage:data.result.unreadMessage });
+        }else{
+          Toast.fail(data.msg);
+        }
+      } 
+    })
+  }
   render () {
     return this.props.children || (
       <div>
@@ -29,7 +57,7 @@ class User extends Component {
         <UserInfo data={userInfo} onClick={() => hashHistory.push({pathname: '/profile/user'})}/>
         <WhiteSpace size='md' />
         <List className={'ysynet-userInfo'}>
-          <Item arrow="horizontal" onClick={() => {}} thumb={require('../../assets/address16x16.svg')} multipleLine>
+          <Item arrow="horizontal" onClick={() => hashHistory.push({pathname:'/profile/address'})} thumb={require('../../assets/address16x16.svg')} multipleLine>
             我的地址
           </Item>
         </List>
@@ -40,10 +68,10 @@ class User extends Component {
           </Item>
           <Item 
             arrow="horizontal" 
-            onClick={() => {}} 
+            onClick={() => hashHistory.push({pathname:'/profile/message'}) }
             thumb={require('../../assets/message16x16.svg')}
             multipleLine
-            extra={<Badge text={77} overflowCount={55} />}
+            extra={<Badge text={this.state.unreadMessage} overflowCount={10} />}
           >
             消息
           </Item>
@@ -63,4 +91,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default MyUser;

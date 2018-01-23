@@ -1,0 +1,32 @@
+
+.ysy-message .am-list .am-list-body .am-list-item .am-list-content{
+    font-size: 15px;
+}
+.ysy-message span.unReadCicle{
+    float: right;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 100%;
+}
+.ysy-msg-upper{
+    text-align: center;
+    padding: 5.5vh 0;
+    border-bottom:solid 1px #ccc;
+}
+.ysy-msg-title{
+    margin: 0;
+}
+.ysy-message,.ysy-msg-upper p{
+    font-size: 16px;
+    padding: 1.1vh 0;
+    margin: 1.444vh 0;
+}
+
+.ysy-msg-detail p{
+    font-size: 18px;
+    padding: 0 2.1vh;
+    color:#2e2e2e;
+    line-height: 28px;
+    text-indent: 36px;
+}
