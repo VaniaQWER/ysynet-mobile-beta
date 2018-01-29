@@ -5,16 +5,33 @@ import './style.css';
  * @summary 用户信息组件
  */
 class UserInfo extends Component {
+  constructor(props){
+    super()
+    this.state={
+      User:{
+        onClick:()=>{},
+        user:{}
+      }
+    }
+  }
+componentWillReceiveProps(nextProps){
+
+  const {onClick,user}=nextProps
+  const {mobilePhone}=user 
+  let str = mobilePhone.substr(0,3)+"****"+mobilePhone.substr(8)
+  user.tel=str
+  const newOne={onClick,user}
+  this.setState({User:newOne})
+
+}
   render () {
-    const { data, onClick } = this.props;
+    const {user,onClick}=this.state.User
     return (
       <section className={'ysynet-profile'} onClick={onClick}>
-        <img alt='用户头像' src={data.avatar}/>
+        <img alt='用户头像' src={user.userNo}/>
         <div className={'ysynet-profile-detail'}>
-          <p className={'name'}> { data.username } </p>
-          {
-            data.extra
-          }
+          <p className={'name'}> {user.userName } </p>
+          <p className={'phone'}><i></i><span>{user.tel}</span></p>
         </div>
         <span className={'next'}></span>
       </section>
@@ -23,7 +40,7 @@ class UserInfo extends Component {
 }
 
 UserInfo.propTypes = {
-  data: PropTypes.object.isRequired,
+  //data: PropTypes.object.isRequired,
   onClick: PropTypes.func
 }
 

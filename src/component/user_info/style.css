@@ -35,14 +35,17 @@
 .ysynet-profile .ysynet-profile-detail .phone span{
   font-size: 12px;
   font-weight: 300;
+  display: inline-block;
+  vertical-align:middle;
+  
 }
 .ysynet-profile .ysynet-profile-detail .phone i {
-  display: inline-block;
-  vertical-align: top;
+  display:inline-block;
   background-image: url(../../assets/phone.svg);
   background-size: 100% 100%;
   width: 16px;
   height: 16px;
+  vertical-align:middle;
 }
 
 .ysynet-profile .next {
