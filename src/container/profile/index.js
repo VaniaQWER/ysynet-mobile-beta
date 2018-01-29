@@ -43,7 +43,7 @@ class Userinfor extends Component {
       url: User.GETUSERINFO,
 
       success: data=>{
-        console.log(data.result)
+        // console.log(data.result)
         
         onInforLoad(data.result)
         if(data.status){
