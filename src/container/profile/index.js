@@ -1,57 +1,50 @@
 import React, { Component } from 'react';
-import { NavBar, Icon, List, WhiteSpace, Badge } from 'antd-mobile';
-import { connect } from 'react-redux';
+import { NavBar, Icon, List, WhiteSpace, Badge,Toast } from 'antd-mobile';
 import { hashHistory } from 'react-router';
 import Footer from '../../component/footer';
 import UserInfo from '../../component/user_info';
-import './style.css';
-
-import { onLoad } from '../../action';
 import { fetchData } from '../../utils';
-//import querystring from 'querystring';
-import {User} from '../../api';
+import { User } from '../../api';
+import './style.css';
 const Item = List.Item;
 
-/**
- * @summary 用户模块 30089 999999
- */
+const userInfo = {
+  avatar: require('../../assets/avatar.png'),
+  username: '萌萌的拖鞋酱',
+  extra: <p className={'phone'}><i></i><span>186****7725</span></p>
+}
 
-class Userinfor extends Component {
-  constructor(){
-    super()
-    this.state={
-      userInfo:{}
+/**
+ * @summary 用户模块
+ */
+class MyUser extends Component {
+  state = {
+    userInfo: '',
+    unreadMessage: 0
+  }
+  componentWillMount = ()=>{
+    this.getUserInfo();
+  }
+  
+  componentWillReceiveProps = ()=>{
+    if(this.props.location.pathname === "/profile/message"){
+      this.getUserInfo();
     }
   }
-  // state={
-  //   userInfo:{}
-  // }
-
-  componentDidMount(){
-  const onInforLoad=this.props.onInforLoad
-    
+  getUserInfo = ()=>{
     fetchData({
-      url:`${User.GETUSERINFO}`,
-      //body:querystring.stringify({ code: value}),
+      url: User.GETUSERINFO,
+      err: err=>console.log(err,'err'),
       success: data=>{
-        //data.result
-
-        onInforLoad(data.result)
-        console.log(data.result)
-        //console.log(data.result.userName)
-        
-        // if(data.status && data.result==='success'){
-        //   console.log(data)
-        // }
-      
-      },
-      err: err =>{
-        console.log('不正确')
-      }
+        if(data.status){
+          this.setState({ userInfo:data.result,unreadMessage:data.result.unreadMessage });
+        }else{
+          Toast.fail(data.msg);
+        }
+      } 
     })
-}
+  }
   render () {
-    const {user}=this.props
     return this.props.children || (
       <div>
         <NavBar
@@ -61,28 +54,24 @@ class Userinfor extends Component {
         >
           我的
         </NavBar>
-        {/* <UserInfo data={this.state.userInfo} 
-        onClick={() => hashHistory.push({pathname: '/profile/user',state:this.state.userInfo})}/> */}
-        <UserInfo user={user}
-        onClick={() => hashHistory.push({pathname: '/profile/user'})}/>
+        <UserInfo data={userInfo} onClick={() => hashHistory.push({pathname: '/profile/user'})}/>
         <WhiteSpace size='md' />
         <List className={'ysynet-userInfo'}>
-          <Item arrow="horizontal" onClick={() => {}} thumb={require('../../assets/address16x16.svg')} multipleLine>
+          <Item arrow="horizontal" onClick={() => hashHistory.push({pathname:'/profile/address'})} thumb={require('../../assets/address16x16.svg')} multipleLine>
             我的地址
           </Item>
         </List>
         <WhiteSpace size='md' />
         <List className={'ysynet-userInfo'}>
-          <Item arrow="horizontal" 
-        onClick={()=>hashHistory.push({pathname:'/profile/institution',state:user})} thumb={require('../../assets/hospital16x16.svg')} multipleLine>
-            我的机构
+          <Item arrow="horizontal" onClick={() => {}} thumb={require('../../assets/hospital16x16.svg')} multipleLine>
+            医院
           </Item>
           <Item 
             arrow="horizontal" 
-            onClick={() => {}} 
+            onClick={() => hashHistory.push({pathname:'/profile/message'}) }
             thumb={require('../../assets/message16x16.svg')}
             multipleLine
-            extra={<Badge text={77} overflowCount={55} />}
+            extra={<Badge text={this.state.unreadMessage} overflowCount={10} />}
           >
             消息
           </Item>
@@ -102,17 +91,4 @@ class Userinfor extends Component {
   }
 }
 
-const mapStateToProps = (state)=>({
-  //username:state.user.username
-  user:state.user
-})
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onInforLoad: (data) => {
-      dispatch(onLoad.onLoad(data));
-    }
-  }
-}
-//export default User
-
-export default connect(mapStateToProps,mapDispatchToProps)(Userinfor);
+export default MyUser;
