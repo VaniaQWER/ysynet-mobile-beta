@@ -232,7 +232,57 @@ export const routes =  {
             require.ensure([], (require) => {
               cb(null, require('../container/profile/user').default)
             }, 'profile/user')
-          }
+          },
+          childRoutes: [
+            {
+              path: '/profile/institution',
+              getComponent: (nextState, cb) => {
+                require.ensure([], (require) => {
+                  cb(null, require('../container/profile/institution').default)
+                }, 'profile/institution')
+              }
+            },
+            { 
+              path: '/profile/user',
+              getComponent: (nextState, cb) => {
+                require.ensure([], (require) => {
+                  cb(null, require('../container/profile/user').default)
+                }, 'profile/user')
+              },
+              childRoutes: [
+                { 
+                  path: '/profile/user/changeName',
+                  getComponent: (nextState, cb) => {
+                    require.ensure([], (require) => {
+                      const C = require('../container/profile/changeName').default;
+                      //console.log(C)
+                      cb(null, C)
+                    }, '/profile/user/changeName')
+                  }
+                },
+                { 
+                  path: '/profile/user/changeNumber',
+                  getComponent: (nextState, cb) => {
+                    require.ensure([], (require) => {
+                      const C = require('../container/profile/changeNumber').default;
+                      //console.log(C)
+                      cb(null, C)
+                    }, '/profile/user/changeNumber')
+                  }
+                },
+                { 
+                  path: '/profile/user/changePw',
+                  getComponent: (nextState, cb) => {
+                    require.ensure([], (require) => {
+                      const C = require('../container/profile/changePw').default;
+                      //console.log(C)
+                      cb(null, C)
+                    }, '/profile/user/changePw')
+                  }
+                }
+              ]
+            }
+          ] 
         },
         //地址
         {
