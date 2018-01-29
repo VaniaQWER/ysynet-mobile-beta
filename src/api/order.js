@@ -1,4 +1,4 @@
-import {_local} from './local';
+//import {_local} from './local';
 export default {
     // findMyOrderList: `${_local}/order/findMyOrderList`,
     // findDetailListByOrderId: `${_local}/order/findDetailListByOrderId`,
