@@ -1,0 +1,40 @@
+
+.ysynet-profile-institution{
+  display: flex;
+  background-color:#fff;
+  padding: 6.666667vw 4vw;
+  color: #888;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.ysynet-profile-institution .ysynet-profile-detail {
+  margin-left: 4.8vw;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+.ysynet-profile-institution .ysynet-profile-detail p  { 
+  margin:0 0 10px 0;
+  font-size:6.5vw;
+  
+}
+
+.sign .grade{
+  padding:3px;
+
+  color:#fff;
+  font-size: 12px;
+  background:#d09a3d;
+}
+.sign .authenticate{
+  padding:3px;
+  color:#fff;
+  font-size: 12px;
+  background:#1f90e6;
+  margin-left:5px;
+
+}
+.explain{
+  font-size: 14px;
+  color:#ccc;
+}
