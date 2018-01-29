@@ -17,8 +17,9 @@ class UserInfo extends Component {
 componentWillReceiveProps(nextProps){
 
   const {onClick,user}=nextProps
-  const {mobilePhone}=user 
-  let str = mobilePhone.substr(0,3)+"****"+mobilePhone.substr(8)
+  const {mobilePhone}=user
+  //console.log(user)
+  let str = mobilePhone.substring(0,3)+"****"+mobilePhone.substring(8)
   user.tel=str
   const newOne={onClick,user}
   this.setState({User:newOne})
